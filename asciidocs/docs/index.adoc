@@ -19,6 +19,36 @@ endif::backend-html5[]
 
 == Git
 
+=== git Architektur und Kommandos
+
+=== Erstellung eines Repositories
+
+* Wie kann ich ein neues Repository lokal erstellen?
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git init
+----
+====
+
+=== git in Teams
+
+* Welcher Befehl ist zu Beginn jeder Arbeit und auch zwischendurch mit git notwendig und warum?
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git pull
+----
+* Damit alle Änderungen der anderen Teammitglieder in den eigenen Branch übernommen werden.
+
+====
+
 === .gitignore
 
 * Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, gitignore zu verwenden?
@@ -130,6 +160,35 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 
 
 == Shell / Netzwerke
+
+=== Kopieren auf einen entfernten Server
+
+* Wie kann ich eine Datei auf einen entfernten Server kopieren?
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+scp -i ~/.ssh/id_ed25519 <file> <user>@<remote-server>:<path>
+----
+
+=== Port Forwarding
+
+* Wie kann ich einen Port eines entfernten Servers auf einen lokalen Port weiterleiten? zB Port 5432 von einem Server mit laufenden docker-compose - Containern auf Port 5432 auf localhost?
+
+.Lösung
+[%collapsible]
+====
+
+[source,shell]
+----
+ssh -L 5432:localhost:5432 <user>@<remote-server>
+----
+
+Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vom Server auch auf einen anderen Port  von localhostweiterleiten, zB 5433.
+====
+
 
 === Umgebungsvariablen für Aufruf mitgeben
 
