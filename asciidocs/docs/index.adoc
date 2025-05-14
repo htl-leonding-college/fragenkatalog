@@ -11,7 +11,7 @@ ifndef::imagesdir[:imagesdir: images]
 ifdef::backend-html5[]
 // https://fontawesome.com/v4.7.0/icons/
 icon:file-text-o[link=https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
-icon:github-square[link=https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes] ‏ ‏ ‎
+icon:github-square[link=https://github.com/htl-leonding-college/fragenkatalog] ‏ ‏ ‎
 icon:home[link=http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lecture-notes/]
 endif::backend-html5[]
 
@@ -19,12 +19,17 @@ endif::backend-html5[]
 
 == Git
 
+=== .gitignore
+
+* Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, gitignore zu verwenden?
+
 === ssh in github
 
 * Wie kann ich mich mit ssh in github einloggen?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 . ssh-key in `~/.ssh` generieren
 +
 [source,shell]
@@ -41,18 +46,23 @@ Host github.com
   UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
 ----
-+
+
 . public-key in Developer-Settings in github einfügen
 +
 gh-profile -> Settings -> SSH and GPG keys -> New SSH key
+====
+
+
 
 === `git pull` vs `git fetch`
 
 * Was ist der Unterschied zwischen `git pull` und `git fetch`?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 `git pull` ist eine Kombination aus `git fetch` und `git merge`. Es lädt die neuesten Änderungen vom Remote-Repository herunter und integriert sie in den aktuellen Branch. `git fetch` hingegen lädt nur die Änderungen herunter, ohne sie zu integrieren. Dies ermöglicht es Ihnen, die Änderungen zu überprüfen, bevor Sie sie in Ihren Branch übernehmen.
+====
 
 === Cherry Picking
 
@@ -63,13 +73,15 @@ gh-profile -> Settings -> SSH and GPG keys -> New SSH key
 
 * Wie kann man für ein repo gh-pages aktivieren?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 . Erstelle einen Branch `gh-pages` und pushe ihn auf GitHub.
 . Gehe zu den Einstellungen (Settings) des Repositories auf GitHub.
 . Settings - Pages - Deploy from a branch - gh-pages / root
 +
 image::gh-pages-aktivieren.png[]
+====
 
 
 == Docker
@@ -78,19 +90,23 @@ image::gh-pages-aktivieren.png[]
 
 * Wie kann ich in einen laufenden Container ein Programm zB die shell starten?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 [source,shell]
 ----
 docker exec -it <container_id> /bin/bash
 ----
+====
+
 
 === postgres-Backup
 
 * Wie kann man ein Backup einer gedockerten postgres DB erstellen?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 [source,shell]
 ----
 docker compose --file=docker-compose.yaml exec -it postgres pg_dump --username=app db | gzip > sql.gz
@@ -101,8 +117,12 @@ docker compose --file=docker-compose.yaml exec -it postgres pg_dump --username=a
 ----
 docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%H_%M_%S`.sql
 ----
+====
 
 
+=== `.dockerignore`
+
+* Was bewirkt ein Eintrag in der Datei `.dockerignore`? Warum ist es wichtig, `.dockerignore` zu verwenden?
 
 
 
@@ -115,8 +135,9 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 
 * Wie kann ich nur für einen Aufruf eine Umgebungsvariable setzen?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 [source,shell]
 ----
 MY_ENV_VAR=1234 ./my_script.sh
@@ -127,6 +148,8 @@ MY_ENV_VAR=1234 ./my_script.sh
 ----
 PGPASSWORD=app pg_dump --username=app db
 ----
+====
+
 
 === Umgebungsvariable setzen
 
@@ -136,7 +159,10 @@ PGPASSWORD=app pg_dump --username=app db
 === Prozess mit Port
 
 * Wie kann ich einen Prozess mit Port 8080 auf einem Linux-Server finden?
-+
+
+.Lösung
+[%collapsible]
+====
 .Dafür gibt es mehrere Möglichkeiten:
 [source,shell]
 ----
@@ -144,18 +170,20 @@ netstat -tulpn | grep 8080
 lsof -i :8080
 
 ----
+====
 
 === Netstat installieren
 
 * Wenn der Befehl `netstat` nicht gefunden wird, was kann ich tun?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 [source,shell]
 ----
 sudo apt install net-tools
 ----
-
+====
 
 
 
@@ -182,8 +210,9 @@ sudo apt install net-tools
 
 * Wie kann man die Admonitions in github in einem `README.adoc` anzeigen lassen?
 
-* Lösung
-+
+.Lösung
+[%collapsible]
+====
 [source,asciidoc]
 ----
     ifdef::env-github[]
@@ -194,16 +223,19 @@ sudo apt install net-tools
     :warning-caption: :warning:
     endif::[]
 ----
+====
+
 
 * Wie kann man eine Überschrift von der Nummerierung ausnehmen?
 
-** Lösung
-+
+.Lösung
+[%collapsible]
+====
 [source,asciidoc]
 ----
 [discrete]
 == Überschrift
 ----
-
+====
 
 == UML
