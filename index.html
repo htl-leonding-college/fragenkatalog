@@ -585,17 +585,40 @@ pre.rouge .gs {
 </li>
 <li><a href="#_docker">2. Docker</a>
 <ul class="sectlevel2">
-<li><a href="#_docker_exec">2.1. docker exec</a></li>
-<li><a href="#_postgres_backup">2.2. postgres-Backup</a></li>
-<li><a href="#_dockerignore">2.3. <code>.dockerignore</code></a></li>
+<li><a href="#_auflisten_aller_container">2.1. Auflisten aller Container</a></li>
+<li><a href="#_auflisten_aller_images">2.2. Auflisten aller Images</a></li>
+<li><a href="#_container_starten">2.3. Container starten</a></li>
+<li><a href="#_container_stoppen">2.4. Container stoppen</a></li>
+<li><a href="#_container_löschen">2.5. Container löschen</a></li>
+<li><a href="#_volumes_löschen">2.6. Volumes löschen</a></li>
+<li><a href="#_image_bauen">2.7. Image bauen</a></li>
+<li><a href="#_image_nach_ghcr_io_pushen">2.8. Image nach ghcr.io pushen</a></li>
+<li><a href="#_docker_exec">2.9. docker exec</a></li>
+<li><a href="#_postgres_backup">2.10. postgres-Backup</a></li>
+<li><a href="#_dockerignore">2.11. <code>.dockerignore</code></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a></li>
 <li><a href="#_shell_netzwerke">4. Shell / Netzwerke</a>
 <ul class="sectlevel2">
 <li><a href="#_kopieren_auf_einen_entfernten_server">4.1. Kopieren auf einen entfernten Server</a></li>
+<li><a href="#_port_forwarding">4.2. Port Forwarding</a></li>
+<li><a href="#_umgebungsvariable_für_aufruf_mitgeben">4.3. Umgebungsvariable für Aufruf mitgeben</a></li>
+<li><a href="#_umgebungsvariable_setzen">4.4. Umgebungsvariable setzen</a></li>
+<li><a href="#_prozess_mit_port">4.5. Prozess mit Port</a></li>
+<li><a href="#_netstat_installieren">4.6. Netstat installieren</a></li>
 </ul>
 </li>
+<li><a href="#_java">5. Java</a></li>
+<li><a href="#_asciidoctor">6. Asciidoctor</a>
+<ul class="sectlevel2">
+<li><a href="#_präambel_preamble">6.1. Präambel / Preamble</a></li>
+<li><a href="#_admonitions">6.2. Admonitions</a></li>
+<li><a href="#_callouts">6.3. Callouts</a></li>
+<li><a href="#_adoc_in_github_environment">6.4. adoc in github-Environment</a></li>
+</ul>
+</li>
+<li><a href="#_uml">7. UML</a></li>
 </ul>
 </div>
 </div>
@@ -784,7 +807,72 @@ pre.rouge .gs {
 <h2 id="_docker"><a class="anchor" href="#_docker"></a>2. Docker</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_docker_exec"><a class="anchor" href="#_docker_exec"></a>2.1. docker exec</h3>
+<h3 id="_auflisten_aller_container"><a class="anchor" href="#_auflisten_aller_container"></a>2.1. Auflisten aller Container</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_auflisten_aller_images"><a class="anchor" href="#_auflisten_aller_images"></a>2.2. Auflisten aller Images</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_container_starten"><a class="anchor" href="#_container_starten"></a>2.3. Container starten</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_container_stoppen"><a class="anchor" href="#_container_stoppen"></a>2.4. Container stoppen</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_container_löschen"><a class="anchor" href="#_container_löschen"></a>2.5. Container löschen</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_volumes_löschen"><a class="anchor" href="#_volumes_löschen"></a>2.6. Volumes löschen</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_image_bauen"><a class="anchor" href="#_image_bauen"></a>2.7. Image bauen</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_image_nach_ghcr_io_pushen"><a class="anchor" href="#_image_nach_ghcr_io_pushen"></a>2.8. Image nach ghcr.io pushen</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man ein Image in eine andere Registry als <code>hub.docker.com</code> pushen?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker tag &lt;image_name&gt; ghcr.io/&lt;user&gt;/&lt;repo&gt;:&lt;tag&gt;
+docker push ghcr.io/&lt;user&gt;/&lt;repo&gt;:&lt;tag&gt;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Beispiel:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>docker tag my-image ghcr.io/htl-leonding-college/my-image:latest
+docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Der Name des Images beinhaltet den Namen des Repositories, in dem das Image gespeichert werden soll. Der Tag ist optional, aber es ist eine gute Praxis, ihn zu verwenden, um verschiedene Versionen des Images zu kennzeichnen.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_docker_exec"><a class="anchor" href="#_docker_exec"></a>2.9. docker exec</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -804,7 +892,7 @@ pre.rouge .gs {
 </details>
 </div>
 <div class="sect2">
-<h3 id="_postgres_backup"><a class="anchor" href="#_postgres_backup"></a>2.2. postgres-Backup</h3>
+<h3 id="_postgres_backup"><a class="anchor" href="#_postgres_backup"></a>2.10. postgres-Backup</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -833,7 +921,7 @@ pre.rouge .gs {
 </details>
 </div>
 <div class="sect2">
-<h3 id="_dockerignore"><a class="anchor" href="#_dockerignore"></a>2.3. <code>.dockerignore</code></h3>
+<h3 id="_dockerignore"><a class="anchor" href="#_dockerignore"></a>2.11. <code>.dockerignore</code></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -870,9 +958,11 @@ pre.rouge .gs {
 <pre class="rouge highlight"><code data-lang="shell">scp <span class="nt">-i</span> ~/.ssh/id_ed25519 &lt;file&gt; &lt;user&gt;@&lt;remote-server&gt;:&lt;path&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>=== Port Forwarding</p>
 </div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_port_forwarding"><a class="anchor" href="#_port_forwarding"></a>4.2. Port Forwarding</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -880,8 +970,9 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
-</div>
-</details>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">ssh <span class="nt">-L</span> 5432:localhost:5432 &lt;user&gt;@&lt;remote-server&gt;</code></pre>
@@ -890,11 +981,11 @@ pre.rouge .gs {
 <div class="paragraph">
 <p>Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vom Server auch auf einen anderen Port  von localhostweiterleiten, zB 5433.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>=== Umgebungsvariablen für Aufruf mitgeben</p>
 </div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_umgebungsvariable_für_aufruf_mitgeben"><a class="anchor" href="#_umgebungsvariable_für_aufruf_mitgeben"></a>4.3. Umgebungsvariable für Aufruf mitgeben</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -902,27 +993,25 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
-</div>
-</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nv">MY_ENV_VAR</span><span class="o">=</span>1234 ./my_script.sh</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-.zB</p>
-</div>
 <div class="listingblock">
+<div class="title">zB</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nv">PGPASSWORD</span><span class="o">=</span>app pg_dump <span class="nt">--username</span><span class="o">=</span>app db</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>=== Umgebungsvariable setzen</p>
 </div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_umgebungsvariable_setzen"><a class="anchor" href="#_umgebungsvariable_setzen"></a>4.4. Umgebungsvariable setzen</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -930,9 +1019,9 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Prozess mit Port</p>
 </div>
+<div class="sect2">
+<h3 id="_prozess_mit_port"><a class="anchor" href="#_prozess_mit_port"></a>4.5. Prozess mit Port</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -940,8 +1029,9 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
-</div>
-</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="title">Dafür gibt es mehrere Möglichkeiten:</div>
 <div class="content">
@@ -949,11 +1039,11 @@ pre.rouge .gs {
 lsof <span class="nt">-i</span> :8080</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>=== Netstat installieren</p>
 </div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_netstat_installieren"><a class="anchor" href="#_netstat_installieren"></a>4.6. Netstat installieren</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -961,24 +1051,30 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
-</div>
-</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>net-tools</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>== Java</p>
 </div>
-<div class="paragraph">
-<p>== Asciidoctor</p>
+</details>
 </div>
-<div class="paragraph">
-<p>=== Präambel / Preamble</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_java"><a class="anchor" href="#_java"></a>5. Java</h2>
+<div class="sectionbody">
+
+</div>
+</div>
+<div class="sect1">
+<h2 id="_asciidoctor"><a class="anchor" href="#_asciidoctor"></a>6. Asciidoctor</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_präambel_preamble"><a class="anchor" href="#_präambel_preamble"></a>6.1. Präambel / Preamble</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -986,9 +1082,9 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Admonitions</p>
 </div>
+<div class="sect2">
+<h3 id="_admonitions"><a class="anchor" href="#_admonitions"></a>6.2. Admonitions</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -996,9 +1092,9 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== Callouts</p>
 </div>
+<div class="sect2">
+<h3 id="_callouts"><a class="anchor" href="#_callouts"></a>6.3. Callouts</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1006,9 +1102,9 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>=== adoc in github-Environment</p>
 </div>
+<div class="sect2">
+<h3 id="_adoc_in_github_environment"><a class="anchor" href="#_adoc_in_github_environment"></a>6.4. adoc in github-Environment</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1016,8 +1112,9 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
-</div>
-</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="asciidoc">    ifdef::env-github[]
@@ -1029,8 +1126,8 @@ lsof <span class="nt">-i</span> :8080</code></pre>
     endif::[]</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
+</div>
+</details>
 <div class="ulist">
 <ul>
 <li>
@@ -1038,29 +1135,31 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
-</div>
-</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="asciidoc">[discrete]
 == Überschrift</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>== UML</p>
+</div>
+</details>
 </div>
 </div>
 </div>
-</div>
+<div class="sect1">
+<h2 id="_uml"><a class="anchor" href="#_uml"></a>7. UML</h2>
+<div class="sectionbody">
+
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-14 16:36:32 UTC
+Last updated 2025-05-14 16:46:38 UTC
 </div>
 </div>
 </body>
