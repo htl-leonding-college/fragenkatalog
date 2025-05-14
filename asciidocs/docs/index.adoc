@@ -116,6 +116,43 @@ image::gh-pages-aktivieren.png[]
 
 == Docker
 
+=== Auflisten aller Container
+
+=== Auflisten aller Images
+
+=== Container starten
+
+=== Container stoppen
+
+=== Container löschen
+
+=== Volumes löschen
+
+=== Image bauen
+
+=== Image nach ghcr.io pushen
+
+* Wie kann man ein Image in eine andere Registry als `hub.docker.com` pushen?
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker tag <image_name> ghcr.io/<user>/<repo>:<tag>
+docker push ghcr.io/<user>/<repo>:<tag>
+----
+
+. Beispiel:
+[source,shell]
+----
+docker tag my-image ghcr.io/htl-leonding-college/my-image:latest
+docker push ghcr.io/htl-leonding-college/my-image:latest
+----
+
+Der Name des Images beinhaltet den Namen des Repositories, in dem das Image gespeichert werden soll. Der Tag ist optional, aber es ist eine gute Praxis, ihn zu verwenden, um verschiedene Versionen des Images zu kennzeichnen.
+====
+
 === docker exec
 
 * Wie kann ich in einen laufenden Container ein Programm zB die shell starten?
@@ -172,6 +209,7 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 ----
 scp -i ~/.ssh/id_ed25519 <file> <user>@<remote-server>:<path>
 ----
+====
 
 === Port Forwarding
 
@@ -190,7 +228,7 @@ Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vo
 ====
 
 
-=== Umgebungsvariablen für Aufruf mitgeben
+=== Umgebungsvariable für Aufruf mitgeben
 
 * Wie kann ich nur für einen Aufruf eine Umgebungsvariable setzen?
 
@@ -201,7 +239,7 @@ Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vo
 ----
 MY_ENV_VAR=1234 ./my_script.sh
 ----
-+
+
 .zB
 [source,shell]
 ----
