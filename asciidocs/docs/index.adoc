@@ -1,4 +1,209 @@
-= Index page
+= Fragenkatalog
+Thomas Stütz
+1.0.0, {docdate}: Basiswissen für Programmieren und Projektentwicklung
+:icons: font
+:experimental:
+:sectnums:
+:source-highlighter: rouge
+:docinfo: shared
 ifndef::imagesdir[:imagesdir: images]
+:toc:
+ifdef::backend-html5[]
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes] ‏ ‏ ‎
+icon:home[link=http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lecture-notes/]
+endif::backend-html5[]
 
-image::img.png[]
+:toc:
+
+== Git
+
+=== ssh in github
+
+* Wie kann ich mich mit ssh in github einloggen?
+
+* Lösung
++
+. ssh-key in `~/.ssh` generieren
++
+[source,shell]
+----
+ssh-keygen -t ed25519
+----
++
+. folgendes in `~/.ssh/config` einfügen:
++
+[source,shell]
+----
+Host github.com
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_ed25519
+----
++
+. public-key in Developer-Settings in github einfügen
++
+gh-profile -> Settings -> SSH and GPG keys -> New SSH key
+
+=== `git pull` vs `git fetch`
+
+* Was ist der Unterschied zwischen `git pull` und `git fetch`?
+
+* Lösung
++
+`git pull` ist eine Kombination aus `git fetch` und `git merge`. Es lädt die neuesten Änderungen vom Remote-Repository herunter und integriert sie in den aktuellen Branch. `git fetch` hingegen lädt nur die Änderungen herunter, ohne sie zu integrieren. Dies ermöglicht es Ihnen, die Änderungen zu überprüfen, bevor Sie sie in Ihren Branch übernehmen.
+
+=== Cherry Picking
+
+* Erläutern Sie Cherry Picking und geben Sie ein konkretes Bsp. mit den git-cli-Kommandos an.
+
+
+=== gh-pages aktivieren
+
+* Wie kann man für ein repo gh-pages aktivieren?
+
+* Lösung
++
+. Erstelle einen Branch `gh-pages` und pushe ihn auf GitHub.
+. Gehe zu den Einstellungen (Settings) des Repositories auf GitHub.
+. Settings - Pages - Deploy from a branch - gh-pages / root
++
+image::gh-pages-aktivieren.png[]
+
+
+== Docker
+
+=== docker exec
+
+* Wie kann ich in einen laufenden Container ein Programm zB die shell starten?
+
+* Lösung
++
+[source,shell]
+----
+docker exec -it <container_id> /bin/bash
+----
+
+=== postgres-Backup
+
+* Wie kann man ein Backup einer gedockerten postgres DB erstellen?
+
+* Lösung
++
+[source,shell]
+----
+docker compose --file=docker-compose.yaml exec -it postgres pg_dump --username=app db | gzip > sql.gz
+----
++
+.Ev. auch
+[source,shell]
+----
+docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%H_%M_%S`.sql
+----
+
+
+
+
+
+== Kubernetes
+
+
+== Shell / Netzwerke
+
+=== Umgebungsvariablen für Aufruf mitgeben
+
+* Wie kann ich nur für einen Aufruf eine Umgebungsvariable setzen?
+
+* Lösung
++
+[source,shell]
+----
+MY_ENV_VAR=1234 ./my_script.sh
+----
++
+.zB
+[source,shell]
+----
+PGPASSWORD=app pg_dump --username=app db
+----
+
+=== Umgebungsvariable setzen
+
+* Wie kann ich eine Umgebungsvariable für alle Aufrufe setzen?
+
+
+=== Prozess mit Port
+
+* Wie kann ich einen Prozess mit Port 8080 auf einem Linux-Server finden?
++
+.Dafür gibt es mehrere Möglichkeiten:
+[source,shell]
+----
+netstat -tulpn | grep 8080
+lsof -i :8080
+
+----
+
+=== Netstat installieren
+
+* Wenn der Befehl `netstat` nicht gefunden wird, was kann ich tun?
+
+* Lösung
++
+[source,shell]
+----
+sudo apt install net-tools
+----
+
+
+
+
+== Java
+
+
+== Asciidoctor
+
+=== Präambel / Preamble
+
+* Was ist eine Präambel?
+
+=== Admonitions
+
+* Was sind Admonitions?
+
+
+=== Callouts
+
+* Was sind Callouts?
+
+
+=== adoc in github-Environment
+
+* Wie kann man die Admonitions in github in einem `README.adoc` anzeigen lassen?
+
+* Lösung
++
+[source,asciidoc]
+----
+    ifdef::env-github[]
+    :tip-caption: :bulb:
+    :note-caption: :information_source:
+    :important-caption: :heavy_exclamation_mark:
+    :caution-caption: :fire:
+    :warning-caption: :warning:
+    endif::[]
+----
+
+* Wie kann man eine Überschrift von der Nummerierung ausnehmen?
+
+** Lösung
++
+[source,asciidoc]
+----
+[discrete]
+== Überschrift
+----
+
+
+== UML

@@ -29,7 +29,7 @@ ifndef::env-ide[]
 :imagesdir: images
 endif::[]
 //:revealjs_theme: sky
-//:title-slide-background-image: img.png
+//:title-slide-background-image: gh-pages-aktivieren.png
 :title-slide-transition: zoom
 :title-slide-transition-speed: fast
 
