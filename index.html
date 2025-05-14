@@ -573,16 +573,18 @@ pre.rouge .gs {
 <ul class="sectlevel1">
 <li><a href="#_git">1. Git</a>
 <ul class="sectlevel2">
-<li><a href="#_ssh_in_github">1.1. ssh in github</a></li>
-<li><a href="#_git_pull_vs_git_fetch">1.2. <code>git pull</code> vs <code>git fetch</code></a></li>
-<li><a href="#_cherry_picking">1.3. Cherry Picking</a></li>
-<li><a href="#_gh_pages_aktivieren">1.4. gh-pages aktivieren</a></li>
+<li><a href="#_gitignore">1.1. .gitignore</a></li>
+<li><a href="#_ssh_in_github">1.2. ssh in github</a></li>
+<li><a href="#_git_pull_vs_git_fetch">1.3. <code>git pull</code> vs <code>git fetch</code></a></li>
+<li><a href="#_cherry_picking">1.4. Cherry Picking</a></li>
+<li><a href="#_gh_pages_aktivieren">1.5. gh-pages aktivieren</a></li>
 </ul>
 </li>
 <li><a href="#_docker">2. Docker</a>
 <ul class="sectlevel2">
 <li><a href="#_docker_exec">2.1. docker exec</a></li>
 <li><a href="#_postgres_backup">2.2. postgres-Backup</a></li>
+<li><a href="#_dockerignore">2.3. <code>.dockerignore</code></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a></li>
@@ -612,7 +614,7 @@ pre.rouge .gs {
 <div class="sectionbody">
 <div class="paragraph">
 <p><span class="icon"><a class="image" href="https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes/main/asciidocs/index.adoc"><i class="fa fa-file-text-o"></i></a></span> ‏ ‏ ‎
-<span class="icon"><a class="image" href="https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes"><i class="fa fa-github-square"></i></a></span> ‏ ‏ ‎
+<span class="icon"><a class="image" href="https://github.com/htl-leonding-college/fragenkatalog"><i class="fa fa-github-square"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lecture-notes/"><i class="fa fa-home"></i></a></span></p>
 </div>
 </div>
@@ -621,14 +623,27 @@ pre.rouge .gs {
 <h2 id="_git"><a class="anchor" href="#_git"></a>1. Git</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_ssh_in_github"><a class="anchor" href="#_ssh_in_github"></a>1.1. ssh in github</h3>
+<h3 id="_gitignore"><a class="anchor" href="#_gitignore"></a>1.1. .gitignore</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Was bewirkt ein Eintrag in der Datei <code>.gitignore</code>? Warum ist es wichtig, gitignore zu verwenden?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ssh_in_github"><a class="anchor" href="#_ssh_in_github"></a>1.2. ssh in github</h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Wie kann ich mich mit ssh in github einloggen?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -658,28 +673,29 @@ pre.rouge .gs {
 </li>
 </ol>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 <div class="sect2">
-<h3 id="_git_pull_vs_git_fetch"><a class="anchor" href="#_git_pull_vs_git_fetch"></a>1.2. <code>git pull</code> vs <code>git fetch</code></h3>
+<h3 id="_git_pull_vs_git_fetch"><a class="anchor" href="#_git_pull_vs_git_fetch"></a>1.3. <code>git pull</code> vs <code>git fetch</code></h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Was ist der Unterschied zwischen <code>git pull</code> und <code>git fetch</code>?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="paragraph">
 <p><code>git pull</code> ist eine Kombination aus <code>git fetch</code> und <code>git merge</code>. Es lädt die neuesten Änderungen vom Remote-Repository herunter und integriert sie in den aktuellen Branch. <code>git fetch</code> hingegen lädt nur die Änderungen herunter, ohne sie zu integrieren. Dies ermöglicht es Ihnen, die Änderungen zu überprüfen, bevor Sie sie in Ihren Branch übernehmen.</p>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 <div class="sect2">
-<h3 id="_cherry_picking"><a class="anchor" href="#_cherry_picking"></a>1.3. Cherry Picking</h3>
+<h3 id="_cherry_picking"><a class="anchor" href="#_cherry_picking"></a>1.4. Cherry Picking</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -689,14 +705,17 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gh_pages_aktivieren"><a class="anchor" href="#_gh_pages_aktivieren"></a>1.4. gh-pages aktivieren</h3>
+<h3 id="_gh_pages_aktivieren"><a class="anchor" href="#_gh_pages_aktivieren"></a>1.5. gh-pages aktivieren</h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Wie kann man für ein repo gh-pages aktivieren?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -715,9 +734,8 @@ pre.rouge .gs {
 </li>
 </ol>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 </div>
 </div>
@@ -731,16 +749,18 @@ pre.rouge .gs {
 <li>
 <p>Wie kann ich in einen laufenden Container ein Programm zB die shell starten?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">exec</span> <span class="nt">-it</span> &lt;container_id&gt; /bin/bash</code></pre>
 </div>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_postgres_backup"><a class="anchor" href="#_postgres_backup"></a>2.2. postgres-Backup</h3>
@@ -749,19 +769,34 @@ pre.rouge .gs {
 <li>
 <p>Wie kann man ein Backup einer gedockerten postgres DB erstellen?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">--file</span><span class="o">=</span>docker-compose.yaml <span class="nb">exec</span> <span class="nt">-it</span> postgres pg_dump <span class="nt">--username</span><span class="o">=</span>app db | <span class="nb">gzip</span> <span class="o">&gt;</span> sql.gz</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>+
+.Ev. auch</p>
+</div>
 <div class="listingblock">
-<div class="title">Ev. auch</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">exec</span> <span class="nt">-t</span> &lt;container_id&gt; pg_dumpall <span class="nt">-c</span> <span class="nt">-U</span> &lt;user&gt; <span class="o">&gt;</span> dump_<span class="sb">`</span><span class="nb">date</span> +%Y-%m-%d<span class="s2">"_"</span>%H_%M_%S<span class="sb">`</span>.sql</code></pre>
 </div>
 </div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_dockerignore"><a class="anchor" href="#_dockerignore"></a>2.3. <code>.dockerignore</code></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Was bewirkt ein Eintrag in der Datei <code>.dockerignore</code>? Warum ist es wichtig, <code>.dockerignore</code> zu verwenden?</p>
 </li>
 </ul>
 </div>
@@ -784,22 +819,27 @@ pre.rouge .gs {
 <li>
 <p>Wie kann ich nur für einen Aufruf eine Umgebungsvariable setzen?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nv">MY_ENV_VAR</span><span class="o">=</span>1234 ./my_script.sh</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>+
+.zB</p>
+</div>
 <div class="listingblock">
-<div class="title">zB</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nv">PGPASSWORD</span><span class="o">=</span>app pg_dump <span class="nt">--username</span><span class="o">=</span>app db</code></pre>
 </div>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_umgebungsvariable_setzen"><a class="anchor" href="#_umgebungsvariable_setzen"></a>4.2. Umgebungsvariable setzen</h3>
@@ -817,6 +857,12 @@ pre.rouge .gs {
 <ul>
 <li>
 <p>Wie kann ich einen Prozess mit Port 8080 auf einem Linux-Server finden?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="title">Dafür gibt es mehrere Möglichkeiten:</div>
 <div class="content">
@@ -824,9 +870,8 @@ pre.rouge .gs {
 lsof <span class="nt">-i</span> :8080</code></pre>
 </div>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_netstat_installieren"><a class="anchor" href="#_netstat_installieren"></a>4.4. Netstat installieren</h3>
@@ -835,16 +880,18 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <li>
 <p>Wenn der Befehl <code>netstat</code> nicht gefunden wird, was kann ich tun?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>net-tools</code></pre>
 </div>
 </div>
-</li>
-</ul>
 </div>
+</details>
 </div>
 </div>
 </div>
@@ -894,8 +941,11 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <li>
 <p>Wie kann man die Admonitions in github in einem <code>README.adoc</code> anzeigen lassen?</p>
 </li>
-<li>
-<p>Lösung</p>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="asciidoc">    ifdef::env-github[]
@@ -907,25 +957,26 @@ lsof <span class="nt">-i</span> :8080</code></pre>
     endif::[]</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Wie kann man eine Überschrift von der Nummerierung ausnehmen?</p>
+</div>
+</details>
 <div class="ulist">
 <ul>
 <li>
-<p>Lösung</p>
+<p>Wie kann man eine Überschrift von der Nummerierung ausnehmen?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="asciidoc">[discrete]
 == Überschrift</code></pre>
 </div>
 </div>
-</li>
-</ul>
 </div>
-</li>
-</ul>
-</div>
+</details>
 </div>
 </div>
 </div>
@@ -939,7 +990,7 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-14 16:02:33 UTC
+Last updated 2025-05-14 16:19:31 UTC
 </div>
 </div>
 </body>
