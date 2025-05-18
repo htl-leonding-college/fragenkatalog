@@ -557,7 +557,71 @@ pre.rouge .gs {
     pre.rouge .hll * {
         background-color: initial;
     }
+    .badge {
+        display: inline-block;
+        padding: 0.15em 0.6em;
+        font-size: 0.75em;
+        font-weight: 600;
+        border-radius: 999px;
+        background-color: #e1e4e8;
+        color: #24292e;
+        margin-left: 0.5em;
+    }
+
+    .foundation {
+        background-color: #2d9cdb;
+        color: #fff;
+    }
+
+    .advanced {
+        background-color: #eb5757;
+        color: #fff;
+    }
+
+    /*.buttons button {*/
+    /*    margin: 0.5em;*/
+    /*    padding: 0.3em 0.8em;*/
+    /*    border: none;*/
+    /*    border-radius: 0.4em;*/
+    /*    background: #ddd;*/
+    /*    cursor: pointer;*/
+    /*}*/
+    .buttons button {
+        margin-right: 10px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+    }
+
+
+    .buttons {
+        margin-bottom: 20px;
+    }
+
+    .buttons button:hover {
+        opacity: 0.8;
+    }
+
 </style>
+<script>
+    function filterByLevel(level) {
+        //console.log('Filtering by level:', level);
+        const sections = document.querySelectorAll('.sect2, .sect3, .sect4');
+
+        sections.forEach(section => {
+            const badge = section.querySelector('.foundation, .advanced');
+            if (level === '') {
+                section.style.display = 'block';
+            } else if (badge && badge.classList.contains(level)) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    }
+</script>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -574,19 +638,19 @@ pre.rouge .gs {
 <li><a href="#_git">1. Git</a>
 <ul class="sectlevel2">
 <li><a href="#_git_architektur_und_kommandos">1.1. git Architektur und Kommandos</a></li>
-<li><a href="#_erstellung_eines_repositories">1.2. Erstellung eines Repositories</a></li>
-<li><a href="#_git_in_teams">1.3. git in Teams</a></li>
-<li><a href="#_gitignore">1.4. <code>.gitignore</code></a></li>
-<li><a href="#_ssh_in_github">1.5. ssh in github</a></li>
+<li><a href="#_erstellung_eines_repositories_foundation">1.2. Erstellung eines Repositories <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_git_in_teams_foundation">1.3. git in Teams <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_gitignore_foundation">1.4. <code>.gitignore</code> <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_ssh_in_github_foundation">1.5. ssh in github <span class="badge foundation data-level=foundation">Foundation</span></a></li>
 <li><a href="#_git_pull_vs_git_fetch">1.6. <code>git pull</code> vs <code>git fetch</code></a></li>
 <li><a href="#_cherry_picking">1.7. Cherry Picking</a></li>
-<li><a href="#_gh_pages_aktivieren">1.8. gh-pages aktivieren</a></li>
-<li><a href="#_git_konfiguration_1">1.9. git Konfiguration 1</a></li>
-<li><a href="#_git_konfiguration_2">1.10. git Konfiguration 2</a></li>
-<li><a href="#_git_konfiguration_3">1.11. git Konfiguration 3</a></li>
-<li><a href="#_git_konfiguration_4">1.12. git Konfiguration 4</a></li>
-<li><a href="#_git_konfiguration_5">1.13. git Konfiguration 5</a></li>
-<li><a href="#_git_konfiguration_6">1.14. git Konfiguration 6</a></li>
+<li><a href="#_gh_pages_aktivieren_foundation">1.8. gh-pages aktivieren <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_git_konfiguration_1_foundation">1.9. git Konfiguration 1 <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_git_konfiguration_2_foundation">1.10. git Konfiguration 2 <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_git_konfiguration_3_foundation">1.11. git Konfiguration 3 <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_git_konfiguration_4_foundation">1.12. git Konfiguration 4 <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_git_konfiguration_5_foundation">1.13. git Konfiguration 5 <span class="badge foundation data-level=foundation">Foundation</span></a></li>
+<li><a href="#_git_konfiguration_6_foundation">1.14. git Konfiguration 6 <span class="badge foundation data-level=foundation">Foundation</span></a></li>
 <li><a href="#_git_konfiguration_7">1.15. git Konfiguration 7</a></li>
 </ul>
 </li>
@@ -609,7 +673,11 @@ pre.rouge .gs {
 <li><a href="#_dockerignore">2.15. <code>.dockerignore</code></a></li>
 </ul>
 </li>
-<li><a href="#_kubernetes">3. Kubernetes</a></li>
+<li><a href="#_kubernetes">3. Kubernetes</a>
+<ul class="sectlevel2">
+<li><a href="#_testfrage_advanced">3.1. Testfrage <span class="badge advanced">Advanced</span></a></li>
+</ul>
+</li>
 <li><a href="#_shell_netzwerke">4. Shell / Netzwerke</a>
 <ul class="sectlevel2">
 <li><a href="#_kopieren_auf_einen_entfernten_server">4.1. Kopieren auf einen entfernten Server</a></li>
@@ -652,6 +720,9 @@ pre.rouge .gs {
 <span class="icon"><a class="image" href="https://github.com/htl-leonding-college/fragenkatalog"><i class="fa fa-github-square"></i></a></span> ‏ ‏ ‎
 <span class="icon"><a class="image" href="http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lecture-notes/"><i class="fa fa-home"></i></a></span></p>
 </div>
+<button onclick="filterByLevel('')">Alle</button>
+<button onclick="filterByLevel('foundation')">Foundation</button>
+<button onclick="filterByLevel('advanced')">Advanced</button>
 </div>
 </div>
 <div class="sect1">
@@ -662,7 +733,7 @@ pre.rouge .gs {
 
 </div>
 <div class="sect2">
-<h3 id="_erstellung_eines_repositories"><a class="anchor" href="#_erstellung_eines_repositories"></a>1.2. Erstellung eines Repositories</h3>
+<h3 id="_erstellung_eines_repositories_foundation"><a class="anchor" href="#_erstellung_eines_repositories_foundation"></a>1.2. Erstellung eines Repositories <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -682,7 +753,7 @@ pre.rouge .gs {
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_in_teams"><a class="anchor" href="#_git_in_teams"></a>1.3. git in Teams</h3>
+<h3 id="_git_in_teams_foundation"><a class="anchor" href="#_git_in_teams_foundation"></a>1.3. git in Teams <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -709,7 +780,7 @@ pre.rouge .gs {
 </details>
 </div>
 <div class="sect2">
-<h3 id="_gitignore"><a class="anchor" href="#_gitignore"></a>1.4. <code>.gitignore</code></h3>
+<h3 id="_gitignore_foundation"><a class="anchor" href="#_gitignore_foundation"></a>1.4. <code>.gitignore</code> <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -719,7 +790,7 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ssh_in_github"><a class="anchor" href="#_ssh_in_github"></a>1.5. ssh in github</h3>
+<h3 id="_ssh_in_github_foundation"><a class="anchor" href="#_ssh_in_github_foundation"></a>1.5. ssh in github <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -791,7 +862,7 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_gh_pages_aktivieren"><a class="anchor" href="#_gh_pages_aktivieren"></a>1.8. gh-pages aktivieren</h3>
+<h3 id="_gh_pages_aktivieren_foundation"><a class="anchor" href="#_gh_pages_aktivieren_foundation"></a>1.8. gh-pages aktivieren <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -824,7 +895,7 @@ pre.rouge .gs {
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_konfiguration_1"><a class="anchor" href="#_git_konfiguration_1"></a>1.9. git Konfiguration 1</h3>
+<h3 id="_git_konfiguration_1_foundation"><a class="anchor" href="#_git_konfiguration_1_foundation"></a>1.9. git Konfiguration 1 <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -855,7 +926,7 @@ init.defaultbranch=main
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_konfiguration_2"><a class="anchor" href="#_git_konfiguration_2"></a>1.10. git Konfiguration 2</h3>
+<h3 id="_git_konfiguration_2_foundation"><a class="anchor" href="#_git_konfiguration_2_foundation"></a>1.10. git Konfiguration 2 <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -883,7 +954,7 @@ init.defaultbranch=main
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_konfiguration_3"><a class="anchor" href="#_git_konfiguration_3"></a>1.11. git Konfiguration 3</h3>
+<h3 id="_git_konfiguration_3_foundation"><a class="anchor" href="#_git_konfiguration_3_foundation"></a>1.11. git Konfiguration 3 <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -911,7 +982,7 @@ m.mustermann@private-mail.at</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_konfiguration_4"><a class="anchor" href="#_git_konfiguration_4"></a>1.12. git Konfiguration 4</h3>
+<h3 id="_git_konfiguration_4_foundation"><a class="anchor" href="#_git_konfiguration_4_foundation"></a>1.12. git Konfiguration 4 <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -939,7 +1010,7 @@ m.mustermann@students.htl-leonding.ac.at</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_konfiguration_5"><a class="anchor" href="#_git_konfiguration_5"></a>1.13. git Konfiguration 5</h3>
+<h3 id="_git_konfiguration_5_foundation"><a class="anchor" href="#_git_konfiguration_5_foundation"></a>1.13. git Konfiguration 5 <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -960,7 +1031,7 @@ git config <span class="nt">--local</span> user.email <span class="s2">"deine.em
 </details>
 </div>
 <div class="sect2">
-<h3 id="_git_konfiguration_6"><a class="anchor" href="#_git_konfiguration_6"></a>1.14. git Konfiguration 6</h3>
+<h3 id="_git_konfiguration_6_foundation"><a class="anchor" href="#_git_konfiguration_6_foundation"></a>1.14. git Konfiguration 6 <span class="badge foundation data-level=foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1187,7 +1258,10 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <div class="sect1">
 <h2 id="_kubernetes"><a class="anchor" href="#_kubernetes"></a>3. Kubernetes</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_testfrage_advanced"><a class="anchor" href="#_testfrage_advanced"></a>3.1. Testfrage <span class="badge advanced">Advanced</span></h3>
 
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1484,7 +1558,7 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-18 07:21:00 UTC
+Last updated 2025-05-18 09:31:44 UTC
 </div>
 </div>
 </body>
