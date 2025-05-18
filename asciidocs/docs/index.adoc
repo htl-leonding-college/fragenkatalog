@@ -49,9 +49,9 @@ git pull
 
 ====
 
-=== .gitignore
+=== `.gitignore`
 
-* Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, gitignore zu verwenden?
+* Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, `.gitignore` zu verwenden?
 
 === ssh in github
 
@@ -114,7 +114,137 @@ image::gh-pages-aktivieren.png[]
 ====
 
 
-== Docker
+=== git Konfiguration 1
+
+* Wie kann man sich die git-Konfiguration des aktuellen Repositories anzeigen lassen? Annahme: Sie befinden sich im Projektverzeichnis.
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git config list
+----
+
+.result (kbd:[q] zum Beenden)
+----
+credential.helper=osxkeychain
+user.name=maxmustermann
+user.email=m.mustermann@students.htl-leonding.ac.at
+core.autocrlf=input
+init.defaultbranch=main
+(END)
+----
+====
+
+=== git Konfiguration 2
+
+* Welche Scopes gibt es bei der Konfiguration in git? Welchen Vorteil haben Scopes?
+
+.Lösung
+[%collapsible]
+====
+* `--global`: Gilt für alle Repositories des Benutzers.
+* `--local`: Gilt nur für das aktuelle Repository.
+
+Man kann zB grundsätzlich alle Repositories (zB für die Firma) mit public credentials (user.name, user.email) versehen und nur für gewisse Projekte (zB privat) andere credentials verwenden.
+
+
+====
+
+
+=== git Konfiguration 3
+
+* Wie kann man den lokalen Git-Benutzernamen und E-Mail-Adresse einsehen?
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git config user.name
+git config user.email
+----
+
+.result
+----
+mmustermann
+m.mustermann@private-mail.at
+----
+====
+
+=== git Konfiguration 4
+
+* Wie kann man den globalen Git-Benutzernamen und E-Mail-Adresse einsehen?
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git config --global user.name
+git config --global user.email
+----
+
+.result
+----
+maxmustermann
+m.mustermann@students.htl-leonding.ac.at
+----
+====
+
+=== git Konfiguration 5
+
+* Wie kann man seine git-credentials lokal setzen
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git config --local user.name "Dein Name"
+git config --local user.email "deine.email@beispiel.com"
+----
+====
+
+=== git Konfiguration 6
+
+* Wie kann man seine git-credentials global setzen
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git config --global user.name "Dein Name"
+git config --global user.email "deine.email@beispiel.com"
+----
+====
+
+
+
+
+=== git Konfiguration 7
+
+* Wie kann man seine git-credentials wieder vom System (aus der Keychain) löschen? zB im EDV-Saal
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git config --global --unset-all user.name
+git config --global --unset-all user.email
+----
+====
+
+
+
+
+
+
+
+== Docker und Docker Compose
 
 === Auflisten aller Container
 
@@ -163,6 +293,51 @@ Der Name des Images beinhaltet den Namen des Repositories, in dem das Image gesp
 [source,shell]
 ----
 docker exec -it <container_id> /bin/bash
+----
+====
+
+=== Starten von Docker Compose im Vordergrund
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker compose -f my-docker-compose-file.yaml up
+----
+====
+
+=== Starten von Docker Compose im Hintergrund
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker compose -f my-docker-compose-file.yaml up -d
+----
+====
+
+=== Stoppen von Docker Compose
+
+.Lösung
+[%collapsible]
+====
+
+[source,shell]
+----
+docker compose -f my-docker-compose-file.yaml down
+----
+====
+
+=== Anzeigen der Logs von Docker Compose
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker compose -f my-docker-compose-file.yaml logs -f
 ----
 ====
 
@@ -269,7 +444,7 @@ lsof -i :8080
 ----
 ====
 
-=== Netstat installieren
+=== Troubleshooting: `netstat` nicht gefunden
 
 * Wenn der Befehl `netstat` nicht gefunden wird, was kann ich tun?
 
@@ -322,6 +497,7 @@ sudo apt install net-tools
 ----
 ====
 
+=== Nummerierung vermeiden
 
 * Wie kann man eine Überschrift von der Nummerierung ausnehmen?
 
@@ -335,4 +511,51 @@ sudo apt install net-tools
 ----
 ====
 
+
+=== Nummerierung der Überschriften
+
+* wie kann man die Überschriften nummerieren?
+
+.Lösung
+[%collapsible]
+====
+[source,asciidoc]
+----
+:sectnums:
+----
+====
+
+=== Keyboard-Macro
+
+* Wie kann man ein Keyboard-Macro in Asciidoctor erstellen?
+
+.Lösung
+[%collapsible]
+====
+.1. In der Präambel `experimental` aktivieren
+[source,asciidoc]
+----
+:experimental:
+----
+
+.2. Im Text die Taste definieren
+[source,asciidoc]
+----
+Drücken Sie die kbd:[RETURN]-Taste
+----
+
+.result
+Drücken Sie die kbd:[RETURN]-Taste
+====
+
 == UML
+
+=== Class Diagrams
+
+=== Object Diagrams
+
+=== Deploymant Diagrams
+
+=== Activity Diagrams
+
+=== State Diagrams
