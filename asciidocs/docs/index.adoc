@@ -26,7 +26,9 @@ endif::backend-html5[]
 
 == Git
 
-=== git Architektur und Kommandos
+=== git Architektur und Kommandos [.badge.foundation]#Foundation#
+
+* Skizzieren Sie die Architektur von git und erklären Sie die wichtigsten Kommandos.
 
 
 
@@ -43,7 +45,7 @@ git init
 ----
 ====
 
-=== git in Teams [.badge.foundation data-level=foundation]#Foundation#
+=== git in Teams [.badge.foundation]#Foundation#
 
 * Welcher Befehl ist zu Beginn jeder Arbeit und auch zwischendurch mit git notwendig und warum?
 
@@ -58,11 +60,11 @@ git pull
 
 ====
 
-=== `.gitignore` [.badge.foundation data-level=foundation]#Foundation#
+=== `.gitignore` [.badge.foundation]#Foundation#
 
 * Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, `.gitignore` zu verwenden?
 
-=== ssh in github [.badge.foundation data-level=foundation]#Foundation#
+=== ssh in github [.badge.foundation]#Foundation#
 
 * Wie kann ich mich mit ssh in github einloggen?
 
@@ -93,7 +95,7 @@ gh-profile -> Settings -> SSH and GPG keys -> New SSH key
 
 
 
-=== `git pull` vs `git fetch`
+=== `git pull` vs `git fetch` [.badge.advanced]#Advanced#
 
 * Was ist der Unterschied zwischen `git pull` und `git fetch`?
 
@@ -103,12 +105,12 @@ gh-profile -> Settings -> SSH and GPG keys -> New SSH key
 `git pull` ist eine Kombination aus `git fetch` und `git merge`. Es lädt die neuesten Änderungen vom Remote-Repository herunter und integriert sie in den aktuellen Branch. `git fetch` hingegen lädt nur die Änderungen herunter, ohne sie zu integrieren. Dies ermöglicht es Ihnen, die Änderungen zu überprüfen, bevor Sie sie in Ihren Branch übernehmen.
 ====
 
-=== Cherry Picking
+=== Cherry Picking [.badge.foundation]#Foundation#
 
 * Erläutern Sie Cherry Picking und geben Sie ein konkretes Bsp. mit den git-cli-Kommandos an.
 
 
-=== gh-pages aktivieren [.badge.foundation data-level=foundation]#Foundation#
+=== gh-pages aktivieren [.badge.foundation]#Foundation#
 
 * Wie kann man für ein repo gh-pages aktivieren?
 
@@ -123,7 +125,7 @@ image::gh-pages-aktivieren.png[]
 ====
 
 
-=== git Konfiguration 1 [.badge.foundation data-level=foundation]#Foundation#
+=== git Konfiguration 1 [.badge.foundation]#Foundation#
 
 * Wie kann man sich die git-Konfiguration des aktuellen Repositories anzeigen lassen? Annahme: Sie befinden sich im Projektverzeichnis.
 
@@ -146,7 +148,7 @@ init.defaultbranch=main
 ----
 ====
 
-=== git Konfiguration 2 [.badge.foundation data-level=foundation]#Foundation#
+=== git Konfiguration 2 [.badge.foundation]#Foundation#
 
 * Welche Scopes gibt es bei der Konfiguration in git? Welchen Vorteil haben Scopes?
 
@@ -162,7 +164,7 @@ Man kann zB grundsätzlich alle Repositories (zB für die Firma) mit public cred
 ====
 
 
-=== git Konfiguration 3 [.badge.foundation data-level=foundation]#Foundation#
+=== git Konfiguration 3 [.badge.foundation]#Foundation#
 
 * Wie kann man den lokalen Git-Benutzernamen und E-Mail-Adresse einsehen?
 
@@ -182,7 +184,7 @@ m.mustermann@private-mail.at
 ----
 ====
 
-=== git Konfiguration 4 [.badge.foundation data-level=foundation]#Foundation#
+=== git Konfiguration 4 [.badge.foundation]#Foundation#
 
 * Wie kann man den globalen Git-Benutzernamen und E-Mail-Adresse einsehen?
 
@@ -202,7 +204,7 @@ m.mustermann@students.htl-leonding.ac.at
 ----
 ====
 
-=== git Konfiguration 5 [.badge.foundation data-level=foundation]#Foundation#
+=== git Konfiguration 5 [.badge.foundation]#Foundation#
 
 * Wie kann man seine git-credentials lokal setzen
 
@@ -216,7 +218,7 @@ git config --local user.email "deine.email@beispiel.com"
 ----
 ====
 
-=== git Konfiguration 6 [.badge.foundation data-level=foundation]#Foundation#
+=== git Konfiguration 6 [.badge.foundation]#Foundation#
 
 * Wie kann man seine git-credentials global setzen
 
@@ -233,7 +235,7 @@ git config --global user.email "deine.email@beispiel.com"
 
 
 
-=== git Konfiguration 7
+=== git Konfiguration 7 [.badge.foundation]#Foundation#
 
 * Wie kann man seine git-credentials wieder vom System (aus der Keychain) löschen? zB im EDV-Saal
 
@@ -247,29 +249,35 @@ git config --global --unset-all user.email
 ----
 ====
 
+=== Unterschied merge vs rebase [.badge.foundation]#Foundation#
 
+.Lösung
+[%collapsible]
+====
+* Links:
+** https://www.atlassian.com/git/tutorials/merging-vs-rebasing[Atlassian - Merging vs. rebasing^]
 
-
+====
 
 
 
 == Docker und Docker Compose
 
-=== Auflisten aller Container
+=== Auflisten aller Container [.badge.foundation]#Foundation#
 
-=== Auflisten aller Images
+=== Auflisten aller Images [.badge.foundation]#Foundation#
 
-=== Container starten
+=== Container starten [.badge.foundation]#Foundation#
 
-=== Container stoppen
+=== Container stoppen [.badge.foundation]#Foundation#
 
-=== Container löschen
+=== Container löschen [.badge.foundation]#Foundation#
 
-=== Volumes löschen
+=== Volumes löschen [.badge.foundation]#Foundation#
 
-=== Image bauen
+=== Image bauen [.badge.foundation]#Foundation#
 
-=== Image nach ghcr.io pushen
+=== Image nach ghcr.io pushen [.badge.foundation]#Foundation#
 
 * Wie kann man ein Image in eine andere Registry als `hub.docker.com` pushen?
 
@@ -292,7 +300,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest
 Der Name des Images beinhaltet den Namen des Repositories, in dem das Image gespeichert werden soll. Der Tag ist optional, aber es ist eine gute Praxis, ihn zu verwenden, um verschiedene Versionen des Images zu kennzeichnen.
 ====
 
-=== docker exec
+=== docker exec [.badge.foundation]#Foundation#
 
 * Wie kann ich in einen laufenden Container ein Programm zB die shell starten?
 
@@ -305,7 +313,7 @@ docker exec -it <container_id> /bin/bash
 ----
 ====
 
-=== Starten von Docker Compose im Vordergrund
+=== Starten von Docker Compose im Vordergrund [.badge.foundation]#Foundation#
 
 .Lösung
 [%collapsible]
@@ -316,7 +324,7 @@ docker compose -f my-docker-compose-file.yaml up
 ----
 ====
 
-=== Starten von Docker Compose im Hintergrund
+=== Starten von Docker Compose im Hintergrund [.badge.foundation]#Foundation#
 
 .Lösung
 [%collapsible]
@@ -327,7 +335,26 @@ docker compose -f my-docker-compose-file.yaml up -d
 ----
 ====
 
-=== Stoppen von Docker Compose
+=== Stoppen von Docker Compose [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible]
+====
+
+[source,shell]
+----
+docker compose -f my-docker-compose-file.yaml stop
+----
+
+* Links:
+** https://medium.com/@laurap_85411/docker-compose-stop-vs-down-e4e8d6515a85[Docker compose stop VS down^]
+====
+
+
+
+
+
+=== Beenden von Docker Compose [.badge.foundation]#Foundation#
 
 .Lösung
 [%collapsible]
@@ -338,8 +365,7 @@ docker compose -f my-docker-compose-file.yaml up -d
 docker compose -f my-docker-compose-file.yaml down
 ----
 ====
-
-=== Anzeigen der Logs von Docker Compose
+=== Anzeigen der Logs von Docker Compose [.badge.foundation]#Foundation#
 
 .Lösung
 [%collapsible]
@@ -348,10 +374,14 @@ docker compose -f my-docker-compose-file.yaml down
 ----
 docker compose -f my-docker-compose-file.yaml logs -f
 ----
+
+* Links:
+** https://medium.com/@laurap_85411/docker-compose-stop-vs-down-e4e8d6515a85[Docker compose stop VS down^]
+
 ====
 
 
-=== postgres-Backup
+=== postgres-Backup [.badge.foundation]#Foundation#
 
 * Wie kann man ein Backup einer gedockerten postgres DB erstellen?
 
@@ -371,7 +401,7 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 ====
 
 
-=== `.dockerignore`
+=== `.dockerignore` [.badge.foundation]#Foundation#
 
 * Was bewirkt ein Eintrag in der Datei `.dockerignore`? Warum ist es wichtig, `.dockerignore` zu verwenden?
 
@@ -384,7 +414,7 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 
 == Shell / Netzwerke
 
-=== Kopieren auf einen entfernten Server
+=== Kopieren auf einen entfernten Server [.badge.foundation]#Foundation#
 
 * Wie kann ich eine Datei auf einen entfernten Server kopieren?
 
@@ -397,7 +427,7 @@ scp -i ~/.ssh/id_ed25519 <file> <user>@<remote-server>:<path>
 ----
 ====
 
-=== Port Forwarding
+=== Port Forwarding [.badge.foundation]#Foundation#
 
 * Wie kann ich einen Port eines entfernten Servers auf einen lokalen Port weiterleiten? zB Port 5432 von einem Server mit laufenden docker-compose - Containern auf Port 5432 auf localhost?
 
@@ -414,7 +444,7 @@ Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vo
 ====
 
 
-=== Umgebungsvariable für Aufruf mitgeben
+=== Umgebungsvariable für Aufruf mitgeben [.badge.foundation]#Foundation#
 
 * Wie kann ich nur für einen Aufruf eine Umgebungsvariable setzen?
 
@@ -434,12 +464,12 @@ PGPASSWORD=app pg_dump --username=app db
 ====
 
 
-=== Umgebungsvariable setzen
+=== Umgebungsvariable setzen [.badge.foundation]#Foundation#
 
 * Wie kann ich eine Umgebungsvariable für alle Aufrufe setzen?
 
 
-=== Prozess mit Port
+=== Prozess mit Port [.badge.foundation]#Foundation#
 
 * Wie kann ich einen Prozess mit Port 8080 auf einem Linux-Server finden?
 
@@ -455,7 +485,7 @@ lsof -i :8080
 ----
 ====
 
-=== Troubleshooting: `netstat` nicht gefunden
+=== Troubleshooting: `netstat` nicht gefunden [.badge.foundation]#Foundation#
 
 * Wenn der Befehl `netstat` nicht gefunden wird, was kann ich tun?
 
@@ -475,21 +505,21 @@ sudo apt install net-tools
 
 == Asciidoctor
 
-=== Präambel / Preamble
+=== Präambel / Preamble [.badge.foundation]#Foundation#
 
 * Was ist eine Präambel?
 
-=== Admonitions
+=== Admonitions [.badge.foundation]#Foundation#
 
 * Was sind Admonitions?
 
 
-=== Callouts
+=== Callouts [.badge.foundation]#Foundation#
 
 * Was sind Callouts?
 
 
-=== adoc in github-Environment
+=== adoc in github-Environment [.badge.foundation]#Foundation#
 
 * Wie kann man die Admonitions in github in einem `README.adoc` anzeigen lassen?
 
@@ -508,7 +538,7 @@ sudo apt install net-tools
 ----
 ====
 
-=== Nummerierung vermeiden
+=== Nummerierung vermeiden [.badge.foundation]#Foundation#
 
 * Wie kann man eine Überschrift von der Nummerierung ausnehmen?
 
@@ -523,7 +553,7 @@ sudo apt install net-tools
 ====
 
 
-=== Nummerierung der Überschriften
+=== Nummerierung der Überschriften [.badge.foundation]#Foundation#
 
 * wie kann man die Überschriften nummerieren?
 
@@ -536,7 +566,13 @@ sudo apt install net-tools
 ----
 ====
 
-=== Keyboard-Macro
+=== Links in neuen Tabs öffnen [.badge.foundation]#Foundation#
+
+* Wie werden Links in einem Asciidoctor-Dokument in neuen Tabs geöffnet?
+
+
+
+=== Keyboard-Macro [.badge.foundation]#Foundation#
 
 * Wie kann man ein Keyboard-Macro in Asciidoctor erstellen?
 
