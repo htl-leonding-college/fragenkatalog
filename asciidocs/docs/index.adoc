@@ -17,11 +17,20 @@ endif::backend-html5[]
 
 :toc:
 
+[.buttons]
+++++
+<button onclick="filterByLevel('')">Alle</button>
+<button onclick="filterByLevel('foundation')">Foundation</button>
+<button onclick="filterByLevel('advanced')">Advanced</button>
+++++
+
 == Git
 
 === git Architektur und Kommandos
 
-=== Erstellung eines Repositories
+
+
+=== Erstellung eines Repositories [.badge.foundation]#Foundation#
 
 * Wie kann ich ein neues Repository lokal erstellen?
 
@@ -34,7 +43,7 @@ git init
 ----
 ====
 
-=== git in Teams
+=== git in Teams [.badge.foundation data-level=foundation]#Foundation#
 
 * Welcher Befehl ist zu Beginn jeder Arbeit und auch zwischendurch mit git notwendig und warum?
 
@@ -49,11 +58,11 @@ git pull
 
 ====
 
-=== `.gitignore`
+=== `.gitignore` [.badge.foundation data-level=foundation]#Foundation#
 
 * Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, `.gitignore` zu verwenden?
 
-=== ssh in github
+=== ssh in github [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann ich mich mit ssh in github einloggen?
 
@@ -99,7 +108,7 @@ gh-profile -> Settings -> SSH and GPG keys -> New SSH key
 * Erläutern Sie Cherry Picking und geben Sie ein konkretes Bsp. mit den git-cli-Kommandos an.
 
 
-=== gh-pages aktivieren
+=== gh-pages aktivieren [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann man für ein repo gh-pages aktivieren?
 
@@ -114,7 +123,7 @@ image::gh-pages-aktivieren.png[]
 ====
 
 
-=== git Konfiguration 1
+=== git Konfiguration 1 [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann man sich die git-Konfiguration des aktuellen Repositories anzeigen lassen? Annahme: Sie befinden sich im Projektverzeichnis.
 
@@ -137,7 +146,7 @@ init.defaultbranch=main
 ----
 ====
 
-=== git Konfiguration 2
+=== git Konfiguration 2 [.badge.foundation data-level=foundation]#Foundation#
 
 * Welche Scopes gibt es bei der Konfiguration in git? Welchen Vorteil haben Scopes?
 
@@ -153,7 +162,7 @@ Man kann zB grundsätzlich alle Repositories (zB für die Firma) mit public cred
 ====
 
 
-=== git Konfiguration 3
+=== git Konfiguration 3 [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann man den lokalen Git-Benutzernamen und E-Mail-Adresse einsehen?
 
@@ -173,7 +182,7 @@ m.mustermann@private-mail.at
 ----
 ====
 
-=== git Konfiguration 4
+=== git Konfiguration 4 [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann man den globalen Git-Benutzernamen und E-Mail-Adresse einsehen?
 
@@ -193,7 +202,7 @@ m.mustermann@students.htl-leonding.ac.at
 ----
 ====
 
-=== git Konfiguration 5
+=== git Konfiguration 5 [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann man seine git-credentials lokal setzen
 
@@ -207,7 +216,7 @@ git config --local user.email "deine.email@beispiel.com"
 ----
 ====
 
-=== git Konfiguration 6
+=== git Konfiguration 6 [.badge.foundation data-level=foundation]#Foundation#
 
 * Wie kann man seine git-credentials global setzen
 
@@ -369,6 +378,8 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 
 
 == Kubernetes
+
+=== Testfrage [.badge.advanced]#Advanced#
 
 
 == Shell / Netzwerke
