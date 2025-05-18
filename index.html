@@ -565,7 +565,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2025-05-14</span>
+<span id="revdate">2025-05-18</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -576,14 +576,21 @@ pre.rouge .gs {
 <li><a href="#_git_architektur_und_kommandos">1.1. git Architektur und Kommandos</a></li>
 <li><a href="#_erstellung_eines_repositories">1.2. Erstellung eines Repositories</a></li>
 <li><a href="#_git_in_teams">1.3. git in Teams</a></li>
-<li><a href="#_gitignore">1.4. .gitignore</a></li>
+<li><a href="#_gitignore">1.4. <code>.gitignore</code></a></li>
 <li><a href="#_ssh_in_github">1.5. ssh in github</a></li>
 <li><a href="#_git_pull_vs_git_fetch">1.6. <code>git pull</code> vs <code>git fetch</code></a></li>
 <li><a href="#_cherry_picking">1.7. Cherry Picking</a></li>
 <li><a href="#_gh_pages_aktivieren">1.8. gh-pages aktivieren</a></li>
+<li><a href="#_git_konfiguration_1">1.9. git Konfiguration 1</a></li>
+<li><a href="#_git_konfiguration_2">1.10. git Konfiguration 2</a></li>
+<li><a href="#_git_konfiguration_3">1.11. git Konfiguration 3</a></li>
+<li><a href="#_git_konfiguration_4">1.12. git Konfiguration 4</a></li>
+<li><a href="#_git_konfiguration_5">1.13. git Konfiguration 5</a></li>
+<li><a href="#_git_konfiguration_6">1.14. git Konfiguration 6</a></li>
+<li><a href="#_git_konfiguration_7">1.15. git Konfiguration 7</a></li>
 </ul>
 </li>
-<li><a href="#_docker">2. Docker</a>
+<li><a href="#_docker_und_docker_compose">2. Docker und Docker Compose</a>
 <ul class="sectlevel2">
 <li><a href="#_auflisten_aller_container">2.1. Auflisten aller Container</a></li>
 <li><a href="#_auflisten_aller_images">2.2. Auflisten aller Images</a></li>
@@ -594,8 +601,12 @@ pre.rouge .gs {
 <li><a href="#_image_bauen">2.7. Image bauen</a></li>
 <li><a href="#_image_nach_ghcr_io_pushen">2.8. Image nach ghcr.io pushen</a></li>
 <li><a href="#_docker_exec">2.9. docker exec</a></li>
-<li><a href="#_postgres_backup">2.10. postgres-Backup</a></li>
-<li><a href="#_dockerignore">2.11. <code>.dockerignore</code></a></li>
+<li><a href="#_starten_von_docker_compose_im_vordergrund">2.10. Starten von Docker Compose im Vordergrund</a></li>
+<li><a href="#_starten_von_docker_compose_im_hintergrund">2.11. Starten von Docker Compose im Hintergrund</a></li>
+<li><a href="#_stoppen_von_docker_compose">2.12. Stoppen von Docker Compose</a></li>
+<li><a href="#_anzeigen_der_logs_von_docker_compose">2.13. Anzeigen der Logs von Docker Compose</a></li>
+<li><a href="#_postgres_backup">2.14. postgres-Backup</a></li>
+<li><a href="#_dockerignore">2.15. <code>.dockerignore</code></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a></li>
@@ -606,7 +617,7 @@ pre.rouge .gs {
 <li><a href="#_umgebungsvariable_für_aufruf_mitgeben">4.3. Umgebungsvariable für Aufruf mitgeben</a></li>
 <li><a href="#_umgebungsvariable_setzen">4.4. Umgebungsvariable setzen</a></li>
 <li><a href="#_prozess_mit_port">4.5. Prozess mit Port</a></li>
-<li><a href="#_netstat_installieren">4.6. Netstat installieren</a></li>
+<li><a href="#_troubleshooting_netstat_nicht_gefunden">4.6. Troubleshooting: <code>netstat</code> nicht gefunden</a></li>
 </ul>
 </li>
 <li><a href="#_java">5. Java</a></li>
@@ -616,9 +627,20 @@ pre.rouge .gs {
 <li><a href="#_admonitions">6.2. Admonitions</a></li>
 <li><a href="#_callouts">6.3. Callouts</a></li>
 <li><a href="#_adoc_in_github_environment">6.4. adoc in github-Environment</a></li>
+<li><a href="#_nummerierung_vermeiden">6.5. Nummerierung vermeiden</a></li>
+<li><a href="#_nummerierung_der_überschriften">6.6. Nummerierung der Überschriften</a></li>
+<li><a href="#_keyboard_macro">6.7. Keyboard-Macro</a></li>
 </ul>
 </li>
-<li><a href="#_uml">7. UML</a></li>
+<li><a href="#_uml">7. UML</a>
+<ul class="sectlevel2">
+<li><a href="#_class_diagrams">7.1. Class Diagrams</a></li>
+<li><a href="#_object_diagrams">7.2. Object Diagrams</a></li>
+<li><a href="#_deploymant_diagrams">7.3. Deploymant Diagrams</a></li>
+<li><a href="#_activity_diagrams">7.4. Activity Diagrams</a></li>
+<li><a href="#_state_diagrams">7.5. State Diagrams</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -687,11 +709,11 @@ pre.rouge .gs {
 </details>
 </div>
 <div class="sect2">
-<h3 id="_gitignore"><a class="anchor" href="#_gitignore"></a>1.4. .gitignore</h3>
+<h3 id="_gitignore"><a class="anchor" href="#_gitignore"></a>1.4. <code>.gitignore</code></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Was bewirkt ein Eintrag in der Datei <code>.gitignore</code>? Warum ist es wichtig, gitignore zu verwenden?</p>
+<p>Was bewirkt ein Eintrag in der Datei <code>.gitignore</code>? Warum ist es wichtig, <code>.gitignore</code> zu verwenden?</p>
 </li>
 </ul>
 </div>
@@ -801,10 +823,188 @@ pre.rouge .gs {
 </div>
 </details>
 </div>
+<div class="sect2">
+<h3 id="_git_konfiguration_1"><a class="anchor" href="#_git_konfiguration_1"></a>1.9. git Konfiguration 1</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man sich die git-Konfiguration des aktuellen Repositories anzeigen lassen? Annahme: Sie befinden sich im Projektverzeichnis.</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git config list</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">result (<kbd>q</kbd> zum Beenden)</div>
+<div class="content">
+<pre>credential.helper=osxkeychain
+user.name=maxmustermann
+user.email=m.mustermann@students.htl-leonding.ac.at
+core.autocrlf=input
+init.defaultbranch=main
+(END)</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_git_konfiguration_2"><a class="anchor" href="#_git_konfiguration_2"></a>1.10. git Konfiguration 2</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Welche Scopes gibt es bei der Konfiguration in git? Welchen Vorteil haben Scopes?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>--global</code>: Gilt für alle Repositories des Benutzers.</p>
+</li>
+<li>
+<p><code>--local</code>: Gilt nur für das aktuelle Repository.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Man kann zB grundsätzlich alle Repositories (zB für die Firma) mit public credentials (user.name, user.email) versehen und nur für gewisse Projekte (zB privat) andere credentials verwenden.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_git_konfiguration_3"><a class="anchor" href="#_git_konfiguration_3"></a>1.11. git Konfiguration 3</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man den lokalen Git-Benutzernamen und E-Mail-Adresse einsehen?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git config user.name
+git config user.email</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">result</div>
+<div class="content">
+<pre>mmustermann
+m.mustermann@private-mail.at</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_git_konfiguration_4"><a class="anchor" href="#_git_konfiguration_4"></a>1.12. git Konfiguration 4</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man den globalen Git-Benutzernamen und E-Mail-Adresse einsehen?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git config <span class="nt">--global</span> user.name
+git config <span class="nt">--global</span> user.email</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">result</div>
+<div class="content">
+<pre>maxmustermann
+m.mustermann@students.htl-leonding.ac.at</pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_git_konfiguration_5"><a class="anchor" href="#_git_konfiguration_5"></a>1.13. git Konfiguration 5</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man seine git-credentials lokal setzen</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git config <span class="nt">--local</span> user.name <span class="s2">"Dein Name"</span>
+git config <span class="nt">--local</span> user.email <span class="s2">"deine.email@beispiel.com"</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_git_konfiguration_6"><a class="anchor" href="#_git_konfiguration_6"></a>1.14. git Konfiguration 6</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man seine git-credentials global setzen</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git config <span class="nt">--global</span> user.name <span class="s2">"Dein Name"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"deine.email@beispiel.com"</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_git_konfiguration_7"><a class="anchor" href="#_git_konfiguration_7"></a>1.15. git Konfiguration 7</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man seine git-credentials wieder vom System (aus der Keychain) löschen? zB im EDV-Saal</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git config <span class="nt">--global</span> <span class="nt">--unset-all</span> user.name
+git config <span class="nt">--global</span> <span class="nt">--unset-all</span> user.email</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_docker"><a class="anchor" href="#_docker"></a>2. Docker</h2>
+<h2 id="_docker_und_docker_compose"><a class="anchor" href="#_docker_und_docker_compose"></a>2. Docker und Docker Compose</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_auflisten_aller_container"><a class="anchor" href="#_auflisten_aller_container"></a>2.1. Auflisten aller Container</h3>
@@ -892,7 +1092,59 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_postgres_backup"><a class="anchor" href="#_postgres_backup"></a>2.10. postgres-Backup</h3>
+<h3 id="_starten_von_docker_compose_im_vordergrund"><a class="anchor" href="#_starten_von_docker_compose_im_vordergrund"></a>2.10. Starten von Docker Compose im Vordergrund</h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> my-docker-compose-file.yaml up</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_starten_von_docker_compose_im_hintergrund"><a class="anchor" href="#_starten_von_docker_compose_im_hintergrund"></a>2.11. Starten von Docker Compose im Hintergrund</h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> my-docker-compose-file.yaml up <span class="nt">-d</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_stoppen_von_docker_compose"><a class="anchor" href="#_stoppen_von_docker_compose"></a>2.12. Stoppen von Docker Compose</h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> my-docker-compose-file.yaml down</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_anzeigen_der_logs_von_docker_compose"><a class="anchor" href="#_anzeigen_der_logs_von_docker_compose"></a>2.13. Anzeigen der Logs von Docker Compose</h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> my-docker-compose-file.yaml logs <span class="nt">-f</span></code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_postgres_backup"><a class="anchor" href="#_postgres_backup"></a>2.14. postgres-Backup</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -921,7 +1173,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_dockerignore"><a class="anchor" href="#_dockerignore"></a>2.11. <code>.dockerignore</code></h3>
+<h3 id="_dockerignore"><a class="anchor" href="#_dockerignore"></a>2.15. <code>.dockerignore</code></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1043,7 +1295,7 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_netstat_installieren"><a class="anchor" href="#_netstat_installieren"></a>4.6. Netstat installieren</h3>
+<h3 id="_troubleshooting_netstat_nicht_gefunden"><a class="anchor" href="#_troubleshooting_netstat_nicht_gefunden"></a>4.6. Troubleshooting: <code>netstat</code> nicht gefunden</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1128,6 +1380,9 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </div>
 </div>
 </details>
+</div>
+<div class="sect2">
+<h3 id="_nummerierung_vermeiden"><a class="anchor" href="#_nummerierung_vermeiden"></a>6.5. Nummerierung vermeiden</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1147,19 +1402,89 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </div>
 </details>
 </div>
+<div class="sect2">
+<h3 id="_nummerierung_der_überschriften"><a class="anchor" href="#_nummerierung_der_überschriften"></a>6.6. Nummerierung der Überschriften</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>wie kann man die Überschriften nummerieren?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">:sectnums:</code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_keyboard_macro"><a class="anchor" href="#_keyboard_macro"></a>6.7. Keyboard-Macro</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man ein Keyboard-Macro in Asciidoctor erstellen?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">1. In der Präambel <code>experimental</code> aktivieren</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">:experimental:</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">2. Im Text die Taste definieren</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">Drücken Sie die kbd:[RETURN]-Taste</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">result</div>
+<p>Drücken Sie die <kbd>RETURN</kbd>-Taste</p>
+</div>
+</div>
+</details>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_uml"><a class="anchor" href="#_uml"></a>7. UML</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_class_diagrams"><a class="anchor" href="#_class_diagrams"></a>7.1. Class Diagrams</h3>
 
+</div>
+<div class="sect2">
+<h3 id="_object_diagrams"><a class="anchor" href="#_object_diagrams"></a>7.2. Object Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_deploymant_diagrams"><a class="anchor" href="#_deploymant_diagrams"></a>7.3. Deploymant Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_activity_diagrams"><a class="anchor" href="#_activity_diagrams"></a>7.4. Activity Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_state_diagrams"><a class="anchor" href="#_state_diagrams"></a>7.5. State Diagrams</h3>
+
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-14 16:46:38 UTC
+Last updated 2025-05-18 07:21:00 UTC
 </div>
 </div>
 </body>
