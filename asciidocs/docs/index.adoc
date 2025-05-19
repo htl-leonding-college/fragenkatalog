@@ -265,17 +265,139 @@ git config --global --unset-all user.email
 
 === Auflisten aller Container [.badge.foundation]#Foundation#
 
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker container ls -a <.>
+docker ps -a
+----
+<.> -a zeigt alle Container (laufend + gestoppt)
+====
+
 === Auflisten aller Images [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker images
+docker image ls <.>
+----
+<.> Modernere Variante
+====
 
 === Container starten [.badge.foundation]#Foundation#
 
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker run [optionen] image-name <.>
+docker start container-name-or-id <.>
+----
+<.> Neuen Container starten
+<.> Gestoppten Container erneut starten
+====
+
 === Container stoppen [.badge.foundation]#Foundation#
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker stop <container-name-or-id>
+----
+
+- Beispiel
+
+[source,shell]
+----
+docker stop a1b2c3d4e5f6
+
+----
+
+====
 
 === Container löschen [.badge.foundation]#Foundation#
 
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker rm <container-name-or-id> <.>
+----
+IMPORTANT: Man kann nur gestoppte Container löschen. Falls er noch läuft, bekommt man einen Fehler.
+
+. Optional: Container erzwingen löschen
+[source,shell]
+----
+docker rm -f <container-name-or-id> <.>
+----
+<.> Mit -f(force) wird der Container auch gelöscht ,wenn er läuft - das wirkt wie ein harter Kill + Löschung.
+====
 === Volumes löschen [.badge.foundation]#Foundation#
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+docker volume rm <volume-name>
+----
+
+. Beispiel
+
+[source,shell]
+----
+docker volume rm mein-volume
+----
+IMPORTANT: Man muss zuerst den Container stoppen und löschen mit dem das Volume verbunden ist.
+
+====
 
 === Image bauen [.badge.foundation]#Foundation#
+.Lösung
+[%collapsible]
+====
+- Um ein Docker-Image zu bauen, braucht man eine Datei namens Dockerfile und einen Build-Befehl
+
+- Die wichtigsten Dockerfile Instruktionen:
+
+image::dockerile-instructions.png[]
+
+- Beispiel
+. Dockerfile im Projektordner erstellen
+
+[source,shell]
+----
+# Dockerfile
+FROM node:18 <.>
+WORKDIR /app <.>
+COPY . . <.>
+RUN npm install <.>
+CMD ["node", "index.js"] <.>
+
+----
+<.> Legt Node.js 18 als Basis-Image fest
+<.> Wechselt in den Arbeitsordner /app im Container
+<.> Kopiert alle Dateien vom Host ins Containerverzeichnis
+<.> Führt npm install beim Build aus (Abhängigkeiten installieren)
+<.> Definiert, was beim Containerstart ausgeführt wird
+
+
+[start=2]
+. Image bauen
+[source,shell]
+----
+docker build -t mein-node-image . <.>
+----
+
+====
+
 
 === Image nach ghcr.io pushen [.badge.foundation]#Foundation#
 
@@ -405,6 +527,27 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 
 * Was bewirkt ein Eintrag in der Datei `.dockerignore`? Warum ist es wichtig, `.dockerignore` zu verwenden?
 
+.Lösung
+[%collapsible]
+====
+- Ein Eintrag in der Datei .dockerignore bewirkt, dass bestimmte Dateien oder Ordner vom Docker-Build Kontext ausgeschlossen werden - also nicht ins Image kopiert werden.
+
+- Typische Beispiele für Dateien und Ordner, die nicht ins Docker-Image übernommen werden:
+
+. `.git/`
+. `node_modules/`
+. `*.log`
+
+
+Vorteile:
+
+. Schnellerer Build - Docker verarbeitet weniger Daten
+. Saubereres Image - nur relevante Dateien landen im Image
+. Mehr Sicherheit  - keine sensiblen Daten wie `.env`, SSH-Keys usw. gelangen ins Image
+. Weniger Speicherverbrauch - kleinere und effizientere Images
+====
+
+
 
 
 == Kubernetes
@@ -509,9 +652,56 @@ sudo apt install net-tools
 
 * Was ist eine Präambel?
 
+
+.Lösung
+[%collapsible]
+====
+
+- In AsciiDoc ist eine Präambel der Abschnitt vor der ersten Überschrift. Sie dient dazu, Einleitungstext, Metadaten oder Kontext anzugeben, der nicht Teil eines Kapitels ist.
+
+- Beispiel
+
+[source,markdown]
+----
+= Präambel
+Thomas Stütz
+:doctype: book
+:toc: left
+:icons: font
+
+== Einführung
+
+Hier beginnt der eigentliche erste Abschnitt.
+----
+====
+
 === Admonitions [.badge.foundation]#Foundation#
 
 * Was sind Admonitions?
+
+.Lösung
+[%collapsible]
+====
+
+- Admonitions (auch Hinweisboxen genannt) sind auffällige Informationsblöcke in AsciiDoc, die besondere Inhalte wie Warnungen, Tipps oder wichtige Hinweise hervorheben. Sie helfen, wichtige Stellen optisch hervorzuheben und besser verständlich zu machen.
+
+
+Typische Admonitions sind:
+
+- `NOTE`: allgemeiner Hinweis
+- `TIP`: nützlicher Tipp
+- `IMPORTANT`: wichtige Info
+- `WARNING`: mögliche Probleme
+- `CAUTION`: Gefahr oder kritischer Fehler
+
+IMPORTANT: Damit die Icons angezeigt werden, muss man in der Präambel setzen:
+
+[source,asciidoc]
+----
+:icons: font
+----
+
+====
 
 
 === Callouts [.badge.foundation]#Foundation#
