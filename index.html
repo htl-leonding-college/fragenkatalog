@@ -693,14 +693,16 @@ pre.rouge .gs {
 <li><a href="#_java">5. Java</a></li>
 <li><a href="#_asciidoctor">6. Asciidoctor</a>
 <ul class="sectlevel2">
-<li><a href="#_präambel_preamble_foundation">6.1. Präambel / Preamble <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_admonitions_foundation">6.2. Admonitions <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_callouts_foundation">6.3. Callouts <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_adoc_in_github_environment_foundation">6.4. adoc in github-Environment <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_nummerierung_vermeiden_foundation">6.5. Nummerierung vermeiden <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_nummerierung_der_überschriften_foundation">6.6. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_links_in_neuen_tabs_öffnen_foundation">6.7. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_keyboard_macro_foundation">6.8. Keyboard-Macro <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_was_ist_asciidoctor_foundation">6.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_präambel_preamble_foundation">6.2. Präambel / Preamble <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_admonitions_foundation">6.3. Admonitions <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_callouts_foundation">6.4. Callouts <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_callouts_und_kommentarzeichen_foundation">6.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_adoc_in_github_environment_foundation">6.6. adoc in github-Environment <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_nummerierung_vermeiden_foundation">6.7. Nummerierung vermeiden <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_nummerierung_der_überschriften_foundation">6.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_links_in_neuen_tabs_öffnen_foundation">6.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_keyboard_macro_foundation">6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_uml">7. UML</a>
@@ -740,6 +742,16 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="images/git-overview2.png" alt="git overview2">
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_erstellung_eines_repositories_foundation"><a class="anchor" href="#_erstellung_eines_repositories_foundation"></a>1.2. Erstellung eines Repositories <span class="badge foundation">Foundation</span></h3>
@@ -1241,7 +1253,7 @@ Man kann nur gestoppte Container löschen. Falls er noch läuft, bekommt man ein
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Mit -f(force) wird der Container auch gelöscht ,wenn er läuft - das wirkt wie ein harter Kill + Löschung.</td>
+<td>Mit -f(force) wird der Container auch gelöscht, wenn er läuft - das wirkt wie ein harter Kill + Löschung.</td>
 </tr>
 </table>
 </div>
@@ -1277,7 +1289,7 @@ Man kann nur gestoppte Container löschen. Falls er noch läuft, bekommt man ein
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-Man muss zuerst den Container stoppen und löschen mit dem das Volume verbunden ist.
+Man muss zuerst den Container, mit dem das Volume verbunden ist, stoppen und löschen.
 </td>
 </tr>
 </table>
@@ -1300,11 +1312,92 @@ Man muss zuerst den Container stoppen und löschen mit dem das Volume verbunden 
 </li>
 </ul>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="images/dockerile-instructions.png" alt="dockerile instructions">
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Instruction</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ADD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add local or remote files and directories. Use with care.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ARG</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use build-time variables.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CMD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify default commands.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>COPY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Copy files and directories.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ENTRYPOINT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify default executable.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ENV</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set environment variables.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>EXPOSE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Describe which ports your application is listening on.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>FROM</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create a new build stage from a base image.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HEALTHCHECK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Check a container&#8217;s health on startup.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>LABEL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add metadata to an image.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>MAINTAINER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the author of an image.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONBUILD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify instructions for when the image is used in a build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>RUN</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Execute build commands.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SHELL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set the default shell of an image.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>STOPSIGNAL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the system call signal for exiting a container.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>USER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set user and group ID.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>VOLUME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create volume mounts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>WORKDIR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change working directory.</p></td>
+</tr>
+</tbody>
+</table>
 <div class="ulist">
 <ul>
 <li>
@@ -1447,6 +1540,9 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> my-docker-compose-file.yaml up <span class="nt">-d</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>-d &#8230;&#8203; detached mode</p>
 </div>
 </div>
 </details>
@@ -1751,7 +1847,39 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <h2 id="_asciidoctor"><a class="anchor" href="#_asciidoctor"></a>6. Asciidoctor</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_präambel_preamble_foundation"><a class="anchor" href="#_präambel_preamble_foundation"></a>6.1. Präambel / Preamble <span class="badge foundation">Foundation</span></h3>
+<h3 id="_was_ist_asciidoctor_foundation"><a class="anchor" href="#_was_ist_asciidoctor_foundation"></a>6.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Was ist Asciidoctor?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Links:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/praktikumsaufgaben-teil-02.html" class="bare">https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/praktikumsaufgaben-teil-02.html</a></p>
+</li>
+<li>
+<p><a href="https://www.hznet.de/textproc/asciidoc-intro.pdf" class="bare">https://www.hznet.de/textproc/asciidoc-intro.pdf</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_präambel_preamble_foundation"><a class="anchor" href="#_präambel_preamble_foundation"></a>6.2. Präambel / Preamble <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1789,7 +1917,7 @@ Hier beginnt der eigentliche erste Abschnitt.</code></pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_admonitions_foundation"><a class="anchor" href="#_admonitions_foundation"></a>6.2. Admonitions <span class="badge foundation">Foundation</span></h3>
+<h3 id="_admonitions_foundation"><a class="anchor" href="#_admonitions_foundation"></a>6.3. Admonitions <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1850,7 +1978,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </details>
 </div>
 <div class="sect2">
-<h3 id="_callouts_foundation"><a class="anchor" href="#_callouts_foundation"></a>6.3. Callouts <span class="badge foundation">Foundation</span></h3>
+<h3 id="_callouts_foundation"><a class="anchor" href="#_callouts_foundation"></a>6.4. Callouts <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1860,7 +1988,57 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_adoc_in_github_environment_foundation"><a class="anchor" href="#_adoc_in_github_environment_foundation"></a>6.4. adoc in github-Environment <span class="badge foundation">Foundation</span></h3>
+<h3 id="_callouts_und_kommentarzeichen_foundation"><a class="anchor" href="#_callouts_und_kommentarzeichen_foundation"></a>6.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wieso sind Callouts im Code mit einem Kommentarzeichen zu verwenden</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Wenn im Code eines Projektes Callouts verwendet werden, dann sind diese mit einem Kommentarzeichen zu kennzeichnen. Sonst würde der Code nicht mehr ausführbar sein.</p>
+</li>
+<li>
+<p>Es sind die Kommentarzeichen der jeweiligen Programmiersprache zu verwenden.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Beispiel</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> docker-compose.yaml up <span class="c">#&lt;.&gt;</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;.&gt; Callout-Text</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Result</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">-f</span> docker-compose.yaml up <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Callout-Text</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_adoc_in_github_environment_foundation"><a class="anchor" href="#_adoc_in_github_environment_foundation"></a>6.6. adoc in github-Environment <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1886,7 +2064,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </details>
 </div>
 <div class="sect2">
-<h3 id="_nummerierung_vermeiden_foundation"><a class="anchor" href="#_nummerierung_vermeiden_foundation"></a>6.5. Nummerierung vermeiden <span class="badge foundation">Foundation</span></h3>
+<h3 id="_nummerierung_vermeiden_foundation"><a class="anchor" href="#_nummerierung_vermeiden_foundation"></a>6.7. Nummerierung vermeiden <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1907,7 +2085,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </details>
 </div>
 <div class="sect2">
-<h3 id="_nummerierung_der_überschriften_foundation"><a class="anchor" href="#_nummerierung_der_überschriften_foundation"></a>6.6. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></h3>
+<h3 id="_nummerierung_der_überschriften_foundation"><a class="anchor" href="#_nummerierung_der_überschriften_foundation"></a>6.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1927,7 +2105,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </details>
 </div>
 <div class="sect2">
-<h3 id="_links_in_neuen_tabs_öffnen_foundation"><a class="anchor" href="#_links_in_neuen_tabs_öffnen_foundation"></a>6.7. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_links_in_neuen_tabs_öffnen_foundation"><a class="anchor" href="#_links_in_neuen_tabs_öffnen_foundation"></a>6.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1937,7 +2115,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_keyboard_macro_foundation"><a class="anchor" href="#_keyboard_macro_foundation"></a>6.8. Keyboard-Macro <span class="badge foundation">Foundation</span></h3>
+<h3 id="_keyboard_macro_foundation"><a class="anchor" href="#_keyboard_macro_foundation"></a>6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1998,7 +2176,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-20 04:17:43 UTC
+Last updated 2025-05-20 04:54:17 UTC
 </div>
 </div>
 </body>
