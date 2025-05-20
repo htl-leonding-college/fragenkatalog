@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2025-05-18</span>
+<span id="revdate">2025-05-20</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -1110,31 +1110,263 @@ git config <span class="nt">--global</span> <span class="nt">--unset-all</span> 
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="_auflisten_aller_container_foundation"><a class="anchor" href="#_auflisten_aller_container_foundation"></a>2.1. Auflisten aller Container <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker container <span class="nb">ls</span> <span class="nt">-a</span> <i class="conum" data-value="1"></i><b>(1)</b>
+docker ps <span class="nt">-a</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>-a zeigt alle Container (laufend + gestoppt)</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_auflisten_aller_images_foundation"><a class="anchor" href="#_auflisten_aller_images_foundation"></a>2.2. Auflisten aller Images <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker images
+docker image <span class="nb">ls</span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Modernere Variante</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_container_starten_foundation"><a class="anchor" href="#_container_starten_foundation"></a>2.3. Container starten <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker run <span class="o">[</span>optionen] image-name <i class="conum" data-value="1"></i><b>(1)</b>
+docker start container-name-or-id <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Neuen Container starten</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Gestoppten Container erneut starten</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_container_stoppen_foundation"><a class="anchor" href="#_container_stoppen_foundation"></a>2.4. Container stoppen <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker stop &lt;container-name-or-id&gt;</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Beispiel</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker stop a1b2c3d4e5f6</code></pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_container_löschen_foundation"><a class="anchor" href="#_container_löschen_foundation"></a>2.5. Container löschen <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">rm</span> &lt;container-name-or-id&gt; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Man kann nur gestoppte Container löschen. Falls er noch läuft, bekommt man einen Fehler.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Optional: Container erzwingen löschen</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>docker rm -f &lt;container-name-or-id&gt; <i class="conum" data-value="1"></i><b>(1)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Mit -f(force) wird der Container auch gelöscht ,wenn er läuft - das wirkt wie ein harter Kill + Löschung.</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_volumes_löschen_foundation"><a class="anchor" href="#_volumes_löschen_foundation"></a>2.6. Volumes löschen <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker volume <span class="nb">rm</span> &lt;volume-name&gt;</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Beispiel</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">docker volume <span class="nb">rm </span>mein-volume</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Man muss zuerst den Container stoppen und löschen mit dem das Volume verbunden ist.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_image_bauen_foundation"><a class="anchor" href="#_image_bauen_foundation"></a>2.7. Image bauen <span class="badge foundation">Foundation</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Um ein Docker-Image zu bauen, braucht man eine Datei namens Dockerfile und einen Build-Befehl</p>
+</li>
+<li>
+<p>Die wichtigsten Dockerfile Instruktionen:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/dockerile-instructions.png" alt="dockerile instructions">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Beispiel</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Dockerfile im Projektordner erstellen</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="c"># Dockerfile</span>
+FROM node:18 <i class="conum" data-value="1"></i><b>(1)</b>
+WORKDIR /app <i class="conum" data-value="2"></i><b>(2)</b>
+COPY <span class="nb">.</span> <span class="nb">.</span> <i class="conum" data-value="3"></i><b>(3)</b>
+RUN npm <span class="nb">install <i class="conum" data-value="4"></i><b>(4)</b>
+</span>CMD <span class="o">[</span><span class="s2">"node"</span>, <span class="s2">"index.js"</span><span class="o">]</span> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Legt Node.js 18 als Basis-Image fest</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Wechselt in den Arbeitsordner /app im Container</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Kopiert alle Dateien vom Host ins Containerverzeichnis</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Führt npm install beim Build aus (Abhängigkeiten installieren)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Definiert, was beim Containerstart ausgeführt wird</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>Image bauen</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>docker build -t mein-node-image . <i class="conum" data-value="1"></i><b>(1)</b></pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_image_nach_ghcr_io_pushen_foundation"><a class="anchor" href="#_image_nach_ghcr_io_pushen_foundation"></a>2.8. Image nach ghcr.io pushen <span class="badge foundation">Foundation</span></h3>
@@ -1324,6 +1556,53 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Ein Eintrag in der Datei .dockerignore bewirkt, dass bestimmte Dateien oder Ordner vom Docker-Build Kontext ausgeschlossen werden - also nicht ins Image kopiert werden.</p>
+</li>
+<li>
+<p>Typische Beispiele für Dateien und Ordner, die nicht ins Docker-Image übernommen werden:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>.git/</code></p>
+</li>
+<li>
+<p><code>node_modules/</code></p>
+</li>
+<li>
+<p><code>*.log</code></p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Vorteile:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Schnellerer Build - Docker verarbeitet weniger Daten</p>
+</li>
+<li>
+<p>Saubereres Image - nur relevante Dateien landen im Image</p>
+</li>
+<li>
+<p>Mehr Sicherheit  - keine sensiblen Daten wie <code>.env</code>, SSH-Keys usw. gelangen ins Image</p>
+</li>
+<li>
+<p>Weniger Speicherverbrauch - kleinere und effizientere Images</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>
@@ -1480,6 +1759,34 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>In AsciiDoc ist eine Präambel der Abschnitt vor der ersten Überschrift. Sie dient dazu, Einleitungstext, Metadaten oder Kontext anzugeben, der nicht Teil eines Kapitels ist.</p>
+</li>
+<li>
+<p>Beispiel</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="markdown">= Präambel
+Thomas Stütz
+:doctype: book
+:toc: left
+:icons: font
+
+== Einführung
+
+Hier beginnt der eigentliche erste Abschnitt.</code></pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_admonitions_foundation"><a class="anchor" href="#_admonitions_foundation"></a>6.2. Admonitions <span class="badge foundation">Foundation</span></h3>
@@ -1490,6 +1797,57 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Admonitions (auch Hinweisboxen genannt) sind auffällige Informationsblöcke in AsciiDoc, die besondere Inhalte wie Warnungen, Tipps oder wichtige Hinweise hervorheben. Sie helfen, wichtige Stellen optisch hervorzuheben und besser verständlich zu machen.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Typische Admonitions sind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>NOTE</code>: allgemeiner Hinweis</p>
+</li>
+<li>
+<p><code>TIP</code>: nützlicher Tipp</p>
+</li>
+<li>
+<p><code>IMPORTANT</code>: wichtige Info</p>
+</li>
+<li>
+<p><code>WARNING</code>: mögliche Probleme</p>
+</li>
+<li>
+<p><code>CAUTION</code>: Gefahr oder kritischer Fehler</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Damit die Icons angezeigt werden, muss man in der Präambel setzen:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">:icons: font</code></pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_callouts_foundation"><a class="anchor" href="#_callouts_foundation"></a>6.3. Callouts <span class="badge foundation">Foundation</span></h3>
@@ -1640,7 +1998,7 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-18 09:51:07 UTC
+Last updated 2025-05-20 04:17:43 UTC
 </div>
 </div>
 </body>
