@@ -1128,7 +1128,7 @@ git config <span class="nt">--global</span> <span class="nt">--unset-all</span> 
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker container <span class="nb">ls</span> <span class="nt">-a</span> <i class="conum" data-value="1"></i><b>(1)</b>
-docker ps <span class="nt">-a</span></code></pre>
+docker ps <span class="nt">-a</span> <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1136,6 +1136,10 @@ docker ps <span class="nt">-a</span></code></pre>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>-a zeigt alle Container (laufend + gestoppt)</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>deprecated, daher nicht mehr verwenden</td>
 </tr>
 </table>
 </div>
@@ -1149,15 +1153,15 @@ docker ps <span class="nt">-a</span></code></pre>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell">docker images
-docker image <span class="nb">ls</span> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="rouge highlight"><code data-lang="shell">docker image <span class="nb">ls
+</span>docker images <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Modernere Variante</td>
+<td>deprecated, daher nicht mehr verwenden</td>
 </tr>
 </table>
 </div>
@@ -1222,7 +1226,7 @@ docker start container-name-or-id <i class="conum" data-value="2"></i><b>(2)</b>
 <div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">rm</span> &lt;container-name-or-id&gt; <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">rm</span> &lt;container-name-or-id&gt;</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -1270,14 +1274,8 @@ Man kann nur gestoppte Container löschen. Falls er noch läuft, bekommt man ein
 <pre class="rouge highlight"><code data-lang="shell">docker volume <span class="nb">rm</span> &lt;volume-name&gt;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Beispiel</p>
-</li>
-</ol>
-</div>
 <div class="listingblock">
+<div class="title">Beispiel</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker volume <span class="nb">rm </span>mein-volume</code></pre>
 </div>
@@ -2176,7 +2174,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-20 04:54:17 UTC
+Last updated 2025-05-20 04:59:56 UTC
 </div>
 </div>
 </body>
