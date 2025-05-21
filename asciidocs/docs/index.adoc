@@ -30,7 +30,11 @@ endif::backend-html5[]
 
 * Skizzieren Sie die Architektur von git und erklären Sie die wichtigsten Kommandos.
 
-
+.Lösung
+[%collapsible]
+====
+image::git-overview2.png[]
+====
 
 === Erstellung eines Repositories [.badge.foundation]#Foundation#
 
@@ -258,6 +262,39 @@ git config --global --unset-all user.email
 ** https://www.atlassian.com/git/tutorials/merging-vs-rebasing[Atlassian - Merging vs. rebasing^]
 
 ====
+=== fork
+
+.Lösung
+[%collapsible]
+====
+====
+
+=== pull request
+* Wie erstellt man einen pull request?
+
+[%collapsible]
+.Lösung
+
+
+====
+* Ein *Pull Request* ist in Git eine Anfrage, um Änderungen aus einem Branch (meist aus einem Fork) in ein anderes Repository oder einen Haupt-Branch zu übernehmen – typischerweise zur Codeüberprüfung und Integration.
+
+
+*Anleitung*
+
+. Forke das Original-Repository.
+. Erstelle einen neuen Branch.
+. Nehme Änderungen vor und pushe den Branch zu deinem Fork.
+. Öffne dein Fork auf GitHub.
+. Klicke auf *Compare & pull request*.
+. Wähle den Branch mit deinen Änderungen.
+. Füge einen Titel und eine aussagekräftige Beschreibung hinzu.
+. Klicke auf *Create pull request*
+
+++++
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8lGpZkjnkt4?si=YRI8q53SuZbZJ__U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+++++
+====
 
 
 
@@ -270,10 +307,11 @@ git config --global --unset-all user.email
 ====
 [source,shell]
 ----
-docker container ls -a <.>
-docker ps -a
+docker container ls -a #<.>
+docker ps -a #<.>
 ----
 <.> -a zeigt alle Container (laufend + gestoppt)
+<.> deprecated, daher nicht mehr verwenden
 ====
 
 === Auflisten aller Images [.badge.foundation]#Foundation#
@@ -283,10 +321,10 @@ docker ps -a
 ====
 [source,shell]
 ----
-docker images
-docker image ls <.>
+docker image ls
+docker images #<.>
 ----
-<.> Modernere Variante
+<.> deprecated, daher nicht mehr verwenden
 ====
 
 === Container starten [.badge.foundation]#Foundation#
@@ -296,8 +334,8 @@ docker image ls <.>
 ====
 [source,shell]
 ----
-docker run [optionen] image-name <.>
-docker start container-name-or-id <.>
+docker run [optionen] image-name #<.>
+docker start container-name-or-id #<.>
 ----
 <.> Neuen Container starten
 <.> Gestoppten Container erneut starten
@@ -317,7 +355,6 @@ docker stop <container-name-or-id>
 [source,shell]
 ----
 docker stop a1b2c3d4e5f6
-
 ----
 
 ====
@@ -329,17 +366,19 @@ docker stop a1b2c3d4e5f6
 ====
 [source,shell]
 ----
-docker rm <container-name-or-id> <.>
+docker rm <container-name-or-id>
 ----
 IMPORTANT: Man kann nur gestoppte Container löschen. Falls er noch läuft, bekommt man einen Fehler.
 
 . Optional: Container erzwingen löschen
 [source,shell]
 ----
-docker rm -f <container-name-or-id> <.>
+docker rm -f <container-name-or-id> #<.>
 ----
-<.> Mit -f(force) wird der Container auch gelöscht ,wenn er läuft - das wirkt wie ein harter Kill + Löschung.
+<.> Mit -f(force) wird der Container auch gelöscht, wenn er läuft - das wirkt wie ein harter Kill + Löschung.
 ====
+
+
 === Volumes löschen [.badge.foundation]#Foundation#
 .Lösung
 [%collapsible]
@@ -349,13 +388,13 @@ docker rm -f <container-name-or-id> <.>
 docker volume rm <volume-name>
 ----
 
-. Beispiel
+.Beispiel
 
 [source,shell]
 ----
 docker volume rm mein-volume
 ----
-IMPORTANT: Man muss zuerst den Container stoppen und löschen mit dem das Volume verbunden ist.
+IMPORTANT: Man muss zuerst den Container, mit dem das Volume verbunden ist, stoppen und löschen.
 
 ====
 
@@ -367,7 +406,29 @@ IMPORTANT: Man muss zuerst den Container stoppen und löschen mit dem das Volume
 
 - Die wichtigsten Dockerfile Instruktionen:
 
-image::dockerile-instructions.png[]
+[cols="1,3", options="header"]
+|===
+|Instruction |Description
+
+|`ADD`          |Add local or remote files and directories. Use with care.
+|`ARG`          |Use build-time variables.
+|`CMD`          |Specify default commands.
+|`COPY`         |Copy files and directories.
+|`ENTRYPOINT`   |Specify default executable.
+|`ENV`          |Set environment variables.
+|`EXPOSE`       |Describe which ports your application is listening on.
+|`FROM`         |Create a new build stage from a base image.
+|`HEALTHCHECK`  |Check a container's health on startup.
+|`LABEL`        |Add metadata to an image.
+|`MAINTAINER`   |Specify the author of an image.
+|`ONBUILD`      |Specify instructions for when the image is used in a build.
+|`RUN`          |Execute build commands.
+|`SHELL`        |Set the default shell of an image.
+|`STOPSIGNAL`   |Specify the system call signal for exiting a container.
+|`USER`         |Set user and group ID.
+|`VOLUME`       |Create volume mounts.
+|`WORKDIR`      |Change working directory.
+|===
 
 - Beispiel
 . Dockerfile im Projektordner erstellen
@@ -396,6 +457,48 @@ CMD ["node", "index.js"] <.>
 docker build -t mein-node-image . <.>
 ----
 
+====
+
+=== Image herunterladen
+
+.Lösung
+[%collapsible]
+====
+- Ein Docker-Image kann man mit folgendem Befehl herunterladen.
+[source,shell]
+----
+docker pull <image-name>
+----
+
+- Docker such das Image standardmäßig auf
+https://hub.docker.com/[Docker Hub].
+
+- *Beispiel:*
+[source,shell]
+----
+docker pull ubuntu //<.>
+----
+<.> Offizielles Ubuntu-Image
+====
+
+=== docker run hello-world
+- Wofür wird der Befehl `docker run hello-world` verwendet?
+
+.Lösung
+[%collapsible]
+====
+- Der Befehl `docker run hello-world` wird verwendet, um zu testen, ob Docker korrekt installiert und funktionsfähig ist.
+
+** Dabei versucht Docker, das Image `hello-world` lokal zu finden. Falls es nicht vorhanden ist, lädt Docker es vom Docker Hub herunter.
+** Wenn alles klappt, bekommt man eine Ausgabe wie:
+
+[source,shell]
+----
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...
+
+----
 ====
 
 
@@ -455,6 +558,9 @@ docker compose -f my-docker-compose-file.yaml up
 ----
 docker compose -f my-docker-compose-file.yaml up -d
 ----
+
+-d ... detached mode
+
 ====
 
 === Stoppen von Docker Compose [.badge.foundation]#Foundation#
@@ -648,6 +754,20 @@ sudo apt install net-tools
 
 == Asciidoctor
 
+=== Was ist Asciidoctor? [.badge.foundation]#Foundation#
+
+* Was ist Asciidoctor?
+
+.Lösung
+[%collapsible]
+====
+
+* Links:
+** https://www.informatik.htw-dresden.de/~zirkelba/praktika/se/arbeiten-mit-git-und-asciidoc/praktikumsaufgaben-teil-02.html[]
+** https://www.hznet.de/textproc/asciidoc-intro.pdf
+
+====
+
 === Präambel / Preamble [.badge.foundation]#Foundation#
 
 * Was ist eine Präambel?
@@ -708,6 +828,53 @@ IMPORTANT: Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 
 * Was sind Callouts?
 
+.Lösung
+[%collapsible]
+====
+
+- In AsciiDoc sind Callouts spezielle Hinweise in Codeblöcken, mit denen man erklärende Kommentare neben bestimmten Zeilen oder Codefragmenten geben kann - nummeriert und referenzierbar.
+
+- Beispiel
+
+[source,java]
+----
+int a = 5; // <1>
+int b = 10; // <2>
+----
+<1> Initialisiert die Variable `a`
+<2> Initialisiert die Variable `b`
+
+
+====
+
+=== Callouts und Kommentarzeichen [.badge.foundation]#Foundation#
+
+* Wieso sind Callouts im Code mit einem Kommentarzeichen zu verwenden
+
+.Lösung
+[%collapsible]
+====
+* Wenn im Code eines Projektes Callouts verwendet werden, dann sind diese mit einem Kommentarzeichen zu kennzeichnen. Sonst würde der Code nicht mehr ausführbar sein.
+
+* Es sind die Kommentarzeichen der jeweiligen Programmiersprache zu verwenden.
+
+.Beispiel
+[source,shell]
+----
+docker compose -f docker-compose.yaml up #\<.>
+
+----
+
+ <.> Callout-Text
+
+.Result
+[source,shell]
+----
+docker compose -f docker-compose.yaml up #<.>
+----
+
+<.> Callout-Text
+====
 
 === adoc in github-Environment [.badge.foundation]#Foundation#
 
