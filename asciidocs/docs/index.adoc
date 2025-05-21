@@ -262,6 +262,39 @@ git config --global --unset-all user.email
 ** https://www.atlassian.com/git/tutorials/merging-vs-rebasing[Atlassian - Merging vs. rebasing^]
 
 ====
+=== fork
+
+.Lösung
+[%collapsible]
+====
+====
+
+=== pull request
+* Wie erstellt man einen pull request?
+
+[%collapsible]
+.Lösung
+
+
+====
+* Ein *Pull Request* ist in Git eine Anfrage, um Änderungen aus einem Branch (meist aus einem Fork) in ein anderes Repository oder einen Haupt-Branch zu übernehmen – typischerweise zur Codeüberprüfung und Integration.
+
+
+*Anleitung*
+
+. Forke das Original-Repository.
+. Erstelle einen neuen Branch.
+. Nehme Änderungen vor und pushe den Branch zu deinem Fork.
+. Öffne dein Fork auf GitHub.
+. Klicke auf *Compare & pull request*.
+. Wähle den Branch mit deinen Änderungen.
+. Füge einen Titel und eine aussagekräftige Beschreibung hinzu.
+. Klicke auf *Create pull request*
+
+++++
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8lGpZkjnkt4?si=YRI8q53SuZbZJ__U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+++++
+====
 
 
 
@@ -424,6 +457,48 @@ CMD ["node", "index.js"] <.>
 docker build -t mein-node-image . <.>
 ----
 
+====
+
+=== Image herunterladen
+
+.Lösung
+[%collapsible]
+====
+- Ein Docker-Image kann man mit folgendem Befehl herunterladen.
+[source,shell]
+----
+docker pull <image-name>
+----
+
+- Docker such das Image standardmäßig auf
+https://hub.docker.com/[Docker Hub].
+
+- *Beispiel:*
+[source,shell]
+----
+docker pull ubuntu //<.>
+----
+<.> Offizielles Ubuntu-Image
+====
+
+=== docker run hello-world
+- Wofür wird der Befehl `docker run hello-world` verwendet?
+
+.Lösung
+[%collapsible]
+====
+- Der Befehl `docker run hello-world` wird verwendet, um zu testen, ob Docker korrekt installiert und funktionsfähig ist.
+
+** Dabei versucht Docker, das Image `hello-world` lokal zu finden. Falls es nicht vorhanden ist, lädt Docker es vom Docker Hub herunter.
+** Wenn alles klappt, bekommt man eine Ausgabe wie:
+
+[source,shell]
+----
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+...
+
+----
 ====
 
 
@@ -752,6 +827,25 @@ IMPORTANT: Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 === Callouts [.badge.foundation]#Foundation#
 
 * Was sind Callouts?
+
+.Lösung
+[%collapsible]
+====
+
+- In AsciiDoc sind Callouts spezielle Hinweise in Codeblöcken, mit denen man erklärende Kommentare neben bestimmten Zeilen oder Codefragmenten geben kann - nummeriert und referenzierbar.
+
+- Beispiel
+
+[source,java]
+----
+int a = 5; // <1>
+int b = 10; // <2>
+----
+<1> Initialisiert die Variable `a`
+<2> Initialisiert die Variable `b`
+
+
+====
 
 === Callouts und Kommentarzeichen [.badge.foundation]#Foundation#
 
