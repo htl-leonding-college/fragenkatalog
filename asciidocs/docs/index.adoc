@@ -68,6 +68,12 @@ git pull
 
 * Was bewirkt ein Eintrag in der Datei `.gitignore`? Warum ist es wichtig, `.gitignore` zu verwenden?
 
+.Lösung
+[%collapsible]
+====
+Ein Eintrag in `.gitignore` sorgt dafür, dass bestimmte Dateien nicht mit ins Git Repository aufgenommen werden. Das ist wichtig, weil man sonst private Daten (z.B. in `.env` Dateien) oder Dependencies wie `node_modules` hochladen würde, wodurch `git push` und `git pull` langsamer sind.
+====
+
 === ssh in github [.badge.foundation]#Foundation#
 
 * Wie kann ich mich mit ssh in github einloggen?
@@ -113,6 +119,17 @@ gh-profile -> Settings -> SSH and GPG keys -> New SSH key
 
 * Erläutern Sie Cherry Picking und geben Sie ein konkretes Bsp. mit den git-cli-Kommandos an.
 
+.Lösung
+[%collapsible]
+====
+`Cherry Picking` bedeutet, einzelne Commits aus einem Branch (z.B. Feature-Branch) in den derzeitigen (z.B. Main-Branch) zu übernehmen, ohne den ganzen Feature-Branch zu mergen. Dabei wird der ausgewählte Commit auf den aktuellen Branch übernommen, und der `HEAD` zeigt anschließend auf den neuen Commit. Man verwendet es z.B. wenn man im Feature-Branch einen Bug gefixt hat, aber das Feature noch nicht fertig ist.
+
+.Befehl:
+[source,shell]
+----
+git cherry-pick <Commit-Hash>
+----
+====
 
 === gh-pages aktivieren [.badge.foundation]#Foundation#
 
@@ -753,6 +770,40 @@ IMPORTANT: Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 
 * Was sind Callouts?
 
+.Lösung
+[%collapsible]
+====
+Kommentare für Code im Source-Block
+
+Man unterscheidet zwischen:
+
+* *automatische Callouts*
+
+[source,java]
+----
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt"); // \<.>
+    }
+}
+----
+ <.> Print-Statement
+
+* *manuelle Callouts*
+
+[source,java]
+----
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hallo Welt"); // \<1>
+    }
+}
+----
+ <1> Print-Statement
+
+Manuelle Callouts sind an verschiedenen Stellen *wiederverwendbar*.
+====
+
 === Callouts und Kommentarzeichen [.badge.foundation]#Foundation#
 
 * Wieso sind Callouts im Code mit einem Kommentarzeichen zu verwenden
@@ -833,7 +884,15 @@ docker compose -f docker-compose.yaml up #<.>
 
 * Wie werden Links in einem Asciidoctor-Dokument in neuen Tabs geöffnet?
 
-
+.Lösung
+[%collapsible]
+====
+Man muss ein `Caret` (^) nach dem Link-Text einfügen.
+[source,asciidoc]
+----
+Link[Text^]
+----
+====
 
 === Keyboard-Macro [.badge.foundation]#Foundation#
 
