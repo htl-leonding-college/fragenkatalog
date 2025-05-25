@@ -491,6 +491,10 @@ docker build -t mein-node-image . <.>
 
 ====
 
+=== COPY im Dockerfile [.badge.foundation]#Foundation#
+
+* In einem Dockerfile kann das Kommando COPY verwendet werden. Schreiben Sie beispielhaft, wie dieses Kommando aussieht und von wo nach wohin kopiert wird.
+
 
 === Image nach ghcr.io pushen [.badge.foundation]#Foundation#
 
