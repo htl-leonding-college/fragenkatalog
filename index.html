@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.20">
-<meta name="author" content="Thomas Stütz">
+<meta name="author" content="Thomas W. Stütz">
 <link rel="icon" type="image/png" href="themes/favicon.png">
 <title>Fragenkatalog</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -627,7 +627,7 @@ pre.rouge .gs {
 <div id="header">
 <h1>Fragenkatalog</h1>
 <div class="details">
-<span id="author" class="author">Thomas Stütz</span><br>
+<span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
 <span id="revdate">2025-05-25</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
@@ -653,6 +653,7 @@ pre.rouge .gs {
 <li><a href="#_git_konfiguration_6_foundation">1.14. git Konfiguration 6 <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_git_konfiguration_7_foundation">1.15. git Konfiguration 7 <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_unterschied_merge_vs_rebase_foundation">1.16. Unterschied merge vs rebase <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_github_template">1.17. github Template</a></li>
 </ul>
 </li>
 <li><a href="#_docker_und_docker_compose">2. Docker und Docker Compose</a>
@@ -690,7 +691,11 @@ pre.rouge .gs {
 <li><a href="#_troubleshooting_netstat_nicht_gefunden_foundation">4.6. Troubleshooting: <code>netstat</code> nicht gefunden <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
-<li><a href="#_java">5. Java</a></li>
+<li><a href="#_java">5. Java</a>
+<ul class="sectlevel2">
+<li><a href="#_manifest_xml_foundation">5.1. manifest.xml <span class="badge foundation">Foundation</span></a></li>
+</ul>
+</li>
 <li><a href="#_asciidoctor">6. Asciidoctor</a>
 <ul class="sectlevel2">
 <li><a href="#_was_ist_asciidoctor_foundation">6.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></a></li>
@@ -703,6 +708,7 @@ pre.rouge .gs {
 <li><a href="#_nummerierung_der_überschriften_foundation">6.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_links_in_neuen_tabs_öffnen_foundation">6.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_keyboard_macro_foundation">6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_seitenumbrüche_in_pdf_dokumenten_foundation">6.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_uml">7. UML</a>
@@ -1136,6 +1142,16 @@ git config <span class="nt">--global</span> <span class="nt">--unset-all</span> 
 </div>
 </div>
 </details>
+</div>
+<div class="sect2">
+<h3 id="_github_template"><a class="anchor" href="#_github_template"></a>1.17. github Template</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Welchen Zweck erfüllt ein github-Template-Repo?</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1860,7 +1876,10 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <div class="sect1">
 <h2 id="_java"><a class="anchor" href="#_java"></a>5. Java</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_manifest_xml_foundation"><a class="anchor" href="#_manifest_xml_foundation"></a>5.1. manifest.xml <span class="badge foundation">Foundation</span></h3>
 
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1922,15 +1941,21 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="markdown">= Präambel
-Thomas Stütz
-:doctype: book
-:toc: left
+<pre class="rouge highlight"><code data-lang="markdown">= Fragenkatalog
+Thomas W. Stütz
+<span class="p">1.</span>0.0, {docdate}: Basiswissen für Programmieren und Projektentwicklung
 :icons: font
+:experimental:
+:sectnums:
+:source-highlighter: rouge
+:docinfo: shared
+:toc:
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/htl-leonding-college/fragenkatalog] ‏ ‏ ‎
+icon:home[link=http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lecture-notes/]
 
-== Einführung
-
-Hier beginnt der eigentliche erste Abschnitt.</code></pre>
+:toc:</code></pre>
 </div>
 </div>
 </div>
@@ -2234,6 +2259,26 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </div>
 </details>
 </div>
+<div class="sect2">
+<h3 id="_seitenumbrüche_in_pdf_dokumenten_foundation"><a class="anchor" href="#_seitenumbrüche_in_pdf_dokumenten_foundation"></a>6.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man einen Seitenumbruch in einem pdf-Dokument erzeugen?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc"></code></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2265,7 +2310,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-25 09:00:26 UTC
+Last updated 2025-05-25 09:12:40 UTC
 </div>
 </div>
 </body>
