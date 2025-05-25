@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2025-05-20</span>
+<span id="revdate">2025-05-25</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -809,6 +809,14 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p>Ein Eintrag in <code>.gitignore</code> sorgt dafür, dass bestimmte Dateien nicht mit ins Git Repository aufgenommen werden. Das ist wichtig, weil man sonst private Daten (z.B. in <code>.env</code> Dateien) oder Dependencies wie <code>node_modules</code> hochladen würde, wodurch <code>git push</code> und <code>git pull</code> langsamer sind.</p>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_ssh_in_github_foundation"><a class="anchor" href="#_ssh_in_github_foundation"></a>1.5. ssh in github <span class="badge foundation">Foundation</span></h3>
@@ -881,6 +889,20 @@ pre.rouge .gs {
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p><code>Cherry Picking</code> bedeutet, einzelne Commits aus einem Branch (z.B. Feature-Branch) in den derzeitigen (z.B. Main-Branch) zu übernehmen, ohne den ganzen Feature-Branch zu mergen. Dabei wird der ausgewählte Commit auf den aktuellen Branch übernommen, und der <code>HEAD</code> zeigt anschließend auf den neuen Commit. Man verwendet es z.B. wenn man im Feature-Branch einen Bug gefixt hat, aber das Feature noch nicht fertig ist.</p>
+</div>
+<div class="listingblock">
+<div class="title">Befehl:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git cherry-pick &lt;Commit-Hash&gt;</code></pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_gh_pages_aktivieren_foundation"><a class="anchor" href="#_gh_pages_aktivieren_foundation"></a>1.8. gh-pages aktivieren <span class="badge foundation">Foundation</span></h3>
@@ -1984,6 +2006,62 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p>Kommentare für Code im Source-Block</p>
+</div>
+<div class="paragraph">
+<p>Man unterscheidet zwischen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>automatische Callouts</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hallo Welt"</span><span class="o">);</span> <span class="c1">// &lt;.&gt;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;.&gt; Print-Statement</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>manuelle Callouts</strong></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hallo Welt"</span><span class="o">);</span> <span class="c1">// &lt;1&gt;</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;1&gt; Print-Statement</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Manuelle Callouts sind an verschiedenen Stellen <strong>wiederverwendbar</strong>.</p>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_callouts_und_kommentarzeichen_foundation"><a class="anchor" href="#_callouts_und_kommentarzeichen_foundation"></a>6.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></h3>
@@ -2111,6 +2189,19 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p>Man muss ein <code>Caret</code> (^) nach dem Link-Text einfügen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">Link[Text^]</code></pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_keyboard_macro_foundation"><a class="anchor" href="#_keyboard_macro_foundation"></a>6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></h3>
@@ -2174,7 +2265,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-20 04:59:56 UTC
+Last updated 2025-05-25 09:00:26 UTC
 </div>
 </div>
 </body>
