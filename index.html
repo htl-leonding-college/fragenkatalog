@@ -667,17 +667,18 @@ pre.rouge .gs {
 <li><a href="#_container_löschen_foundation">2.5. Container löschen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_volumes_löschen_foundation">2.6. Volumes löschen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_image_bauen_foundation">2.7. Image bauen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_image_nach_ghcr_io_pushen_foundation">2.8. Image nach ghcr.io pushen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_docker_exec_foundation">2.9. docker exec <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_starten_von_docker_compose_im_vordergrund_foundation">2.10. Starten von Docker Compose im Vordergrund <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_starten_von_docker_compose_im_hintergrund_foundation">2.11. Starten von Docker Compose im Hintergrund <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_stoppen_von_docker_compose_foundation">2.12. Stoppen von Docker Compose <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_beenden_von_docker_compose_foundation">2.13. Beenden von Docker Compose <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_anzeigen_der_logs_von_docker_compose_foundation">2.14. Anzeigen der Logs von Docker Compose <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_postgres_backup_foundation">2.15. postgres-Backup <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_dockerignore_foundation">2.16. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_umgebungsvariable_in_docker_compose_setzen_foundation">2.17. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_health_check_in_docker_compose_foundation">2.18. Health Check in Docker Compose <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_copy_im_dockerfile_foundation">2.8. COPY im Dockerfile <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_image_nach_ghcr_io_pushen_foundation">2.9. Image nach ghcr.io pushen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_docker_exec_foundation">2.10. docker exec <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_starten_von_docker_compose_im_vordergrund_foundation">2.11. Starten von Docker Compose im Vordergrund <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_starten_von_docker_compose_im_hintergrund_foundation">2.12. Starten von Docker Compose im Hintergrund <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_stoppen_von_docker_compose_foundation">2.13. Stoppen von Docker Compose <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_beenden_von_docker_compose_foundation">2.14. Beenden von Docker Compose <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_anzeigen_der_logs_von_docker_compose_foundation">2.15. Anzeigen der Logs von Docker Compose <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_postgres_backup_foundation">2.16. postgres-Backup <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_dockerignore_foundation">2.17. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_umgebungsvariable_in_docker_compose_setzen_foundation">2.18. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_health_check_in_docker_compose_foundation">2.19. Health Check in Docker Compose <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a>
@@ -1581,7 +1582,17 @@ RUN npm <span class="nb">install <i class="conum" data-value="4"></i><b>(4)</b>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_image_nach_ghcr_io_pushen_foundation"><a class="anchor" href="#_image_nach_ghcr_io_pushen_foundation"></a>2.8. Image nach ghcr.io pushen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_copy_im_dockerfile_foundation"><a class="anchor" href="#_copy_im_dockerfile_foundation"></a>2.8. COPY im Dockerfile <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In einem Dockerfile kann das Kommando COPY verwendet werden. Schreiben Sie beispielhaft, wie dieses Kommando aussieht und von wo nach wohin kopiert wird.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_image_nach_ghcr_io_pushen_foundation"><a class="anchor" href="#_image_nach_ghcr_io_pushen_foundation"></a>2.9. Image nach ghcr.io pushen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1618,7 +1629,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_docker_exec_foundation"><a class="anchor" href="#_docker_exec_foundation"></a>2.9. docker exec <span class="badge foundation">Foundation</span></h3>
+<h3 id="_docker_exec_foundation"><a class="anchor" href="#_docker_exec_foundation"></a>2.10. docker exec <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1638,7 +1649,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_starten_von_docker_compose_im_vordergrund_foundation"><a class="anchor" href="#_starten_von_docker_compose_im_vordergrund_foundation"></a>2.10. Starten von Docker Compose im Vordergrund <span class="badge foundation">Foundation</span></h3>
+<h3 id="_starten_von_docker_compose_im_vordergrund_foundation"><a class="anchor" href="#_starten_von_docker_compose_im_vordergrund_foundation"></a>2.11. Starten von Docker Compose im Vordergrund <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -1651,7 +1662,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_starten_von_docker_compose_im_hintergrund_foundation"><a class="anchor" href="#_starten_von_docker_compose_im_hintergrund_foundation"></a>2.11. Starten von Docker Compose im Hintergrund <span class="badge foundation">Foundation</span></h3>
+<h3 id="_starten_von_docker_compose_im_hintergrund_foundation"><a class="anchor" href="#_starten_von_docker_compose_im_hintergrund_foundation"></a>2.12. Starten von Docker Compose im Hintergrund <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -1667,7 +1678,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_stoppen_von_docker_compose_foundation"><a class="anchor" href="#_stoppen_von_docker_compose_foundation"></a>2.12. Stoppen von Docker Compose <span class="badge foundation">Foundation</span></h3>
+<h3 id="_stoppen_von_docker_compose_foundation"><a class="anchor" href="#_stoppen_von_docker_compose_foundation"></a>2.13. Stoppen von Docker Compose <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -1694,7 +1705,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_beenden_von_docker_compose_foundation"><a class="anchor" href="#_beenden_von_docker_compose_foundation"></a>2.13. Beenden von Docker Compose <span class="badge foundation">Foundation</span></h3>
+<h3 id="_beenden_von_docker_compose_foundation"><a class="anchor" href="#_beenden_von_docker_compose_foundation"></a>2.14. Beenden von Docker Compose <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -1707,7 +1718,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_anzeigen_der_logs_von_docker_compose_foundation"><a class="anchor" href="#_anzeigen_der_logs_von_docker_compose_foundation"></a>2.14. Anzeigen der Logs von Docker Compose <span class="badge foundation">Foundation</span></h3>
+<h3 id="_anzeigen_der_logs_von_docker_compose_foundation"><a class="anchor" href="#_anzeigen_der_logs_von_docker_compose_foundation"></a>2.15. Anzeigen der Logs von Docker Compose <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -1734,7 +1745,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_postgres_backup_foundation"><a class="anchor" href="#_postgres_backup_foundation"></a>2.15. postgres-Backup <span class="badge foundation">Foundation</span></h3>
+<h3 id="_postgres_backup_foundation"><a class="anchor" href="#_postgres_backup_foundation"></a>2.16. postgres-Backup <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1763,7 +1774,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_dockerignore_foundation"><a class="anchor" href="#_dockerignore_foundation"></a>2.16. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></h3>
+<h3 id="_dockerignore_foundation"><a class="anchor" href="#_dockerignore_foundation"></a>2.17. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1820,7 +1831,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_umgebungsvariable_in_docker_compose_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_in_docker_compose_setzen_foundation"></a>2.17. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_umgebungsvariable_in_docker_compose_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_in_docker_compose_setzen_foundation"></a>2.18. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1830,7 +1841,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_health_check_in_docker_compose_foundation"><a class="anchor" href="#_health_check_in_docker_compose_foundation"></a>2.18. Health Check in Docker Compose <span class="badge foundation">Foundation</span></h3>
+<h3 id="_health_check_in_docker_compose_foundation"><a class="anchor" href="#_health_check_in_docker_compose_foundation"></a>2.19. Health Check in Docker Compose <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2469,7 +2480,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-25 17:47:07 UTC
+Last updated 2025-05-25 17:49:37 UTC
 </div>
 </div>
 </body>
