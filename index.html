@@ -814,13 +814,13 @@ pre.rouge .gs {
 <td class="tableblock halign-left valign-top"><p class="tableblock">HEAD zeigt auf den aktuellsten Commit.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HEAD^ Der Vorgänger (also ein Commit zurück)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HEAD~1 ist der eine Commit davor, also der vorletzte.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEAD~1 ist der eine Commit davor, also der vorletzte (ident mit HEAD^).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">HEAD~2 wäre der drittletzte, usw.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEAD^ Der Vorgänger (also ein Commit zurück). HEAD^ wird verwendet, wenn es mehrere Vorgänger gibt, zB bei einem Merge-Commit &#8594; HEAD^1 ist der erste Vorgänger, HEAD^2 der zweite Vorgänger.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2436,7 +2436,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-25 09:59:47 UTC
+Last updated 2025-05-25 16:53:19 UTC
 </div>
 </div>
 </body>
