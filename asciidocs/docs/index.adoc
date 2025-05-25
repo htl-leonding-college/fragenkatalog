@@ -1,5 +1,5 @@
 = Fragenkatalog
-Thomas Stütz
+Thomas W. Stütz
 1.0.0, {docdate}: Basiswissen für Programmieren und Projektentwicklung
 :icons: font
 :experimental:
@@ -279,6 +279,19 @@ git config --global --unset-all user.email
 ** https://www.atlassian.com/git/tutorials/merging-vs-rebasing[Atlassian - Merging vs. rebasing^]
 
 ====
+
+=== github Template
+
+* Welchen Zweck erfüllt ein github-Template-Repo?
+
+
+
+
+
+
+
+
+
 
 
 
@@ -693,6 +706,7 @@ sudo apt install net-tools
 
 == Java
 
+=== manifest.xml [.badge.foundation]#Foundation#
 
 == Asciidoctor
 
@@ -725,15 +739,24 @@ sudo apt install net-tools
 
 [source,markdown]
 ----
-= Präambel
-Thomas Stütz
-:doctype: book
-:toc: left
+= Fragenkatalog
+Thomas W. Stütz
+1.0.0, {docdate}: Basiswissen für Programmieren und Projektentwicklung
 :icons: font
+:experimental:
+:sectnums:
+:source-highlighter: rouge
+:docinfo: shared
+ifndef::imagesdir[:imagesdir: images]
+:toc:
+ifdef::backend-html5[]
+// https://fontawesome.com/v4.7.0/icons/
+icon:file-text-o[link=https://github.com/2324-4bhif-wmc/2324-4bhif-wmc-lecture-notes/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
+icon:github-square[link=https://github.com/htl-leonding-college/fragenkatalog] ‏ ‏ ‎
+icon:home[link=http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lecture-notes/]
+endif::backend-html5[]
 
-== Einführung
-
-Hier beginnt der eigentliche erste Abschnitt.
+:toc:
 ----
 ====
 
@@ -916,6 +939,24 @@ Drücken Sie die kbd:[RETURN]-Taste
 .result
 Drücken Sie die kbd:[RETURN]-Taste
 ====
+
+
+=== Seitenumbrüche in pdf-Dokumenten [.badge.foundation]#Foundation#
+
+* Wie kann man einen Seitenumbruch in einem pdf-Dokument erzeugen?
+
+.Lösung
+[%collapsible]
+====
+[source,asciidoc]
+----
+ifdef::backend-pdf[<<<]
+----
+====
+
+
+
+
 
 == UML
 
