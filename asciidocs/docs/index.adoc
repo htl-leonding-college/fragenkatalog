@@ -70,9 +70,9 @@ git checkout HEAD~1
 
 |===
 |HEAD zeigt auf den aktuellsten Commit.
-|HEAD^ Der Vorgänger (also ein Commit zurück)
-|HEAD~1 ist der eine Commit davor, also der vorletzte.
+|HEAD~1 ist der eine Commit davor, also der vorletzte (ident mit HEAD^).
 |HEAD~2 wäre der drittletzte, usw.
+|HEAD^ Der Vorgänger (also ein Commit zurück). HEAD^ wird verwendet, wenn es mehrere Vorgänger gibt, zB bei einem Merge-Commit -> HEAD^1 ist der erste Vorgänger, HEAD^2 der zweite Vorgänger.
 |===
 ====
 
