@@ -684,7 +684,7 @@ PGPASSWORD=app pg_dump --username=app db
 
 * Environment - Variablen die nicht nur für den aktuellen Aufruf, sondern für alle Aufrufe gesetzt werden, ist bspw. die PATH-Variable, die angibt, wo nach ausführbaren Dateien gesucht wird.
 
-* In Linux uns MacOS werden Umgebungsvariable wie folgt angewendet:
+* In Linux uns MacOS werden Umgebungsvariable wie folgt gesetzt:
 +
 [source,shell]
 ----
@@ -698,7 +698,7 @@ image::environment-variables-in-windows.png[]
 
 
 
-* In Linux uns MacOS werden Umgebungsvariable wie folgt angewendet:
+* In Linux uns MacOS werden Umgebungsvariable wie folgt verwendet:
 +
 [source,shell]
 ----
