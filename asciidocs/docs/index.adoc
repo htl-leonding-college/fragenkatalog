@@ -104,7 +104,7 @@ Ein Eintrag in `.gitignore` sorgt dafür, dass bestimmte Dateien nicht mit ins G
 * weil man sonst generierte Dateien oder Dependencies wie `node_modules` hochladen würde, wodurch `git push` und `git pull` langsamer sind.
 * Außerdem ist es sicherheitstechnisch verboten, vertrauliche Daten (z.B. in `.env` Dateien) in einem öffentlichen Repository zu speichern.
 
-IMPORTANT: _Grundsatz_: Dateien, die generiert werden (zB duch kompilieren, durch npm install), sollten nicht im Repository sein. Dateien, die nicht erstellt werden (zB *Konfigurationsdateien*, *Dokumentation*, *Programmcode*) sind im Repository zu speichern. *Aber keine privaten Daten wie Passwörter, API-Keys, etc.!*
+IMPORTANT: _Grundsatz_: Dateien, die generiert werden (zB durch kompilieren, durch npm install), sollten nicht im Repository sein. Dateien, die nicht erstellt werden (zB *Konfigurationsdateien*, *Dokumentation*, *Programmcode*) sind im Repository zu speichern. *Aber keine privaten Daten wie Passwörter, API-Keys, etc.!*
 ====
 
 === ssh in github [.badge.foundation]#Foundation#
@@ -641,7 +641,13 @@ Vorteile:
 . Weniger Speicherverbrauch - kleinere und effizientere Images
 ====
 
+=== Umgebungsvariable in Docker-Compose setzen [.badge.foundation]#Foundation#
 
+* Warum werden Umgebungsvariablen in docker compose verwendet?
+
+=== Health Check in Docker Compose [.badge.foundation]#Foundation#
+
+* Warum und wie wird in docker compose ein health-check durchgeführt? Zeigen Sie dies am Bsp einer postgres-Datenbank.
 
 
 == Kubernetes
