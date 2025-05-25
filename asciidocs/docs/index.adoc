@@ -313,12 +313,14 @@ git config --global --unset-all user.email
 
 ====
 
-=== github Template
+=== github Template Repo [.badge.foundation]#Foundation#
 
 * Welchen Zweck erfüllt ein github-Template-Repo?
 
 
+=== github commit logs [.badge.foundation]#Foundation#
 
+* Wie kann man auf der Console die Commits eines Repositories einzeilig anzeigen?
 
 
 
