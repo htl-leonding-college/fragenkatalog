@@ -675,6 +675,8 @@ pre.rouge .gs {
 <li><a href="#_anzeigen_der_logs_von_docker_compose_foundation">2.14. Anzeigen der Logs von Docker Compose <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_postgres_backup_foundation">2.15. postgres-Backup <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_dockerignore_foundation">2.16. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_umgebungsvariable_in_docker_compose_setzen_foundation">2.17. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_health_check_in_docker_compose_foundation">2.18. Health Check in Docker Compose <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a>
@@ -886,7 +888,7 @@ pre.rouge .gs {
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<em>Grundsatz</em>: Dateien, die generiert werden (zB duch kompilieren, durch npm install), sollten nicht im Repository sein. Dateien, die nicht erstellt werden (zB <strong>Konfigurationsdateien</strong>, <strong>Dokumentation</strong>, <strong>Programmcode</strong>) sind im Repository zu speichern. <strong>Aber keine privaten Daten wie Passwörter, API-Keys, etc.!</strong>
+<em>Grundsatz</em>: Dateien, die generiert werden (zB durch kompilieren, durch npm install), sollten nicht im Repository sein. Dateien, die nicht erstellt werden (zB <strong>Konfigurationsdateien</strong>, <strong>Dokumentation</strong>, <strong>Programmcode</strong>) sind im Repository zu speichern. <strong>Aber keine privaten Daten wie Passwörter, API-Keys, etc.!</strong>
 </td>
 </tr>
 </table>
@@ -1806,6 +1808,26 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </div>
 </details>
 </div>
+<div class="sect2">
+<h3 id="_umgebungsvariable_in_docker_compose_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_in_docker_compose_setzen_foundation"></a>2.17. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Warum werden Umgebungsvariablen in docker compose verwendet?</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_health_check_in_docker_compose_foundation"><a class="anchor" href="#_health_check_in_docker_compose_foundation"></a>2.18. Health Check in Docker Compose <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Warum und wie wird in docker compose ein health-check durchgeführt? Zeigen Sie dies am Bsp einer postgres-Datenbank.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2436,7 +2458,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-25 16:53:19 UTC
+Last updated 2025-05-25 17:44:19 UTC
 </div>
 </div>
 </body>
