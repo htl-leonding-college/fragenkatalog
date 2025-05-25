@@ -49,6 +49,34 @@ git init
 ----
 ====
 
+=== Den vorletzten Commit aus-checken [.badge.foundation]#Foundation#
+
+* Wie kann man aus einem git-repo einen Commit auschecken, der nicht der letzte ist? Geben Sie die genauen Befehle an.
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+git checkout <Commit-Hash>
+----
+
+oder
+
+[source,shell]
+----
+git checkout HEAD~1
+----
+
+|===
+|HEAD zeigt auf den aktuellsten Commit.
+|HEAD^ Der Vorgänger (also ein Commit zurück)
+|HEAD~1 ist der eine Commit davor, also der vorletzte.
+|HEAD~2 wäre der drittletzte, usw.
+|===
+====
+
+
 === git in Teams [.badge.foundation]#Foundation#
 
 * Welcher Befehl ist zu Beginn jeder Arbeit und auch zwischendurch mit git notwendig und warum?
