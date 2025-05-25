@@ -819,7 +819,29 @@ pre.rouge .gs {
 <summary class="title">Lösung</summary>
 <div class="content">
 <div class="paragraph">
-<p>Ein Eintrag in <code>.gitignore</code> sorgt dafür, dass bestimmte Dateien nicht mit ins Git Repository aufgenommen werden. Das ist wichtig, weil man sonst private Daten (z.B. in <code>.env</code> Dateien) oder Dependencies wie <code>node_modules</code> hochladen würde, wodurch <code>git push</code> und <code>git pull</code> langsamer sind.</p>
+<p>Ein Eintrag in <code>.gitignore</code> sorgt dafür, dass bestimmte Dateien nicht mit ins Git Repository aufgenommen werden. Das ist wichtig,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>weil man sonst generierte Dateien oder Dependencies wie <code>node_modules</code> hochladen würde, wodurch <code>git push</code> und <code>git pull</code> langsamer sind.</p>
+</li>
+<li>
+<p>Außerdem ist es sicherheitstechnisch verboten, vertrauliche Daten (z.B. in <code>.env</code> Dateien) in einem öffentlichen Repository zu speichern.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<em>Grundsatz</em>: Dateien, die generiert werden (zB duch kompilieren, durch npm install), sollten nicht im Repository sein. Dateien, die nicht erstellt werden (zB <strong>Konfigurationsdateien</strong>, <strong>Dokumentation</strong>, <strong>Programmcode</strong>) sind im Repository zu speichern. <strong>Aber keine privaten Daten wie Passwörter, API-Keys, etc.!</strong>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </details>
@@ -1828,6 +1850,54 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Umgebungsvariablen gibt es sowohl für Linux, MacOS und auch für Windows.</p>
+</li>
+<li>
+<p>Environment - Variablen die nicht nur für den aktuellen Aufruf, sondern für alle Aufrufe gesetzt werden, ist bspw. die PATH-Variable, die angibt, wo nach ausführbaren Dateien gesucht wird.</p>
+</li>
+<li>
+<p>In Linux uns MacOS werden Umgebungsvariable wie folgt angewendet:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="nb">export </span><span class="nv">MY_ENV_VAR</span><span class="o">=</span>1234</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In Windows ist das unterschiedlich je nach Shell. Falls das wen interessiert, soll er/sie sich das recherchieren.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/environment-variables-in-windows.png" alt="environment variables in windows">
+</div>
+<div class="title">Figure 1. In Windows kann man Umgebungsvariablen auch über die Systemsteuerung setzen:</div>
+</div>
+</li>
+<li>
+<p>In Linux uns MacOS werden Umgebungsvariable wie folgt angewendet:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><span class="nb">echo</span> <span class="nv">$MY_ENV_VAR</span></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In Windows</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="powershell"><span class="n">echo</span><span class="w"> </span><span class="o">%</span><span class="nx">MY_ENV_VAR</span><span class="o">%</span></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_prozess_mit_port_foundation"><a class="anchor" href="#_prozess_mit_port_foundation"></a>4.5. Prozess mit Port <span class="badge foundation">Foundation</span></h3>
@@ -2044,9 +2114,6 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <ul>
 <li>
 <p><strong>automatische Callouts</strong></p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
@@ -2061,13 +2128,9 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <pre>&lt;.&gt; Print-Statement</pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p><strong>manuelle Callouts</strong></p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
@@ -2084,6 +2147,21 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </div>
 <div class="paragraph">
 <p>Manuelle Callouts sind an verschiedenen Stellen <strong>wiederverwendbar</strong>.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </details>
@@ -2310,7 +2388,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-25 09:12:40 UTC
+Last updated 2025-05-25 09:43:50 UTC
 </div>
 </div>
 </body>
