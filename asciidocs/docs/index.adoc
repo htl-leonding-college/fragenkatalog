@@ -71,7 +71,12 @@ git pull
 .Lösung
 [%collapsible]
 ====
-Ein Eintrag in `.gitignore` sorgt dafür, dass bestimmte Dateien nicht mit ins Git Repository aufgenommen werden. Das ist wichtig, weil man sonst private Daten (z.B. in `.env` Dateien) oder Dependencies wie `node_modules` hochladen würde, wodurch `git push` und `git pull` langsamer sind.
+Ein Eintrag in `.gitignore` sorgt dafür, dass bestimmte Dateien nicht mit ins Git Repository aufgenommen werden. Das ist wichtig,
+
+* weil man sonst generierte Dateien oder Dependencies wie `node_modules` hochladen würde, wodurch `git push` und `git pull` langsamer sind.
+* Außerdem ist es sicherheitstechnisch verboten, vertrauliche Daten (z.B. in `.env` Dateien) in einem öffentlichen Repository zu speichern.
+
+IMPORTANT: _Grundsatz_: Dateien, die generiert werden (zB duch kompilieren, durch npm install), sollten nicht im Repository sein. Dateien, die nicht erstellt werden (zB *Konfigurationsdateien*, *Dokumentation*, *Programmcode*) sind im Repository zu speichern. *Aber keine privaten Daten wie Passwörter, API-Keys, etc.!*
 ====
 
 === ssh in github [.badge.foundation]#Foundation#
@@ -672,6 +677,45 @@ PGPASSWORD=app pg_dump --username=app db
 
 * Wie kann ich eine Umgebungsvariable für alle Aufrufe setzen?
 
+.Lösung
+[%collapsible]
+====
+* Umgebungsvariablen gibt es sowohl für Linux, MacOS und auch für Windows.
+
+* Environment - Variablen die nicht nur für den aktuellen Aufruf, sondern für alle Aufrufe gesetzt werden, ist bspw. die PATH-Variable, die angibt, wo nach ausführbaren Dateien gesucht wird.
+
+* In Linux uns MacOS werden Umgebungsvariable wie folgt angewendet:
++
+[source,shell]
+----
+export MY_ENV_VAR=1234
+----
+
+* In Windows ist das unterschiedlich je nach Shell. Falls das wen interessiert, soll er/sie sich das recherchieren.
++
+.In Windows kann man Umgebungsvariablen auch über die Systemsteuerung setzen:
+image::environment-variables-in-windows.png[]
+
+
+
+* In Linux uns MacOS werden Umgebungsvariable wie folgt angewendet:
++
+[source,shell]
+----
+echo $MY_ENV_VAR
+----
+
+* In Windows
++
+[source,powershell]
+----
+echo %MY_ENV_VAR%
+----
+
+
+
+====
+
 
 === Prozess mit Port [.badge.foundation]#Foundation#
 
@@ -801,7 +845,7 @@ Kommentare für Code im Source-Block
 Man unterscheidet zwischen:
 
 * *automatische Callouts*
-
++
 [source,java]
 ----
 public class Main {
@@ -813,7 +857,7 @@ public class Main {
  <.> Print-Statement
 
 * *manuelle Callouts*
-
++
 [source,java]
 ----
 public class Main {
@@ -823,8 +867,10 @@ public class Main {
 }
 ----
  <1> Print-Statement
-
++
 Manuelle Callouts sind an verschiedenen Stellen *wiederverwendbar*.
+
+IMPORTANT: Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 ====
 
 === Callouts und Kommentarzeichen [.badge.foundation]#Foundation#
