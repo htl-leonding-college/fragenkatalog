@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2025-05-25</span>
+<span id="revdate">2025-05-26</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -679,6 +679,7 @@ pre.rouge .gs {
 <li><a href="#_dockerignore_foundation">2.17. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_umgebungsvariable_in_docker_compose_setzen_foundation">2.18. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_health_check_in_docker_compose_foundation">2.19. Health Check in Docker Compose <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_docker_compose_stop_vs_down_foundation">2.20. docker compose stop vs. down <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a>
@@ -714,15 +715,7 @@ pre.rouge .gs {
 <li><a href="#_links_in_neuen_tabs_öffnen_foundation">6.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_keyboard_macro_foundation">6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_seitenumbrüche_in_pdf_dokumenten_foundation">6.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></a></li>
-</ul>
-</li>
-<li><a href="#_uml">7. UML</a>
-<ul class="sectlevel2">
-<li><a href="#_class_diagrams">7.1. Class Diagrams</a></li>
-<li><a href="#_object_diagrams">7.2. Object Diagrams</a></li>
-<li><a href="#_deploymant_diagrams">7.3. Deploymant Diagrams</a></li>
-<li><a href="#_activity_diagrams">7.4. Activity Diagrams</a></li>
-<li><a href="#_state_diagrams">7.5. State Diagrams</a></li>
+<li><a href="#_tabellen_foundation">6.12. Tabellen <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 </ul>
@@ -758,7 +751,7 @@ pre.rouge .gs {
 <div class="content">
 <div class="imageblock">
 <div class="content">
-<img src="images/git-overview2.png" alt="git overview2">
+<img src="images/git-architecture.png" alt="git architecture">
 </div>
 </div>
 </div>
@@ -925,9 +918,9 @@ pre.rouge .gs {
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">Host github.com
-  AddKeysToAgent <span class="nb">yes
-  </span>UseKeychain <span class="nb">yes
-  </span>IdentityFile ~/.ssh/id_ed25519</code></pre>
+  Hostname github.com
+  User &lt;user of the remote server&gt;
+  IdentityFile ~/.ssh/id_ed25519</code></pre>
 </div>
 </div>
 </li>
@@ -1849,6 +1842,39 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p>Ein Healthcheck wird zB für die Datenbank durchgeführt, damit andere Container, die von der Datenbank abhängen, erst gestartet werden, wenn die Datenbank bereit ist.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_docker_compose_stop_vs_down_foundation"><a class="anchor" href="#_docker_compose_stop_vs_down_foundation"></a>2.20. docker compose stop vs. down <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Was ist der Unterschied zwischen <code>docker compose stop</code> und <code>docker compose down</code>?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>docker compose stop</code> stoppt die laufenden Container, aber <strong>behält die Daten</strong> und Konfigurationen bei. Die Container können später wieder gestartet werden.</p>
+</li>
+<li>
+<p><code>docker compose down</code> stoppt die Container und <strong>löscht die Container</strong> zusammen mit den zugehörigen Netzwerken und Volumes. Es ist eine vollständige Bereinigung der Umgebung.</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>
@@ -2449,30 +2475,142 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </div>
 </details>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_uml"><a class="anchor" href="#_uml"></a>7. UML</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_class_diagrams"><a class="anchor" href="#_class_diagrams"></a>7.1. Class Diagrams</h3>
-
+<h3 id="_tabellen_foundation"><a class="anchor" href="#_tabellen_foundation"></a>6.12. Tabellen <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie erstellt man eine dreispaltige Tabelle mit Kopfzeilen im asciidoctor-Format?</p>
+</li>
+</ul>
 </div>
-<div class="sect2">
-<h3 id="_object_diagrams"><a class="anchor" href="#_object_diagrams"></a>7.2. Object Diagrams</h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="title">Variante 1:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">|===
+|Spalte 1 |Spalte 2 |Spalte 3
 
+|Wert 1 - Spalte 1
+|Wert 2 - Spalte 2
+|Wert 3 - Spalte 3
+
+
+|Wert 4 - Spalte 1
+|Wert 5 - Spalte 2
+|Wert 6 - Spalte 3
+|===</code></pre>
 </div>
-<div class="sect2">
-<h3 id="_deploymant_diagrams"><a class="anchor" href="#_deploymant_diagrams"></a>7.3. Deploymant Diagrams</h3>
-
 </div>
-<div class="sect2">
-<h3 id="_activity_diagrams"><a class="anchor" href="#_activity_diagrams"></a>7.4. Activity Diagrams</h3>
-
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Spalte 1</th>
+<th class="tableblock halign-left valign-top">Spalte 2</th>
+<th class="tableblock halign-left valign-top">Spalte 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 1 - Spalte 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 2 - Spalte 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 3 - Spalte 3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 4 - Spalte 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 5 - Spalte 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 6 - Spalte 3</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt dargestellt. Auch wird der Header ohne Leerzeile nicht erkannt.
+</td>
+</tr>
+</table>
 </div>
-<div class="sect2">
-<h3 id="_state_diagrams"><a class="anchor" href="#_state_diagrams"></a>7.5. State Diagrams</h3>
-
+<div class="listingblock">
+<div class="title">Variante 2:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc">[cols="3,3,3", options="header"]
+|===
+|Spalte 1 |Spalte 2 |Spalte 3
+|Wert 1   |Wert 2   |Wert 3
+|Wert 4   |Wert 5   |Wert 6
+|===</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. result</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Spalte 1</th>
+<th class="tableblock halign-left valign-top">Spalte 2</th>
+<th class="tableblock halign-left valign-top">Spalte 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wert 6</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>=== Aufzählung in Kleinbuchstaben [.badge.foundation]#Foundation</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann man eine Aufzählung in Kleinbuchstaben erstellen?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>== UML</p>
+</div>
+<div class="paragraph">
+<p>=== Class Diagrams</p>
+</div>
+<div class="paragraph">
+<p>=== Object Diagrams</p>
+</div>
+<div class="paragraph">
+<p>=== Deploymant Diagrams</p>
+</div>
+<div class="paragraph">
+<p>=== Activity Diagrams</p>
+</div>
+<div class="paragraph">
+<p>=== State Diagrams</p>
+</div>
+</div>
+</details>
 </div>
 </div>
 </div>
@@ -2480,7 +2618,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-25 17:49:37 UTC
+Last updated 2025-05-26 21:15:16 UTC
 </div>
 </div>
 </body>
