@@ -33,7 +33,7 @@ endif::backend-html5[]
 .Lösung
 [%collapsible]
 ====
-image::git-overview2.png[]
+image::git-architecture.png[]
 ====
 
 === Erstellung eines Repositories [.badge.foundation]#Foundation#
@@ -126,8 +126,8 @@ ssh-keygen -t ed25519
 [source,shell]
 ----
 Host github.com
-  AddKeysToAgent yes
-  UseKeychain yes
+  Hostname github.com
+  User <user of the remote server>
   IdentityFile ~/.ssh/id_ed25519
 ----
 
@@ -655,6 +655,23 @@ Vorteile:
 
 * Warum und wie wird in docker compose ein health-check durchgeführt? Zeigen Sie dies am Bsp einer postgres-Datenbank.
 
+.Lösung
+[%collapsible]
+====
+Ein Healthcheck wird zB für die Datenbank durchgeführt, damit andere Container, die von der Datenbank abhängen, erst gestartet werden, wenn die Datenbank bereit ist.
+====
+
+=== docker compose stop vs. down [.badge.foundation]#Foundation#
+
+* Was ist der Unterschied zwischen `docker compose stop` und `docker compose down`?
+
+.Lösung
+[%collapsible]
+====
+* `docker compose stop` stoppt die laufenden Container, aber *behält die Daten* und Konfigurationen bei. Die Container können später wieder gestartet werden.
+
+* `docker compose down` stoppt die Container und *löscht die Container* zusammen mit den zugehörigen Netzwerken und Volumes. Es ist eine vollständige Bereinigung der Umgebung.
+====
 
 == Kubernetes
 
@@ -1041,6 +1058,69 @@ ifdef::backend-pdf[<<<]
 ====
 
 
+=== Tabellen [.badge.foundation]#Foundation#
+
+* Wie erstellt man eine dreispaltige Tabelle mit Kopfzeilen im asciidoctor-Format?
+
+.Lösung
+[%collapsible]
+====
+.Variante 1:
+[source,asciidoc]
+----
+|===
+|Spalte 1 |Spalte 2 |Spalte 3
+
+|Wert 1 - Spalte 1
+|Wert 2 - Spalte 2
+|Wert 3 - Spalte 3
+
+
+|Wert 4 - Spalte 1
+|Wert 5 - Spalte 2
+|Wert 6 - Spalte 3
+|===
+----
+
+.result
+|===
+|Spalte 1 |Spalte 2 |Spalte 3
+
+|Wert 1 - Spalte 1
+|Wert 2 - Spalte 2
+|Wert 3 - Spalte 3
+
+
+|Wert 4 - Spalte 1
+|Wert 5 - Spalte 2
+|Wert 6 - Spalte 3
+|===
+
+IMPORTANT: Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt dargestellt. Auch wird der Header ohne Leerzeile nicht erkannt.
+
+
+.Variante 2:
+[source,asciidoc]
+----
+[cols="3,3,3", options="header"]
+|===
+|Spalte 1 |Spalte 2 |Spalte 3
+|Wert 1   |Wert 2   |Wert 3
+|Wert 4   |Wert 5   |Wert 6
+|===
+----
+
+.result
+[cols="3,3,3", options="header"]
+|===
+|Spalte 1 |Spalte 2 |Spalte 3
+|Wert 1   |Wert 2   |Wert 3
+|Wert 4   |Wert 5   |Wert 6
+|===
+
+=== Aufzählung in Kleinbuchstaben [.badge.foundation]#Foundation
+
+* Wie kann man eine Aufzählung in Kleinbuchstaben erstellen?
 
 
 
