@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2025-05-26</span>
+<span id="revdate">2025-06-10</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -675,11 +675,12 @@ pre.rouge .gs {
 <li><a href="#_stoppen_von_docker_compose_foundation">2.13. Stoppen von Docker Compose <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_beenden_von_docker_compose_foundation">2.14. Beenden von Docker Compose <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_anzeigen_der_logs_von_docker_compose_foundation">2.15. Anzeigen der Logs von Docker Compose <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_postgres_backup_foundation">2.16. postgres-Backup <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_dockerignore_foundation">2.17. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_umgebungsvariable_in_docker_compose_setzen_foundation">2.18. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_health_check_in_docker_compose_foundation">2.19. Health Check in Docker Compose <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_docker_compose_stop_vs_down_foundation">2.20. docker compose stop vs. down <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_postgres_backup_eines_containers_foundation">2.16. postgres-Backup eines Containers <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_postgres_backup_in_container_wiederherstellen_foundation">2.17. postgres-Backup in Container wiederherstellen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_dockerignore_foundation">2.18. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_umgebungsvariable_in_docker_compose_setzen_foundation">2.19. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_health_check_in_docker_compose_foundation">2.20. Health Check in Docker Compose <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_docker_compose_stop_vs_down_foundation">2.21. docker compose stop vs. down <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a>
@@ -689,12 +690,15 @@ pre.rouge .gs {
 </li>
 <li><a href="#_shell_netzwerke">4. Shell / Netzwerke</a>
 <ul class="sectlevel2">
-<li><a href="#_kopieren_auf_einen_entfernten_server_foundation">4.1. Kopieren auf einen entfernten Server <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_port_forwarding_foundation">4.2. Port Forwarding <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_umgebungsvariable_für_aufruf_mitgeben_foundation">4.3. Umgebungsvariable für Aufruf mitgeben <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_umgebungsvariable_setzen_foundation">4.4. Umgebungsvariable setzen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_prozess_mit_port_foundation">4.5. Prozess mit Port <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_troubleshooting_netstat_nicht_gefunden_foundation">4.6. Troubleshooting: <code>netstat</code> nicht gefunden <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_was_ist_ein_domain_name_service_dns_foundation">4.1. Was ist ein Domain NAme Service (DNS)? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_kopieren_auf_einen_entfernten_server_foundation">4.2. Kopieren auf einen entfernten Server <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_port_forwarding_foundation">4.3. Port Forwarding <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_umgebungsvariable_für_aufruf_mitgeben_foundation">4.4. Umgebungsvariable für Aufruf mitgeben <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_umgebungsvariable_setzen_foundation">4.5. Umgebungsvariable setzen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_prozess_mit_port_foundation">4.6. Prozess mit Port <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_troubleshooting_netstat_nicht_gefunden_foundation">4.7. Troubleshooting: <code>netstat</code> nicht gefunden <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_den_status_für_nginx_anzeigen_lassen_foundation">4.8. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation">4.9. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_java">5. Java</a>
@@ -1738,13 +1742,16 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_postgres_backup_foundation"><a class="anchor" href="#_postgres_backup_foundation"></a>2.16. postgres-Backup <span class="badge foundation">Foundation</span></h3>
+<h3 id="_postgres_backup_eines_containers_foundation"><a class="anchor" href="#_postgres_backup_eines_containers_foundation"></a>2.16. postgres-Backup eines Containers <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Wie kann man ein Backup einer gedockerten postgres DB erstellen?</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>[TODO]: Hier sind noch die Lösungen einzutragen, für die Verwendung eines einzelnen Docker Containers und eines Datenbank-containers in einem docker-compose Verbund.</p>
 </div>
 <details>
 <summary class="title">Lösung</summary>
@@ -1754,11 +1761,8 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <pre class="rouge highlight"><code data-lang="shell">docker compose <span class="nt">--file</span><span class="o">=</span>docker-compose.yaml <span class="nb">exec</span> <span class="nt">-it</span> postgres pg_dump <span class="nt">--username</span><span class="o">=</span>app db | <span class="nb">gzip</span> <span class="o">&gt;</span> sql.gz</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>+
-.Ev. auch</p>
-</div>
 <div class="listingblock">
+<div class="title">Ev. auch</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">exec</span> <span class="nt">-t</span> &lt;container_id&gt; pg_dumpall <span class="nt">-c</span> <span class="nt">-U</span> &lt;user&gt; <span class="o">&gt;</span> dump_<span class="sb">`</span><span class="nb">date</span> +%Y-%m-%d<span class="s2">"_"</span>%H_%M_%S<span class="sb">`</span>.sql</code></pre>
 </div>
@@ -1767,7 +1771,53 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_dockerignore_foundation"><a class="anchor" href="#_dockerignore_foundation"></a>2.17. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></h3>
+<h3 id="_postgres_backup_in_container_wiederherstellen_foundation"><a class="anchor" href="#_postgres_backup_in_container_wiederherstellen_foundation"></a>2.17. postgres-Backup in Container wiederherstellen <span class="badge foundation">Foundation</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Wie kann ein SQL-Backup einer (gedockerten) postgres DB wiederhergestellt werden?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/a/29913462/9818338" class="bare">https://stackoverflow.com/a/29913462/9818338</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/a/63435830/9818338" class="bare">https://stackoverflow.com/a/63435830/9818338</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/@vinayakchittora/backup-and-restore-postgresql-database-using-docker-9e145e974ab6" class="bare">https://medium.com/@vinayakchittora/backup-and-restore-postgresql-database-using-docker-9e145e974ab6</a></p>
+</li>
+<li>
+<p>[TODO]: Herausarbeiten, der Optionen</p>
+<div class="ulist">
+<ul>
+<li>
+<p>pg_restore (ev. mit Option -c &#8594; clean) und</p>
+</li>
+<li>
+<p>psql</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre></pre>
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_dockerignore_foundation"><a class="anchor" href="#_dockerignore_foundation"></a>2.18. <code>.dockerignore</code> <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1824,7 +1874,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_umgebungsvariable_in_docker_compose_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_in_docker_compose_setzen_foundation"></a>2.18. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_umgebungsvariable_in_docker_compose_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_in_docker_compose_setzen_foundation"></a>2.19. Umgebungsvariable in Docker-Compose setzen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1834,7 +1884,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_health_check_in_docker_compose_foundation"><a class="anchor" href="#_health_check_in_docker_compose_foundation"></a>2.19. Health Check in Docker Compose <span class="badge foundation">Foundation</span></h3>
+<h3 id="_health_check_in_docker_compose_foundation"><a class="anchor" href="#_health_check_in_docker_compose_foundation"></a>2.20. Health Check in Docker Compose <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1852,7 +1902,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_docker_compose_stop_vs_down_foundation"><a class="anchor" href="#_docker_compose_stop_vs_down_foundation"></a>2.20. docker compose stop vs. down <span class="badge foundation">Foundation</span></h3>
+<h3 id="_docker_compose_stop_vs_down_foundation"><a class="anchor" href="#_docker_compose_stop_vs_down_foundation"></a>2.21. docker compose stop vs. down <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1891,11 +1941,18 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <h2 id="_shell_netzwerke"><a class="anchor" href="#_shell_netzwerke"></a>4. Shell / Netzwerke</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_kopieren_auf_einen_entfernten_server_foundation"><a class="anchor" href="#_kopieren_auf_einen_entfernten_server_foundation"></a>4.1. Kopieren auf einen entfernten Server <span class="badge foundation">Foundation</span></h3>
+<h3 id="_was_ist_ein_domain_name_service_dns_foundation"><a class="anchor" href="#_was_ist_ein_domain_name_service_dns_foundation"></a>4.1. Was ist ein Domain NAme Service (DNS)? <span class="badge foundation">Foundation</span></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_kopieren_auf_einen_entfernten_server_foundation"><a class="anchor" href="#_kopieren_auf_einen_entfernten_server_foundation"></a>4.2. Kopieren auf einen entfernten Server <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Wie kann ich eine Datei auf einen entfernten Server kopieren?</p>
+</li>
+<li>
+<p>[TODO]: Bei dieser Frage sollte noch unterschieden werden, ob bereits ssh-key-Paare existieren oder nicht.</p>
 </li>
 </ul>
 </div>
@@ -1911,7 +1968,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_port_forwarding_foundation"><a class="anchor" href="#_port_forwarding_foundation"></a>4.2. Port Forwarding <span class="badge foundation">Foundation</span></h3>
+<h3 id="_port_forwarding_foundation"><a class="anchor" href="#_port_forwarding_foundation"></a>4.3. Port Forwarding <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1934,7 +1991,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_umgebungsvariable_für_aufruf_mitgeben_foundation"><a class="anchor" href="#_umgebungsvariable_für_aufruf_mitgeben_foundation"></a>4.3. Umgebungsvariable für Aufruf mitgeben <span class="badge foundation">Foundation</span></h3>
+<h3 id="_umgebungsvariable_für_aufruf_mitgeben_foundation"><a class="anchor" href="#_umgebungsvariable_für_aufruf_mitgeben_foundation"></a>4.4. Umgebungsvariable für Aufruf mitgeben <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1960,7 +2017,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_umgebungsvariable_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_setzen_foundation"></a>4.4. Umgebungsvariable setzen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_umgebungsvariable_setzen_foundation"><a class="anchor" href="#_umgebungsvariable_setzen_foundation"></a>4.5. Umgebungsvariable setzen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2018,11 +2075,11 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_prozess_mit_port_foundation"><a class="anchor" href="#_prozess_mit_port_foundation"></a>4.5. Prozess mit Port <span class="badge foundation">Foundation</span></h3>
+<h3 id="_prozess_mit_port_foundation"><a class="anchor" href="#_prozess_mit_port_foundation"></a>4.6. Prozess mit Port <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Wie kann ich einen Prozess mit Port 8080 auf einem Linux-Server finden?</p>
+<p>Wie kann ich eine Prozess-ID mit Port 8080 finden?</p>
 </li>
 </ul>
 </div>
@@ -2030,17 +2087,56 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <summary class="title">Lösung</summary>
 <div class="content">
 <div class="listingblock">
-<div class="title">Dafür gibt es mehrere Möglichkeiten:</div>
+<div class="title">Linux:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell">netstat <span class="nt">-tulpn</span> | <span class="nb">grep </span>8080
-lsof <span class="nt">-i</span> :8080</code></pre>
+<pre class="rouge highlight"><code data-lang="shell">netstat <span class="nt">-tulpn</span> | <span class="nb">grep </span>8080</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all fit-content">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Beschreibung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeigt TCP-Verbindungen an.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">u</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeigt UDP-Verbindungen an.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">l</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeigt nur lauschende (listening) Ports an.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">p</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeigt die Prozess-ID (PID) und den Programmnamen an, der den Port nutzt.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Zeigt numerische Adressen und Portnummern an, anstatt Hostnamen oder Dienstnamen aufzulösen.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="title">MacOS</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">lsof <span class="nt">-i</span> :8080</code></pre>
 </div>
 </div>
 </div>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_troubleshooting_netstat_nicht_gefunden_foundation"><a class="anchor" href="#_troubleshooting_netstat_nicht_gefunden_foundation"></a>4.6. Troubleshooting: <code>netstat</code> nicht gefunden <span class="badge foundation">Foundation</span></h3>
+<h3 id="_troubleshooting_netstat_nicht_gefunden_foundation"><a class="anchor" href="#_troubleshooting_netstat_nicht_gefunden_foundation"></a>4.7. Troubleshooting: <code>netstat</code> nicht gefunden <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2055,6 +2151,78 @@ lsof <span class="nt">-i</span> :8080</code></pre>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="nb">sudo </span>apt <span class="nb">install </span>net-tools</code></pre>
 </div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_den_status_für_nginx_anzeigen_lassen_foundation"><a class="anchor" href="#_den_status_für_nginx_anzeigen_lassen_foundation"></a>4.8. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Zeigt den Status des nginx-Dienstes an, einschließlich Informationen über den Dienststatus, die letzten Protokolleinträge und ob der Dienst läuft oder gestoppt ist.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">systemctl status nginx</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">result</div>
+<div class="content">
+<pre>● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-06-05 12:10:20 UTC; 17h ago
+       Docs: man:nginx(8)
+    Process: 316744 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 316783 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 316811 (nginx)
+      Tasks: 3 (limit: 4609)
+     Memory: 10.9M (peak: 21.9M)
+        CPU: 10.494s
+     CGroup: /system.slice/nginx.service
+             ├─316811 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─316812 "nginx: worker process"
+             └─316813 "nginx: worker process"</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Überprüft die Konfiguration von nginx und zeigt an, ob sie gültig ist.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">nginx <span class="nt">-t</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">result</div>
+<div class="content">
+<pre>nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful</pre>
+</div>
+</div>
+</li>
+<li>
+<p><a href="https://linuxconfig.org/how-to-check-nginx-status-on-ubuntu" target="_blank" rel="noopener">How to check NGINX status on Ubuntu</a></p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation"><a class="anchor" href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation"></a>4.9. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Cronjobs sind zeitgesteuerte Aufgaben, die unter Linux und Unix-basierten Systemen verwendet werden, um Skripte oder Befehle zu bestimmten Zeiten oder in regelmäßigen Abständen automatisch auszuführen.</p>
+</li>
+</ul>
 </div>
 </div>
 </details>
@@ -2618,7 +2786,7 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-05-26 21:15:16 UTC
+Last updated 2025-06-10 06:41:16 UTC
 </div>
 </div>
 </body>
