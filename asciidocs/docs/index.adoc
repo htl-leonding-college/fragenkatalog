@@ -603,9 +603,11 @@ docker compose -f my-docker-compose-file.yaml logs -f
 ====
 
 
-=== postgres-Backup [.badge.foundation]#Foundation#
+=== postgres-Backup eines Containers [.badge.foundation]#Foundation#
 
 * Wie kann man ein Backup einer gedockerten postgres DB erstellen?
+
+[TODO]: Hier sind noch die Lösungen einzutragen, für die Verwendung eines einzelnen Docker Containers und eines Datenbank-containers in einem docker-compose Verbund.
 
 .Lösung
 [%collapsible]
@@ -614,7 +616,7 @@ docker compose -f my-docker-compose-file.yaml logs -f
 ----
 docker compose --file=docker-compose.yaml exec -it postgres pg_dump --username=app db | gzip > sql.gz
 ----
-+
+
 .Ev. auch
 [source,shell]
 ----
@@ -622,6 +624,28 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 ----
 ====
 
+
+=== postgres-Backup in Container wiederherstellen [.badge.foundation]#Foundation#
+
+* Wie kann ein SQL-Backup einer (gedockerten) postgres DB wiederhergestellt werden?
+
+.Lösung
+[%collapsible]
+====
+
+* https://stackoverflow.com/a/29913462/9818338
+* https://stackoverflow.com/a/63435830/9818338
+* https://medium.com/@vinayakchittora/backup-and-restore-postgresql-database-using-docker-9e145e974ab6
+
+* [TODO]: Herausarbeiten, der Optionen
+** pg_restore (ev. mit Option -c -> clean) und
+** psql
+
+[%collapsible]
+----
+
+----
+====
 
 === `.dockerignore` [.badge.foundation]#Foundation#
 
@@ -680,9 +704,15 @@ Ein Healthcheck wird zB für die Datenbank durchgeführt, damit andere Container
 
 == Shell / Netzwerke
 
+=== Was ist ein Domain NAme Service (DNS)? [.badge.foundation]#Foundation#
+
+
+
 === Kopieren auf einen entfernten Server [.badge.foundation]#Foundation#
 
 * Wie kann ich eine Datei auf einen entfernten Server kopieren?
+
+* [TODO]: Bei dieser Frage sollte noch unterschieden werden, ob bereits ssh-key-Paare existieren oder nicht.
 
 .Lösung
 [%collapsible]
@@ -776,17 +806,41 @@ echo %MY_ENV_VAR%
 
 === Prozess mit Port [.badge.foundation]#Foundation#
 
-* Wie kann ich einen Prozess mit Port 8080 auf einem Linux-Server finden?
+* Wie kann ich eine Prozess-ID mit Port 8080 finden?
 
 .Lösung
 [%collapsible]
 ====
-.Dafür gibt es mehrere Möglichkeiten:
+.Linux:
 [source,shell]
 ----
 netstat -tulpn | grep 8080
-lsof -i :8080
+----
 
+[%autowidth]
+|===
+|Parameter |Beschreibung
+
+|t
+|Zeigt TCP-Verbindungen an.
+
+|u
+|Zeigt UDP-Verbindungen an.
+
+|l
+|Zeigt nur lauschende (listening) Ports an.
+
+|p
+|Zeigt die Prozess-ID (PID) und den Programmnamen an, der den Port nutzt.
+
+|n
+|Zeigt numerische Adressen und Portnummern an, anstatt Hostnamen oder Dienstnamen aufzulösen.
+|===
+
+.MacOS
+[source,shell]
+----
+lsof -i :8080
 ----
 ====
 
@@ -803,6 +857,62 @@ sudo apt install net-tools
 ----
 ====
 
+
+=== Den Status für nginx anzeigen lassen [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible]
+====
+
+* Zeigt den Status des nginx-Dienstes an, einschließlich Informationen über den Dienststatus, die letzten Protokolleinträge und ob der Dienst läuft oder gestoppt ist.
++
+[source,shell]
+----
+systemctl status nginx
+----
++
+.result
+----
+● nginx.service - A high performance web server and a reverse proxy server
+     Loaded: loaded (/usr/lib/systemd/system/nginx.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-06-05 12:10:20 UTC; 17h ago
+       Docs: man:nginx(8)
+    Process: 316744 ExecStartPre=/usr/sbin/nginx -t -q -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+    Process: 316783 ExecStart=/usr/sbin/nginx -g daemon on; master_process on; (code=exited, status=0/SUCCESS)
+   Main PID: 316811 (nginx)
+      Tasks: 3 (limit: 4609)
+     Memory: 10.9M (peak: 21.9M)
+        CPU: 10.494s
+     CGroup: /system.slice/nginx.service
+             ├─316811 "nginx: master process /usr/sbin/nginx -g daemon on; master_process on;"
+             ├─316812 "nginx: worker process"
+             └─316813 "nginx: worker process"
+----
+
+
+* Überprüft die Konfiguration von nginx und zeigt an, ob sie gültig ist.
++
+[source,shell]
+----
+nginx -t
+----
++
+.result
+----
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+----
+
+* https://linuxconfig.org/how-to-check-nginx-status-on-ubuntu[How to check NGINX status on Ubuntu^]
+====
+
+=== Wie kann man Tasks unter Linux zeitgesteuert automatisieren? [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible]
+====
+* Cronjobs sind zeitgesteuerte Aufgaben, die unter Linux und Unix-basierten Systemen verwendet werden, um Skripte oder Befehle zu bestimmten Zeiten oder in regelmäßigen Abständen automatisch auszuführen.
+====
 
 
 == Java
