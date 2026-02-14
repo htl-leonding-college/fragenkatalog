@@ -699,12 +699,49 @@ Ein Healthcheck wird zB für die Datenbank durchgeführt, damit andere Container
 
 == Kubernetes
 
-=== Testfrage [.badge.advanced]#Advanced#
+=== Imperativ vs. deklarativ [.badge.advanced]#Advanced#
+
+* Was ist der Unterschied zwischen imperativem und deklarativem Management in Kubernetes?
+
+
+.Lösung
+[%collapsible]
+====
+
+====
+
+=== Was bedeutet der Begriff "ephemeral"? [.badge.advanced]#Advanced#
+
+.Lösung
+[%collapsible]
+====
+https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/[Ephemeral Containers^]
+
+https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/[Ephemeral Volumes^]
+====
+
+=== Was versteht man unter einem "sidecar container"? [.badge.advanced]#Advanced#
+
+
+=== Was ist ein "init container"? [.badge.advanced]#Advanced#
+
+=== Wie funktioniert ein "liveness probe" und ein "readiness probe"? [.badge.advanced]#Advanced#
+
+
+=== Was versteht man unter einem "Kubernetes Manifest"? [.badge.advanced]#Advanced#
+
+
+* ... auch genannt:
+**
+
+
+
+
 
 
 == Shell / Netzwerke
 
-=== Was ist ein Domain NAme Service (DNS)? [.badge.foundation]#Foundation#
+=== Was ist ein Domain Name Service (DNS)? [.badge.foundation]#Foundation#
 
 
 
@@ -915,9 +952,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 ====
 
 
-== Java
 
-=== manifest.xml [.badge.foundation]#Foundation#
 
 == Asciidoctor
 
@@ -1227,10 +1262,41 @@ IMPORTANT: Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nich
 |Wert 1   |Wert 2   |Wert 3
 |Wert 4   |Wert 5   |Wert 6
 |===
+====
 
 === Aufzählung in Kleinbuchstaben [.badge.foundation]#Foundation
 
 * Wie kann man eine Aufzählung in Kleinbuchstaben erstellen?
+
+
+=== Wie erstellt man zusammenklappbaren Text? [.badge.foundation]#Foundation
+
+* wie kann man Absätze erstellen, die man zusammenklappen kann, wie zB für Lösungen in diesem Dokument?
+
+.Lösung
+[%collapsible]
+====
+
+[source,asciidoc]
+----
+ .Lösung
+ [%collapsible]
+ ====
+
+ ...
+
+ ====
+----
+
+
+====
+
+
+
+
+
+
+
 
 
 
@@ -1245,3 +1311,28 @@ IMPORTANT: Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nich
 === Activity Diagrams
 
 === State Diagrams
+
+
+== Java
+
+=== manifest.xml [.badge.foundation]#Foundation#
+
+
+
+== Quarkus (Jakarta EE)
+=== Was ist Quarkus? [.badge.advanced]#Advanced#
+
+
+=== JPA - Lifecycle einer entity [.badge.advanced]#Advanced#
+
+.Lösung
+[%collapsible]
+====
+* An entity instance may be characterized as being new, managed, detached, or removed.
+
+** A new entity instance has no persistent identity, and is not yet associated with a persistence context.
+** A managed entity instance is an instance with a persistent identity that is currently associated with a persistence context.
+** A detached entity instance is an instance with a persistent identity that is not (or no longer) associated with a persistence context.
+** A removed entity instance is an instance with a persistent identity, associated with a persistence context, that is scheduled for removal from the database.
+====
+
