@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2025-06-10</span>
+<span id="revdate">2026-02-14</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -685,12 +685,17 @@ pre.rouge .gs {
 </li>
 <li><a href="#_kubernetes">3. Kubernetes</a>
 <ul class="sectlevel2">
-<li><a href="#_testfrage_advanced">3.1. Testfrage <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_imperativ_vs_deklarativ_advanced">3.1. Imperativ vs. deklarativ <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_was_bedeutet_der_begriff_ephemeral_advanced">3.2. Was bedeutet der Begriff "ephemeral"? <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_was_versteht_man_unter_einem_sidecar_container_advanced">3.3. Was versteht man unter einem "sidecar container"? <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_was_ist_ein_init_container_advanced">3.4. Was ist ein "init container"? <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_wie_funktioniert_ein_liveness_probe_und_ein_readiness_probe_advanced">3.5. Wie funktioniert ein "liveness probe" und ein "readiness probe"? <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_was_versteht_man_unter_einem_kubernetes_manifest_advanced">3.6. Was versteht man unter einem "Kubernetes Manifest"? <span class="badge advanced">Advanced</span></a></li>
 </ul>
 </li>
 <li><a href="#_shell_netzwerke">4. Shell / Netzwerke</a>
 <ul class="sectlevel2">
-<li><a href="#_was_ist_ein_domain_name_service_dns_foundation">4.1. Was ist ein Domain NAme Service (DNS)? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_was_ist_ein_domain_name_service_dns_foundation">4.1. Was ist ein Domain Name Service (DNS)? <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_kopieren_auf_einen_entfernten_server_foundation">4.2. Kopieren auf einen entfernten Server <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_port_forwarding_foundation">4.3. Port Forwarding <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_umgebungsvariable_für_aufruf_mitgeben_foundation">4.4. Umgebungsvariable für Aufruf mitgeben <span class="badge foundation">Foundation</span></a></li>
@@ -701,25 +706,42 @@ pre.rouge .gs {
 <li><a href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation">4.9. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
-<li><a href="#_java">5. Java</a>
+<li><a href="#_asciidoctor">5. Asciidoctor</a>
 <ul class="sectlevel2">
-<li><a href="#_manifest_xml_foundation">5.1. manifest.xml <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_was_ist_asciidoctor_foundation">5.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_präambel_preamble_foundation">5.2. Präambel / Preamble <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_admonitions_foundation">5.3. Admonitions <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_callouts_foundation">5.4. Callouts <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_callouts_und_kommentarzeichen_foundation">5.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_adoc_in_github_environment_foundation">5.6. adoc in github-Environment <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_nummerierung_vermeiden_foundation">5.7. Nummerierung vermeiden <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_nummerierung_der_überschriften_foundation">5.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_links_in_neuen_tabs_öffnen_foundation">5.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_keyboard_macro_foundation">5.10. Keyboard-Macro <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_seitenumbrüche_in_pdf_dokumenten_foundation">5.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_tabellen_foundation">5.12. Tabellen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_aufzählung_in_kleinbuchstaben_badge_foundationfoundation">5.13. Aufzählung in Kleinbuchstaben [.badge.foundation]#Foundation</a></li>
+<li><a href="#_wie_erstellt_man_zusammenklappbaren_text_badge_foundationfoundation">5.14. Wie erstellt man zusammenklappbaren Text? [.badge.foundation]#Foundation</a></li>
 </ul>
 </li>
-<li><a href="#_asciidoctor">6. Asciidoctor</a>
+<li><a href="#_uml">6. UML</a>
 <ul class="sectlevel2">
-<li><a href="#_was_ist_asciidoctor_foundation">6.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_präambel_preamble_foundation">6.2. Präambel / Preamble <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_admonitions_foundation">6.3. Admonitions <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_callouts_foundation">6.4. Callouts <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_callouts_und_kommentarzeichen_foundation">6.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_adoc_in_github_environment_foundation">6.6. adoc in github-Environment <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_nummerierung_vermeiden_foundation">6.7. Nummerierung vermeiden <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_nummerierung_der_überschriften_foundation">6.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_links_in_neuen_tabs_öffnen_foundation">6.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_keyboard_macro_foundation">6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_seitenumbrüche_in_pdf_dokumenten_foundation">6.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_tabellen_foundation">6.12. Tabellen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_class_diagrams">6.1. Class Diagrams</a></li>
+<li><a href="#_object_diagrams">6.2. Object Diagrams</a></li>
+<li><a href="#_deploymant_diagrams">6.3. Deploymant Diagrams</a></li>
+<li><a href="#_activity_diagrams">6.4. Activity Diagrams</a></li>
+<li><a href="#_state_diagrams">6.5. State Diagrams</a></li>
+</ul>
+</li>
+<li><a href="#_java">7. Java</a>
+<ul class="sectlevel2">
+<li><a href="#_manifest_xml_foundation">7.1. manifest.xml <span class="badge foundation">Foundation</span></a></li>
+</ul>
+</li>
+<li><a href="#_quarkus_jakarta_ee">8. Quarkus (Jakarta EE)</a>
+<ul class="sectlevel2">
+<li><a href="#_was_ist_quarkus_advanced">8.1. Was ist Quarkus? <span class="badge advanced">Advanced</span></a></li>
+<li><a href="#_jpa_lifecycle_einer_entity_advanced">8.2. JPA - Lifecycle einer entity <span class="badge advanced">Advanced</span></a></li>
 </ul>
 </li>
 </ul>
@@ -1932,8 +1954,57 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <h2 id="_kubernetes"><a class="anchor" href="#_kubernetes"></a>3. Kubernetes</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_testfrage_advanced"><a class="anchor" href="#_testfrage_advanced"></a>3.1. Testfrage <span class="badge advanced">Advanced</span></h3>
+<h3 id="_imperativ_vs_deklarativ_advanced"><a class="anchor" href="#_imperativ_vs_deklarativ_advanced"></a>3.1. Imperativ vs. deklarativ <span class="badge advanced">Advanced</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Was ist der Unterschied zwischen imperativem und deklarativem Management in Kubernetes?</p>
+</li>
+</ul>
+</div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_was_bedeutet_der_begriff_ephemeral_advanced"><a class="anchor" href="#_was_bedeutet_der_begriff_ephemeral_advanced"></a>3.2. Was bedeutet der Begriff "ephemeral"? <span class="badge advanced">Advanced</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p><a href="https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/" target="_blank" rel="noopener">Ephemeral Containers</a></p>
+</div>
+<div class="paragraph">
+<p><a href="https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/" target="_blank" rel="noopener">Ephemeral Volumes</a></p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_was_versteht_man_unter_einem_sidecar_container_advanced"><a class="anchor" href="#_was_versteht_man_unter_einem_sidecar_container_advanced"></a>3.3. Was versteht man unter einem "sidecar container"? <span class="badge advanced">Advanced</span></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_was_ist_ein_init_container_advanced"><a class="anchor" href="#_was_ist_ein_init_container_advanced"></a>3.4. Was ist ein "init container"? <span class="badge advanced">Advanced</span></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_wie_funktioniert_ein_liveness_probe_und_ein_readiness_probe_advanced"><a class="anchor" href="#_wie_funktioniert_ein_liveness_probe_und_ein_readiness_probe_advanced"></a>3.5. Wie funktioniert ein "liveness probe" und ein "readiness probe"? <span class="badge advanced">Advanced</span></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_was_versteht_man_unter_einem_kubernetes_manifest_advanced"><a class="anchor" href="#_was_versteht_man_unter_einem_kubernetes_manifest_advanced"></a>3.6. Was versteht man unter einem "Kubernetes Manifest"? <span class="badge advanced">Advanced</span></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>&#8230;&#8203; auch genannt:
+**</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1941,7 +2012,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <h2 id="_shell_netzwerke"><a class="anchor" href="#_shell_netzwerke"></a>4. Shell / Netzwerke</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_was_ist_ein_domain_name_service_dns_foundation"><a class="anchor" href="#_was_ist_ein_domain_name_service_dns_foundation"></a>4.1. Was ist ein Domain NAme Service (DNS)? <span class="badge foundation">Foundation</span></h3>
+<h3 id="_was_ist_ein_domain_name_service_dns_foundation"><a class="anchor" href="#_was_ist_ein_domain_name_service_dns_foundation"></a>4.1. Was ist ein Domain Name Service (DNS)? <span class="badge foundation">Foundation</span></h3>
 
 </div>
 <div class="sect2">
@@ -2230,19 +2301,10 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_java"><a class="anchor" href="#_java"></a>5. Java</h2>
+<h2 id="_asciidoctor"><a class="anchor" href="#_asciidoctor"></a>5. Asciidoctor</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_manifest_xml_foundation"><a class="anchor" href="#_manifest_xml_foundation"></a>5.1. manifest.xml <span class="badge foundation">Foundation</span></h3>
-
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_asciidoctor"><a class="anchor" href="#_asciidoctor"></a>6. Asciidoctor</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_was_ist_asciidoctor_foundation"><a class="anchor" href="#_was_ist_asciidoctor_foundation"></a>6.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></h3>
+<h3 id="_was_ist_asciidoctor_foundation"><a class="anchor" href="#_was_ist_asciidoctor_foundation"></a>5.1. Was ist Asciidoctor? <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2274,7 +2336,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_präambel_preamble_foundation"><a class="anchor" href="#_präambel_preamble_foundation"></a>6.2. Präambel / Preamble <span class="badge foundation">Foundation</span></h3>
+<h3 id="_präambel_preamble_foundation"><a class="anchor" href="#_präambel_preamble_foundation"></a>5.2. Präambel / Preamble <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2318,7 +2380,7 @@ icon:home[link=http://edufs.edu.htl-leonding.ac.at/~t.stuetz/hugo/2021/01/lectur
 </details>
 </div>
 <div class="sect2">
-<h3 id="_admonitions_foundation"><a class="anchor" href="#_admonitions_foundation"></a>6.3. Admonitions <span class="badge foundation">Foundation</span></h3>
+<h3 id="_admonitions_foundation"><a class="anchor" href="#_admonitions_foundation"></a>5.3. Admonitions <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2379,7 +2441,7 @@ Damit die Icons angezeigt werden, muss man in der Präambel setzen:
 </details>
 </div>
 <div class="sect2">
-<h3 id="_callouts_foundation"><a class="anchor" href="#_callouts_foundation"></a>6.4. Callouts <span class="badge foundation">Foundation</span></h3>
+<h3 id="_callouts_foundation"><a class="anchor" href="#_callouts_foundation"></a>5.4. Callouts <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2453,7 +2515,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_callouts_und_kommentarzeichen_foundation"><a class="anchor" href="#_callouts_und_kommentarzeichen_foundation"></a>6.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_callouts_und_kommentarzeichen_foundation"><a class="anchor" href="#_callouts_und_kommentarzeichen_foundation"></a>5.5. Callouts und Kommentarzeichen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2503,7 +2565,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_adoc_in_github_environment_foundation"><a class="anchor" href="#_adoc_in_github_environment_foundation"></a>6.6. adoc in github-Environment <span class="badge foundation">Foundation</span></h3>
+<h3 id="_adoc_in_github_environment_foundation"><a class="anchor" href="#_adoc_in_github_environment_foundation"></a>5.6. adoc in github-Environment <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2529,7 +2591,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_nummerierung_vermeiden_foundation"><a class="anchor" href="#_nummerierung_vermeiden_foundation"></a>6.7. Nummerierung vermeiden <span class="badge foundation">Foundation</span></h3>
+<h3 id="_nummerierung_vermeiden_foundation"><a class="anchor" href="#_nummerierung_vermeiden_foundation"></a>5.7. Nummerierung vermeiden <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2550,7 +2612,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_nummerierung_der_überschriften_foundation"><a class="anchor" href="#_nummerierung_der_überschriften_foundation"></a>6.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></h3>
+<h3 id="_nummerierung_der_überschriften_foundation"><a class="anchor" href="#_nummerierung_der_überschriften_foundation"></a>5.8. Nummerierung der Überschriften <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2570,7 +2632,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_links_in_neuen_tabs_öffnen_foundation"><a class="anchor" href="#_links_in_neuen_tabs_öffnen_foundation"></a>6.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_links_in_neuen_tabs_öffnen_foundation"><a class="anchor" href="#_links_in_neuen_tabs_öffnen_foundation"></a>5.9. Links in neuen Tabs öffnen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2593,7 +2655,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_keyboard_macro_foundation"><a class="anchor" href="#_keyboard_macro_foundation"></a>6.10. Keyboard-Macro <span class="badge foundation">Foundation</span></h3>
+<h3 id="_keyboard_macro_foundation"><a class="anchor" href="#_keyboard_macro_foundation"></a>5.10. Keyboard-Macro <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2624,7 +2686,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_seitenumbrüche_in_pdf_dokumenten_foundation"><a class="anchor" href="#_seitenumbrüche_in_pdf_dokumenten_foundation"></a>6.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></h3>
+<h3 id="_seitenumbrüche_in_pdf_dokumenten_foundation"><a class="anchor" href="#_seitenumbrüche_in_pdf_dokumenten_foundation"></a>5.11. Seitenumbrüche in pdf-Dokumenten <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2644,7 +2706,7 @@ Verwende die Kommentarzeichen der jeweiligen Programmiersprache.
 </details>
 </div>
 <div class="sect2">
-<h3 id="_tabellen_foundation"><a class="anchor" href="#_tabellen_foundation"></a>6.12. Tabellen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_tabellen_foundation"><a class="anchor" href="#_tabellen_foundation"></a>5.12. Tabellen <span class="badge foundation">Foundation</span></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2749,9 +2811,11 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Aufzählung in Kleinbuchstaben [.badge.foundation]#Foundation</p>
 </div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_aufzählung_in_kleinbuchstaben_badge_foundationfoundation"><a class="anchor" href="#_aufzählung_in_kleinbuchstaben_badge_foundationfoundation"></a>5.13. Aufzählung in Kleinbuchstaben [.badge.foundation]#Foundation</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -2759,23 +2823,103 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>== UML</p>
 </div>
-<div class="paragraph">
-<p>=== Class Diagrams</p>
+<div class="sect2">
+<h3 id="_wie_erstellt_man_zusammenklappbaren_text_badge_foundationfoundation"><a class="anchor" href="#_wie_erstellt_man_zusammenklappbaren_text_badge_foundationfoundation"></a>5.14. Wie erstellt man zusammenklappbaren Text? [.badge.foundation]#Foundation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>wie kann man Absätze erstellen, die man zusammenklappen kann, wie zB für Lösungen in diesem Dokument?</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>=== Object Diagrams</p>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="asciidoc"> .Lösung
+ [%collapsible]
+ ====
+
+ ...
+
+ ====</code></pre>
 </div>
-<div class="paragraph">
-<p>=== Deploymant Diagrams</p>
 </div>
-<div class="paragraph">
-<p>=== Activity Diagrams</p>
 </div>
-<div class="paragraph">
-<p>=== State Diagrams</p>
+</details>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_uml"><a class="anchor" href="#_uml"></a>6. UML</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_class_diagrams"><a class="anchor" href="#_class_diagrams"></a>6.1. Class Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_object_diagrams"><a class="anchor" href="#_object_diagrams"></a>6.2. Object Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_deploymant_diagrams"><a class="anchor" href="#_deploymant_diagrams"></a>6.3. Deploymant Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_activity_diagrams"><a class="anchor" href="#_activity_diagrams"></a>6.4. Activity Diagrams</h3>
+
+</div>
+<div class="sect2">
+<h3 id="_state_diagrams"><a class="anchor" href="#_state_diagrams"></a>6.5. State Diagrams</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_java"><a class="anchor" href="#_java"></a>7. Java</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_manifest_xml_foundation"><a class="anchor" href="#_manifest_xml_foundation"></a>7.1. manifest.xml <span class="badge foundation">Foundation</span></h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quarkus_jakarta_ee"><a class="anchor" href="#_quarkus_jakarta_ee"></a>8. Quarkus (Jakarta EE)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_was_ist_quarkus_advanced"><a class="anchor" href="#_was_ist_quarkus_advanced"></a>8.1. Was ist Quarkus? <span class="badge advanced">Advanced</span></h3>
+
+</div>
+<div class="sect2">
+<h3 id="_jpa_lifecycle_einer_entity_advanced"><a class="anchor" href="#_jpa_lifecycle_einer_entity_advanced"></a>8.2. JPA - Lifecycle einer entity <span class="badge advanced">Advanced</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>An entity instance may be characterized as being new, managed, detached, or removed.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A new entity instance has no persistent identity, and is not yet associated with a persistence context.</p>
+</li>
+<li>
+<p>A managed entity instance is an instance with a persistent identity that is currently associated with a persistence context.</p>
+</li>
+<li>
+<p>A detached entity instance is an instance with a persistent identity that is not (or no longer) associated with a persistence context.</p>
+</li>
+<li>
+<p>A removed entity instance is an instance with a persistent identity, associated with a persistence context, that is scheduled for removal from the database.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </details>
@@ -2786,7 +2930,7 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2025-06-10 06:41:16 UTC
+Last updated 2026-02-14 09:21:43 UTC
 </div>
 </div>
 </body>
