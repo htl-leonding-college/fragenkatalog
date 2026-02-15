@@ -155,12 +155,30 @@ gh-profile -> Settings -> SSH and GPG keys -> New SSH key
 .Lösung
 [%collapsible]
 ====
-`Cherry Picking` bedeutet, einzelne Commits aus einem Branch (z.B. Feature-Branch) in den derzeitigen (z.B. Main-Branch) zu übernehmen, ohne den ganzen Feature-Branch zu mergen. Dabei wird der ausgewählte Commit auf den aktuellen Branch übernommen, und der `HEAD` zeigt anschließend auf den neuen Commit. Man verwendet es z.B. wenn man im Feature-Branch einen Bug gefixt hat, aber das Feature noch nicht fertig ist.
+`Cherry Picking` bedeutet, *einzelne Commits aus einem Branch (z.B. Feature-Branch) in den derzeitigen (z.B. `main`-Branch) zu übernehmen*, ohne den ganzen Feature-Branch zu mergen. Dabei wird der ausgewählte Commit auf den aktuellen Branch übernommen, und der `HEAD` zeigt anschließend auf den neuen Commit.
+
+*Anwendung*: z.B. wenn man im Feature-Branch einen Bug gefixt hat, aber das Feature noch nicht fertig ist.
 
 .Befehl:
 [source,shell]
 ----
-git cherry-pick <Commit-Hash>
+git switch main
+git cherry-pick -x <Commit-Hash>
+----
+
+`-x` wird empfohlen, damit im Commit-Message der Original-Commit-Hash vermerkt wird, damit man später nachvollziehen kann, woher der Commit stammt.
+
+[source,shell,highlight=9]
+----
+❯ git switch log
+
+commit cb6a74f7c7b49499c9b5087a6d43ae2b67ab60b1 (HEAD -> main)
+Author: htl-leonding <t.stuetz@htl-leonding.ac.at>
+Date:   Sun Feb 15 12:15:30 2026 +0100
+
+    restructured dependencies
+
+    (cherry picked from commit 587a53a23ac5e1b689c8a9e170a227eae0b1afb8)
 ----
 ====
 
