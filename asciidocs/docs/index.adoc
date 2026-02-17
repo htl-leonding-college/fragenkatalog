@@ -925,6 +925,31 @@ sudo apt install net-tools
 ----
 ====
 
+=== Was ist ein Reverse Proxy? [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible]
+====
+
+image::reverse-proxy.png[]
+
+https://htl-leonding-college.github.io/quarkus-jar-gh-actions-demo/nginx-reverse-proxy.html[Tutorial: nginx as Reverse Proxy^]
+
+
+Ein Reverse Proxy ist ein Server, der Anfragen aus dem Internet entgegennimmt und sie an interne Server weiterleitet. Er fungiert als „Schutzschild“ und „Verteiler“ vor deiner eigentlichen Infrastruktur.
+Die Kernfunktionen
+
+* Sicherheit: Die IP-Adressen deiner eigentlichen Server bleibt verborgen.
+
+* Lastverteilung (Load Balancing): Er verteilt Anfragen auf mehrere Server, um Überlastung zu vermeiden.
+
+* SSL-Terminierung: Er übernimmt die HTTPS-Verschlüsselung. Im internen Netzwerk können die Verbindungen unverschlüsselt sein, was die Leistung verbessert.
+
+* Caching: Er speichert Kopien von Inhalten, um sie schneller auszuliefern.
+
+Kurzunterschied: Ein normaler Proxy schützt den Nutzer, ein Reverse Proxy schützt den Server.
+
+====
 
 === Den Status für nginx anzeigen lassen [.badge.foundation]#Foundation#
 
@@ -981,6 +1006,8 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 ====
 * Cronjobs sind zeitgesteuerte Aufgaben, die unter Linux und Unix-basierten Systemen verwendet werden, um Skripte oder Befehle zu bestimmten Zeiten oder in regelmäßigen Abständen automatisch auszuführen.
 ====
+
+
 
 
 
