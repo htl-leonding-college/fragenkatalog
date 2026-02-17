@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2026-02-15</span>
+<span id="revdate">2026-02-17</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -2065,19 +2065,63 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <ul>
 <li>
 <p>Wie kann ich einen Port eines entfernten Servers auf einen lokalen Port weiterleiten? zB Port 5432 von einem Server mit laufenden docker-compose - Containern auf Port 5432 auf localhost?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Nenne Anwendungsfälle für Port-Forwarding</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="images/port-forwarding.png" alt="port forwarding">
+</div>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">ssh <span class="nt">-L</span> 5432:localhost:5432 &lt;user&gt;@&lt;remote-server&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vom Server auch auf einen anderen Port  von localhostweiterleiten, zB 5433.</p>
+<p>Wenn der Port 5432 auf lokalhost nicht verfügbar ist (da zB eine lokale db bereits läuft), kann ich den Port 5432 vom Server auch auf einen anderen Port von localhost weiterleiten, zB 5433.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Anwendungsfälle:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Zugriff auf eine Datenbank, die auf einem entfernten Server oder in einem Container läuft, als wäre sie lokal</p>
+</li>
+<li>
+<p>Zugriff auf einen Webserver, der auf einem entfernten Server oder in einem Container läuft, über localhost:8080</p>
+</li>
+<li>
+<p>Man kann oft auch IDE&#8217;s so konfigurieren, dass sie über Port-Forwarding auf entfernte Debugging-Ports zugreifen können, um Remote-Debugging zu ermöglichen oder mit dem Datenbank-Client der IDE direkt auf eine entfernte Datenbank zuzugreifen.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Port-Forwarding ist grundsätzlich eine sichere Methode, um auf Dienste zuzugreifen, die hinter einer Firewall oder in einem privaten Netzwerk laufen. Trotzdem wird empfohlen zB für den Zugriff auf das (private) Heim-Netzwerk entweder einen <strong>VPN-Tunnel (zB WireGuard)</strong> oder einen <strong>Cloudflare-Tunnel</strong> zu verwenden, da Ports nicht nach außen geöffnet werden müssen, sondern der Zugriff über den Tunnel erfolgt.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </details>
@@ -2951,7 +2995,7 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-02-15 11:28:06 UTC
+Last updated 2026-02-17 09:40:19 UTC
 </div>
 </div>
 </body>
