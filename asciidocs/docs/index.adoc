@@ -782,16 +782,29 @@ scp -i ~/.ssh/id_ed25519 <file> <user>@<remote-server>:<path>
 
 * Wie kann ich einen Port eines entfernten Servers auf einen lokalen Port weiterleiten? zB Port 5432 von einem Server mit laufenden docker-compose - Containern auf Port 5432 auf localhost?
 
+** Nenne Anwendungsfälle für Port-Forwarding
+
 .Lösung
 [%collapsible]
 ====
+
+image::port-forwarding.png[]
+
 
 [source,shell]
 ----
 ssh -L 5432:localhost:5432 <user>@<remote-server>
 ----
 
-Wenn der Port 5432 auf lokalhost nicht verfügbar ist, kann ich den Port 5432 vom Server auch auf einen anderen Port  von localhostweiterleiten, zB 5433.
+Wenn der Port 5432 auf lokalhost nicht verfügbar ist (da zB eine lokale db bereits läuft), kann ich den Port 5432 vom Server auch auf einen anderen Port von localhost weiterleiten, zB 5433.
+
+* Anwendungsfälle:
+** Zugriff auf eine Datenbank, die auf einem entfernten Server oder in einem Container läuft, als wäre sie lokal
+** Zugriff auf einen Webserver, der auf einem entfernten Server oder in einem Container läuft, über localhost:8080
+** Man kann oft auch IDE's so konfigurieren, dass sie über Port-Forwarding auf entfernte Debugging-Ports zugreifen können, um Remote-Debugging zu ermöglichen oder mit dem Datenbank-Client der IDE direkt auf eine entfernte Datenbank zuzugreifen.
+
+
+IMPORTANT: Port-Forwarding ist grundsätzlich eine sichere Methode, um auf Dienste zuzugreifen, die hinter einer Firewall oder in einem privaten Netzwerk laufen. Trotzdem wird empfohlen zB für den Zugriff auf das (private) Heim-Netzwerk entweder einen *VPN-Tunnel (zB WireGuard)* oder einen *Cloudflare-Tunnel* zu verwenden, da Ports nicht nach außen geöffnet werden müssen, sondern der Zugriff über den Tunnel erfolgt.
 ====
 
 
