@@ -702,8 +702,9 @@ pre.rouge .gs {
 <li><a href="#_umgebungsvariable_setzen_foundation">4.5. Umgebungsvariable setzen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_prozess_mit_port_foundation">4.6. Prozess mit Port <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_troubleshooting_netstat_nicht_gefunden_foundation">4.7. Troubleshooting: <code>netstat</code> nicht gefunden <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_den_status_für_nginx_anzeigen_lassen_foundation">4.8. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation">4.9. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_was_ist_ein_reverse_proxy_foundation">4.8. Was ist ein Reverse Proxy? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_den_status_für_nginx_anzeigen_lassen_foundation">4.9. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation">4.10. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_asciidoctor">5. Asciidoctor</a>
@@ -2292,7 +2293,46 @@ Port-Forwarding ist grundsätzlich eine sichere Methode, um auf Dienste zuzugrei
 </details>
 </div>
 <div class="sect2">
-<h3 id="_den_status_für_nginx_anzeigen_lassen_foundation"><a class="anchor" href="#_den_status_für_nginx_anzeigen_lassen_foundation"></a>4.8. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></h3>
+<h3 id="_was_ist_ein_reverse_proxy_foundation"><a class="anchor" href="#_was_ist_ein_reverse_proxy_foundation"></a>4.8. Was ist ein Reverse Proxy? <span class="badge foundation">Foundation</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="imageblock">
+<div class="content">
+<img src="images/reverse-proxy.png" alt="reverse proxy">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://htl-leonding-college.github.io/quarkus-jar-gh-actions-demo/nginx-reverse-proxy.html" target="_blank" rel="noopener">Tutorial: nginx as Reverse Proxy</a></p>
+</div>
+<div class="paragraph">
+<p>Ein Reverse Proxy ist ein Server, der Anfragen aus dem Internet entgegennimmt und sie an interne Server weiterleitet. Er fungiert als „Schutzschild“ und „Verteiler“ vor deiner eigentlichen Infrastruktur.
+Die Kernfunktionen</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sicherheit: Die IP-Adressen deiner eigentlichen Server bleibt verborgen.</p>
+</li>
+<li>
+<p>Lastverteilung (Load Balancing): Er verteilt Anfragen auf mehrere Server, um Überlastung zu vermeiden.</p>
+</li>
+<li>
+<p>SSL-Terminierung: Er übernimmt die HTTPS-Verschlüsselung. Im internen Netzwerk können die Verbindungen unverschlüsselt sein, was die Leistung verbessert.</p>
+</li>
+<li>
+<p>Caching: Er speichert Kopien von Inhalten, um sie schneller auszuliefern.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Kurzunterschied: Ein normaler Proxy schützt den Nutzer, ein Reverse Proxy schützt den Server.</p>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_den_status_für_nginx_anzeigen_lassen_foundation"><a class="anchor" href="#_den_status_für_nginx_anzeigen_lassen_foundation"></a>4.9. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -2349,7 +2389,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful</pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation"><a class="anchor" href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation"></a>4.9. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></h3>
+<h3 id="_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation"><a class="anchor" href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation"></a>4.10. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></h3>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -2995,7 +3035,7 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-02-17 09:40:19 UTC
+Last updated 2026-02-17 19:14:23 UTC
 </div>
 </div>
 </body>
