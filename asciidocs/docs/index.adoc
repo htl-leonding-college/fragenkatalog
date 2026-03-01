@@ -625,10 +625,8 @@ docker compose -f my-docker-compose-file.yaml logs -f
 
 * Wie kann man ein Backup einer gedockerten postgres DB erstellen?
 
-[TODO]: Hier sind noch die Lösungen einzutragen, für die Verwendung eines einzelnen Docker Containers und eines Datenbank-containers in einem docker-compose Verbund.
-
 .Lösung
-[%collapsible]
+[%collapsible%open]
 ====
 [source,shell]
 ----
@@ -640,6 +638,47 @@ docker compose --file=docker-compose.yaml exec -it postgres pg_dump --username=a
 ----
 docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%H_%M_%S`.sql
 ----
+
+Ein mögliches Script wäre:
+[source,shell,linenum,highlight=19]
+----
+#!/bin/bash
+
+# Configuration
+BACKUP_DIR="$(dirname "$0")/backups"
+CONTAINER_NAME="my-container"
+DB_USER="my-user"
+DB_NAME="db"
+DATE=$(date +%Y%m%d_%H%M%S)
+BACKUP_FILE="${BACKUP_DIR}/myapp_backup_${DATE}.sql"
+RETENTION_DAYS=7
+
+# Ensure backup directory exists
+mkdir -p "${BACKUP_DIR}"
+
+echo "Starting database backup for ${DB_NAME}..."
+
+# Execute pg_dump inside the container
+# We use -it or just docker exec. For scripts, no -t is better.
+if docker exec ${CONTAINER_NAME} pg_dump -U ${DB_USER} ${DB_NAME} > "${BACKUP_FILE}"; then
+    echo "Backup successful: ${BACKUP_FILE}"
+
+    # Compress the backup to save space
+    gzip "${BACKUP_FILE}"
+    echo "Backup compressed: ${BACKUP_FILE}.gz"
+
+    # Cleanup old backups (older than RETENTION_DAYS)
+    echo "Cleaning up backups older than ${RETENTION_DAYS} days..."
+    find "${BACKUP_DIR}" -name "payments_backup_*.sql.gz" -mtime +${RETENTION_DAYS} -exec rm {} \;
+    echo "Cleanup finished."
+else
+    echo "ERROR: Backup failed! Check if container ${CONTAINER_NAME} is running."
+    exit 1
+fi
+----
+
+* Was passiert hier?
+* Welche Ergänzung wäre hier sinnvoll?
 ====
 
 
@@ -650,19 +689,55 @@ docker exec -t <container_id> pg_dumpall -c -U <user> > dump_`date +%Y-%m-%d"_"%
 .Lösung
 [%collapsible]
 ====
+.restore.sh könnte zB so aussehen:
+[source,shell,linenum,highlight=29]
+----
+#!/bin/bash
+
+# Configuration
+BACKUP_DIR="$(dirname "$0")/backups"
+CONTAINER_NAME="my-db"
+DB_USER="my-user"
+DB_NAME="db"
+
+# Check if a backup file was provided
+if [ -z "$1" ]; then
+    echo "Usage: ./restore.sh <backup_file.sql.gz>"
+    echo "Available backups in ${BACKUP_DIR}:"
+    ls -1 "${BACKUP_DIR}"
+    exit 1
+fi
+
+BACKUP_FILE=$1
+
+# Ensure the container is running
+if ! docker ps | grep -q "${CONTAINER_NAME}"; then
+    echo "ERROR: Container ${CONTAINER_NAME} is not running! Please start it first with ./start-db.sh"
+    exit 1
+fi
+
+echo "Restoring database ${DB_NAME} from ${BACKUP_FILE}..."
+
+# Decompress and restore
+# We use 'cat' and pipe to 'docker exec' to avoid needing to copy the file into the container
+gunzip -c "${BACKUP_FILE}" | docker exec -i ${CONTAINER_NAME} psql -U ${DB_USER} -d ${DB_NAME}
+
+if [ $? -eq 0 ]; then
+    echo "------------------------------------------------------------"
+    echo "SUCCESS: Database has been restored."
+    echo "------------------------------------------------------------"
+else
+    echo "ERROR: Restore failed!"
+    exit 1
+fi
+----
+
+Siehe auch:
 
 * https://stackoverflow.com/a/29913462/9818338
 * https://stackoverflow.com/a/63435830/9818338
 * https://medium.com/@vinayakchittora/backup-and-restore-postgresql-database-using-docker-9e145e974ab6
 
-* [TODO]: Herausarbeiten, der Optionen
-** pg_restore (ev. mit Option -c -> clean) und
-** psql
-
-[%collapsible]
-----
-
-----
 ====
 
 === `.dockerignore` [.badge.foundation]#Foundation#
