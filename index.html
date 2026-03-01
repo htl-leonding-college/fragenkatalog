@@ -1995,6 +1995,20 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </pre></td></tr></tbody></table></code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Welche Voraussetzungen müssen bei diesem Script erfüllt sein?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>zB das Vorhandensein eines scripts namens <code>start-db.sh</code>, das den Container mit der DB startet, damit er für die Wiederherstellung läuft.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
 <div class="paragraph">
 <p>Siehe auch:</p>
 </div>
@@ -2141,7 +2155,20 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
-
+<div class="ulist">
+<ul>
+<li>
+<p>Beim <strong>imperativen Management</strong> werden die Kommandos direkt ausgeführt, um den gewünschten Zustand zu erreichen (z.B. <code>kubectl create deployment &#8230;&#8203;</code>).
+Vergleichbar mit Programmieren: Befehle werden nacheinander ausgeführt.
+<em>Es wird der Weg zur Erreichung des gewünschten Zustands definiert.</em></p>
+</li>
+<li>
+<p>Beim <strong>deklarativen Management</strong> definiert man den gewünschten Zustand in einer YAML-Datei (Manifest) und wenden diese mit <code>kubectl apply -f &#8230;&#8203;</code> an.
+Kubernetes sorgt dann dafür, dass der tatsächliche Zustand dem gewünschten Zustand entspricht.
+<em>Es wird nur der Zielzustand definiert, nicht der Weg dorthin.</em></p>
+</li>
+</ul>
+</div>
 </div>
 </details>
 </div>
@@ -2161,15 +2188,69 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </div>
 <div class="sect2">
 <h3 id="_was_versteht_man_unter_einem_sidecar_container_advanced"><a class="anchor" href="#_was_versteht_man_unter_einem_sidecar_container_advanced"></a>3.3. Was versteht man unter einem "sidecar container"? <span class="badge advanced">Advanced</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p>In einem Pod (der kleinsten Einheit in Kubernetes) können mehrere Container gleichzeitig laufen. Während der Hauptcontainer die eigentliche Anwendung beherbergt (z. B. eine Web-App), übernimmt der Sidecar-Container unterstützende Aufgaben.</p>
+</div>
+<div class="paragraph">
+<p>Beide teilen sich die gleichen Ressourcen, wie zum Beispiel das Netzwerk (localhost) und den Speicherplatz (Volumes).</p>
+</div>
+<div class="paragraph">
+<p>Typische Aufgaben eines Sidecars</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Logging &amp; Monitoring: Der Sidecar sammelt Log-Dateien der App und schickt sie an einen zentralen Server (z. B. Splunk oder Elasticsearch).</p>
+</li>
+<li>
+<p>Proxies &amp; Sicherheit: Ein Sidecar kann den Netzwerkverkehr verschlüsseln (TLS-Terminierung) oder als Botschafter für die Kommunikation mit anderen Diensten fungieren (Service Mesh).</p>
+</li>
+<li>
+<p>Konfigurations-Update: Der Sidecar beobachtet, ob sich Konfigurationsdateien ändern, und lädt sie für die Haupt-App neu.</p>
+</li>
+<li>
+<p>Daten-Synchronisation: Ein Sidecar könnte regelmäßig Daten aus einem Repository (wie GitHub) ziehen und in ein Verzeichnis legen, auf das die Web-App zugreift.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Warum trennt man das überhaupt? Weil man so die Hauptanwendung "sauber" hält und Funktionen hinzufügen kann, ohne den Code der App zu ändern.</p>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_was_ist_ein_init_container_advanced"><a class="anchor" href="#_was_ist_ein_init_container_advanced"></a>3.4. Was ist ein "init container"? <span class="badge advanced">Advanced</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
 
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_wie_funktioniert_ein_liveness_probe_und_ein_readiness_probe_advanced"><a class="anchor" href="#_wie_funktioniert_ein_liveness_probe_und_ein_readiness_probe_advanced"></a>3.5. Wie funktioniert ein "liveness probe" und ein "readiness probe"? <span class="badge advanced">Advanced</span></h3>
-
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="paragraph">
+<p>Beide sind Health-Checks, die das Kubelet auf Containern ausführt:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Liveness Probe: Prüft, ob der Container noch läuft. Schlägt dieser Check fehl, killt Kubernetes den Container und startet ihn (gemäß der Restart-Policy) neu. Er hilft bei Deadlocks oder wenn die Applikation "eingefroren" ist.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Readiness Probe: Prüft, ob der Container bereit ist, Traffic zu empfangen. Schlägt dieser Check fehl, wird der Pod aus den Endpoints des zugehörigen Services entfernt. Es wird kein Neustart erzwungen. Dies ist wichtig während der Startphase oder wenn eine Applikation temporär überlastet ist.</pre>
+</div>
+</div>
+</div>
+</details>
 </div>
 <div class="sect2">
 <h3 id="_was_versteht_man_unter_einem_kubernetes_manifest_advanced"><a class="anchor" href="#_was_versteht_man_unter_einem_kubernetes_manifest_advanced"></a>3.6. Was versteht man unter einem "Kubernetes Manifest"? <span class="badge advanced">Advanced</span></h3>
@@ -2181,6 +2262,12 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </li>
 </ul>
 </div>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+
+</div>
+</details>
 </div>
 </div>
 </div>
@@ -3291,7 +3378,7 @@ Es muss <code>--allow-unrelated-histories</code> angegeben werden, da die Histor
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-03-01 10:49:53 UTC
+Last updated 2026-03-01 14:10:41 UTC
 </div>
 </div>
 </body>
