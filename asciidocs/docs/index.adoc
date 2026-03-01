@@ -1394,3 +1394,57 @@ IMPORTANT: Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nich
 ** A removed entity instance is an instance with a persistent identity, associated with a persistence context, that is scheduled for removal from the database.
 ====
 
+== GitHub Classroom
+
+=== Wie kann man ein GitHub Classroom Assignment erstellen? [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible%open]
+====
+. Erstellen eines Repositories auf GitHub, das als Vorlage für das Assignment dienen soll. Dabei ist zu beachten:
+.. Dieses Repo muss sich in der GitHub-Organisation befinden, in der die Assignments erstellt werden sollen. z.B. Organisation `2526-4ahitm-itp`, Repository-Name: `01-lab-keycloak`
+.. Das Repository `01-lab-keycloak` muss ein Template-Repository sein.
+
+. Anschließend wird ein neues Assignment in GitHub Classroom erstellt.
+Das Template-Repository `01-lab-keycloak` wird Vorlage ausgewählt.
+
+image::github-classroom-assignment.png[]
+
+
+
+====
+
+=== Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible%open]
+====
+. Änderungen im Template-Repository vornehmen, zB `01-lab-keycloak`
+. Anschließend das vom Template-Repository abgeleitete Repository clonen, zB `2526-4ahitm-itp-01-lab-keycloak-01-lab-keycloak`
+. In diesem Repository wird das Template als "upstream" hinzugefügt:
++
+[source,shell]
+----
+git remote add template git@github.com:2526-4ahitm-itp/01-lab-keycloak.git
+----
+
+. Nun können die Änderungen aus dem Template-Repository in das Original-Repo zB `2526-4ahitm-itp-01-lab-keycloak-01-lab-keycloak` geholt werden, von dem die Schüler das Assignment angenommen (fork) haben:
++
+[source,shell]
+----
+git fetch template
+git status
+git merge template/main  --allow-unrelated-histories
+git status
+git add .
+git commit -m "fix instructions"
+git push origin main
+----
+
+IMPORTANT: Es muss `--allow-unrelated-histories` angegeben werden, da die Historie des Template-Repositories und des Original-Repositories nicht zusammengeführt werden kann, da sie unterschiedliche Wurzeln haben. Es handelt sich ja um zwei verschiedene Repositories, die nicht voneinander abgeleitet sind, sondern nur den gleichen Code enthalten.
+
+. Erstellen von Pull-Requests für die Schüler-Repositories, damit die Schüler die Änderungen in ihre Repositories übernehmen können.
++
+image::github-classroom-sync-repos.png[]
+
+====
