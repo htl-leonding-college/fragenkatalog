@@ -705,6 +705,8 @@ pre.rouge .gs {
 <li><a href="#_was_ist_ein_reverse_proxy_foundation">4.8. Was ist ein Reverse Proxy? <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_den_status_für_nginx_anzeigen_lassen_foundation">4.9. Den Status für nginx anzeigen lassen <span class="badge foundation">Foundation</span></a></li>
 <li><a href="#_wie_kann_man_tasks_unter_linux_zeitgesteuert_automatisieren_foundation">4.10. Wie kann man Tasks unter Linux zeitgesteuert automatisieren? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_sich_die_derzeitigen_cronjobs_anzeigen_lassen_foundation">4.11. Wie kann man sich die derzeitigen Cronjobs anzeigen lassen? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_sich_die_derzeitigen_cronjobs_editieren_foundation">4.12. Wie kann man sich die derzeitigen Cronjobs editieren? <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 <li><a href="#_asciidoctor">5. Asciidoctor</a>
@@ -2644,6 +2646,46 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful</pre>
 </div>
 </details>
 </div>
+<div class="sect2">
+<h3 id="_wie_kann_man_sich_die_derzeitigen_cronjobs_anzeigen_lassen_foundation"><a class="anchor" href="#_wie_kann_man_sich_die_derzeitigen_cronjobs_anzeigen_lassen_foundation"></a>4.11. Wie kann man sich die derzeitigen Cronjobs anzeigen lassen? <span class="badge foundation">Foundation</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Um die derzeitigen Cronjobs für den aktuellen Benutzer anzuzeigen, kann man den folgenden Befehl verwenden:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">crontab <span class="nt">-l</span></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_wie_kann_man_sich_die_derzeitigen_cronjobs_editieren_foundation"><a class="anchor" href="#_wie_kann_man_sich_die_derzeitigen_cronjobs_editieren_foundation"></a>4.12. Wie kann man sich die derzeitigen Cronjobs editieren? <span class="badge foundation">Foundation</span></h3>
+<details>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Um die derzeitigen Cronjobs für den aktuellen Benutzer zu ändern, kann man den folgenden Befehl verwenden:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">crontab <span class="nt">-e</span></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</details>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -3378,7 +3420,7 @@ Es muss <code>--allow-unrelated-histories</code> angegeben werden, da die Histor
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-03-01 14:10:41 UTC
+Last updated 2026-03-01 15:34:58 UTC
 </div>
 </div>
 </body>
