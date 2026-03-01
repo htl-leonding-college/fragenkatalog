@@ -626,7 +626,7 @@ docker compose -f my-docker-compose-file.yaml logs -f
 * Wie kann man ein Backup einer gedockerten postgres DB erstellen?
 
 .Lösung
-[%collapsible%open]
+[%collapsible]
 ====
 [source,shell]
 ----
