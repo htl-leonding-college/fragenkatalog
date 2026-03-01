@@ -1440,11 +1440,13 @@ git add .
 git commit -m "fix instructions"
 git push origin main
 ----
-
++
 IMPORTANT: Es muss `--allow-unrelated-histories` angegeben werden, da die Historie des Template-Repositories und des Original-Repositories nicht zusammengeführt werden kann, da sie unterschiedliche Wurzeln haben. Es handelt sich ja um zwei verschiedene Repositories, die nicht voneinander abgeleitet sind, sondern nur den gleichen Code enthalten.
 
 . Erstellen von Pull-Requests für die Schüler-Repositories, damit die Schüler die Änderungen in ihre Repositories übernehmen können.
 +
 image::github-classroom-sync-repos.png[]
+
+. Jetzt könnnen die Schüler die Pull-Requests in ihren Repositories annehmen, um die Änderungen aus dem Template-Repository in ihre Repositories zu übernehmen.
 
 ====
