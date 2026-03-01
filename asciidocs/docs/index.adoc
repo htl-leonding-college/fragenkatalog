@@ -1133,8 +1133,31 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 ====
 
 
+=== Wie kann man sich die derzeitigen Cronjobs anzeigen lassen? [.badge.foundation]#Foundation#
 
+.Lösung
+[%collapsible]
+====
+* Um die derzeitigen Cronjobs für den aktuellen Benutzer anzuzeigen, kann man den folgenden Befehl verwenden:
++
+[source,shell]
+----
+crontab -l
+----
+====
 
+=== Wie kann man sich die derzeitigen Cronjobs editieren? [.badge.foundation]#Foundation#
+
+.Lösung
+[%collapsible]
+====
+* Um die derzeitigen Cronjobs für den aktuellen Benutzer zu ändern, kann man den folgenden Befehl verwenden:
++
+[source,shell]
+----
+crontab -e
+----
+====
 
 
 == Asciidoctor
