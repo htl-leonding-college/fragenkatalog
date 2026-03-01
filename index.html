@@ -1800,10 +1800,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>[TODO]: Hier sind noch die Lösungen einzutragen, für die Verwendung eines einzelnen Docker Containers und eines Datenbank-containers in einem docker-compose Verbund.</p>
-</div>
-<details>
+<details open>
 <summary class="title">Lösung</summary>
 <div class="content">
 <div class="listingblock">
@@ -1816,6 +1813,90 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell">docker <span class="nb">exec</span> <span class="nt">-t</span> &lt;container_id&gt; pg_dumpall <span class="nt">-c</span> <span class="nt">-U</span> &lt;user&gt; <span class="o">&gt;</span> dump_<span class="sb">`</span><span class="nb">date</span> +%Y-%m-%d<span class="s2">"_"</span>%H_%M_%S<span class="sb">`</span>.sql</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Ein mögliches Script wäre:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="code"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c"># Configuration</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="si">)</span><span class="s2">/backups"</span>
+<span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="s2">"my-container"</span>
+<span class="nv">DB_USER</span><span class="o">=</span><span class="s2">"my-user"</span>
+<span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">"db"</span>
+<span class="nv">DATE</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> +%Y%m%d_%H%M%S<span class="si">)</span>
+<span class="nv">BACKUP_FILE</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_DIR</span><span class="k">}</span><span class="s2">/myapp_backup_</span><span class="k">${</span><span class="nv">DATE</span><span class="k">}</span><span class="s2">.sql"</span>
+<span class="nv">RETENTION_DAYS</span><span class="o">=</span>7
+
+<span class="c"># Ensure backup directory exists</span>
+<span class="nb">mkdir</span> <span class="nt">-p</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_DIR</span><span class="k">}</span><span class="s2">"</span>
+
+<span class="nb">echo</span> <span class="s2">"Starting database backup for </span><span class="k">${</span><span class="nv">DB_NAME</span><span class="k">}</span><span class="s2">..."</span>
+
+<span class="c"># Execute pg_dump inside the container</span>
+<span class="c"># We use -it or just docker exec. For scripts, no -t is better.</span>
+<span class="hll"><span class="k">if </span>docker <span class="nb">exec</span> <span class="k">${</span><span class="nv">CONTAINER_NAME</span><span class="k">}</span> pg_dump <span class="nt">-U</span> <span class="k">${</span><span class="nv">DB_USER</span><span class="k">}</span> <span class="k">${</span><span class="nv">DB_NAME</span><span class="k">}</span> <span class="o">&gt;</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_FILE</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">then</span>
+</span><span class="k">    </span><span class="nb">echo</span> <span class="s2">"Backup successful: </span><span class="k">${</span><span class="nv">BACKUP_FILE</span><span class="k">}</span><span class="s2">"</span>
+
+    <span class="c"># Compress the backup to save space</span>
+    <span class="nb">gzip</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_FILE</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nb">echo</span> <span class="s2">"Backup compressed: </span><span class="k">${</span><span class="nv">BACKUP_FILE</span><span class="k">}</span><span class="s2">.gz"</span>
+
+    <span class="c"># Cleanup old backups (older than RETENTION_DAYS)</span>
+    <span class="nb">echo</span> <span class="s2">"Cleaning up backups older than </span><span class="k">${</span><span class="nv">RETENTION_DAYS</span><span class="k">}</span><span class="s2"> days..."</span>
+    find <span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_DIR</span><span class="k">}</span><span class="s2">"</span> <span class="nt">-name</span> <span class="s2">"payments_backup_*.sql.gz"</span> <span class="nt">-mtime</span> +<span class="k">${</span><span class="nv">RETENTION_DAYS</span><span class="k">}</span> <span class="nt">-exec</span> <span class="nb">rm</span> <span class="o">{}</span> <span class="se">\;</span>
+    <span class="nb">echo</span> <span class="s2">"Cleanup finished."</span>
+<span class="k">else</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="s2">"ERROR: Backup failed! Check if container </span><span class="k">${</span><span class="nv">CONTAINER_NAME</span><span class="k">}</span><span class="s2"> is running."</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Was passiert hier?</p>
+</li>
+<li>
+<p>Welche Ergänzung wäre hier sinnvoll?</p>
+</li>
+</ul>
 </div>
 </div>
 </details>
@@ -1832,6 +1913,91 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <details>
 <summary class="title">Lösung</summary>
 <div class="content">
+<div class="listingblock">
+<div class="title">restore.sh könnte zB so aussehen:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+</pre></td><td class="code"><pre><span class="c">#!/bin/bash</span>
+
+<span class="c"># Configuration</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="nb">dirname</span> <span class="s2">"</span><span class="nv">$0</span><span class="s2">"</span><span class="si">)</span><span class="s2">/backups"</span>
+<span class="nv">CONTAINER_NAME</span><span class="o">=</span><span class="s2">"my-db"</span>
+<span class="nv">DB_USER</span><span class="o">=</span><span class="s2">"my-user"</span>
+<span class="nv">DB_NAME</span><span class="o">=</span><span class="s2">"db"</span>
+
+<span class="c"># Check if a backup file was provided</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nt">-z</span> <span class="s2">"</span><span class="nv">$1</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="s2">"Usage: ./restore.sh &lt;backup_file.sql.gz&gt;"</span>
+    <span class="nb">echo</span> <span class="s2">"Available backups in </span><span class="k">${</span><span class="nv">BACKUP_DIR</span><span class="k">}</span><span class="s2">:"</span>
+    <span class="nb">ls</span> <span class="nt">-1</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_DIR</span><span class="k">}</span><span class="s2">"</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="nv">BACKUP_FILE</span><span class="o">=</span><span class="nv">$1</span>
+
+<span class="c"># Ensure the container is running</span>
+<span class="k">if</span> <span class="o">!</span> docker ps | <span class="nb">grep</span> <span class="nt">-q</span> <span class="s2">"</span><span class="k">${</span><span class="nv">CONTAINER_NAME</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="s2">"ERROR: Container </span><span class="k">${</span><span class="nv">CONTAINER_NAME</span><span class="k">}</span><span class="s2"> is not running! Please start it first with ./start-db.sh"</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="nb">echo</span> <span class="s2">"Restoring database </span><span class="k">${</span><span class="nv">DB_NAME</span><span class="k">}</span><span class="s2"> from </span><span class="k">${</span><span class="nv">BACKUP_FILE</span><span class="k">}</span><span class="s2">..."</span>
+
+<span class="c"># Decompress and restore</span>
+<span class="c"># We use 'cat' and pipe to 'docker exec' to avoid needing to copy the file into the container</span>
+<span class="hll"><span class="nb">gunzip</span> <span class="nt">-c</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BACKUP_FILE</span><span class="k">}</span><span class="s2">"</span> | docker <span class="nb">exec</span> <span class="nt">-i</span> <span class="k">${</span><span class="nv">CONTAINER_NAME</span><span class="k">}</span> psql <span class="nt">-U</span> <span class="k">${</span><span class="nv">DB_USER</span><span class="k">}</span> <span class="nt">-d</span> <span class="k">${</span><span class="nv">DB_NAME</span><span class="k">}</span>
+</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="s2">"------------------------------------------------------------"</span>
+    <span class="nb">echo</span> <span class="s2">"SUCCESS: Database has been restored."</span>
+    <span class="nb">echo</span> <span class="s2">"------------------------------------------------------------"</span>
+<span class="k">else</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="s2">"ERROR: Restore failed!"</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+</pre></td></tr></tbody></table></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Siehe auch:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1843,25 +2009,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <li>
 <p><a href="https://medium.com/@vinayakchittora/backup-and-restore-postgresql-database-using-docker-9e145e974ab6" class="bare">https://medium.com/@vinayakchittora/backup-and-restore-postgresql-database-using-docker-9e145e974ab6</a></p>
 </li>
-<li>
-<p>[TODO]: Herausarbeiten, der Optionen</p>
-<div class="ulist">
-<ul>
-<li>
-<p>pg_restore (ev. mit Option -c &#8594; clean) und</p>
-</li>
-<li>
-<p>psql</p>
-</li>
 </ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre></pre>
-</div>
 </div>
 </div>
 </details>
@@ -3143,7 +3291,7 @@ Es muss <code>--allow-unrelated-histories</code> angegeben werden, da die Histor
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-03-01 10:30:17 UTC
+Last updated 2026-03-01 10:48:31 UTC
 </div>
 </div>
 </body>
