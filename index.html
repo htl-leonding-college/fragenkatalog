@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2026-02-17</span>
+<span id="revdate">2026-03-01</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -743,6 +743,12 @@ pre.rouge .gs {
 <ul class="sectlevel2">
 <li><a href="#_was_ist_quarkus_advanced">8.1. Was ist Quarkus? <span class="badge advanced">Advanced</span></a></li>
 <li><a href="#_jpa_lifecycle_einer_entity_advanced">8.2. JPA - Lifecycle einer entity <span class="badge advanced">Advanced</span></a></li>
+</ul>
+</li>
+<li><a href="#_github_classroom">9. GitHub Classroom</a>
+<ul class="sectlevel2">
+<li><a href="#_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation">9.1. Wie kann man ein GitHub Classroom Assignment erstellen? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation">9.2. Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 </ul>
@@ -3031,11 +3037,114 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_github_classroom"><a class="anchor" href="#_github_classroom"></a>9. GitHub Classroom</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation"><a class="anchor" href="#_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation"></a>9.1. Wie kann man ein GitHub Classroom Assignment erstellen? <span class="badge foundation">Foundation</span></h3>
+<details open>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Erstellen eines Repositories auf GitHub, das als Vorlage für das Assignment dienen soll. Dabei ist zu beachten:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Dieses Repo muss sich in der GitHub-Organisation befinden, in der die Assignments erstellt werden sollen. z.B. Organisation <code>2526-4ahitm-itp</code>, Repository-Name: <code>01-lab-keycloak</code></p>
+</li>
+<li>
+<p>Das Repository <code>01-lab-keycloak</code> muss ein Template-Repository sein.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Anschließend wird ein neues Assignment in GitHub Classroom erstellt.
+Das Template-Repository <code>01-lab-keycloak</code> wird Vorlage ausgewählt.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/github-classroom-assignment.png" alt="github classroom assignment">
+</div>
+</div>
+</div>
+</details>
+</div>
+<div class="sect2">
+<h3 id="_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation"><a class="anchor" href="#_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation"></a>9.2. Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? <span class="badge foundation">Foundation</span></h3>
+<details open>
+<summary class="title">Lösung</summary>
+<div class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Änderungen im Template-Repository vornehmen, zB <code>01-lab-keycloak</code></p>
+</li>
+<li>
+<p>Anschließend das vom Template-Repository abgeleitete Repository clonen, zB <code>2526-4ahitm-itp-01-lab-keycloak-01-lab-keycloak</code></p>
+</li>
+<li>
+<p>In diesem Repository wird das Template als "upstream" hinzugefügt:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git remote add template git@github.com:2526-4ahitm-itp/01-lab-keycloak.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Nun können die Änderungen aus dem Template-Repository in das Original-Repo zB <code>2526-4ahitm-itp-01-lab-keycloak-01-lab-keycloak</code> geholt werden, von dem die Schüler das Assignment angenommen (fork) haben:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">git fetch template
+git status
+git merge template/main  <span class="nt">--allow-unrelated-histories</span>
+git status
+git add <span class="nb">.</span>
+git commit <span class="nt">-m</span> <span class="s2">"fix instructions"</span>
+git push origin main</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Es muss <code>--allow-unrelated-histories</code> angegeben werden, da die Historie des Template-Repositories und des Original-Repositories nicht zusammengeführt werden kann, da sie unterschiedliche Wurzeln haben. Es handelt sich ja um zwei verschiedene Repositories, die nicht voneinander abgeleitet sind, sondern nur den gleichen Code enthalten.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Erstellen von Pull-Requests für die Schüler-Repositories, damit die Schüler die Änderungen in ihre Repositories übernehmen können.</p>
+<div class="imageblock">
+<div class="content">
+<img src="images/github-classroom-sync-repos.png" alt="github classroom sync repos">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-02-17 19:14:23 UTC
+Last updated 2026-03-01 10:26:37 UTC
 </div>
 </div>
 </body>
