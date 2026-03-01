@@ -732,6 +732,10 @@ else
 fi
 ----
 
+* Welche Voraussetzungen müssen bei diesem Script erfüllt sein?
+** zB das Vorhandensein eines scripts namens `start-db.sh`, das den Container mit der DB startet, damit er für die Wiederherstellung läuft.
+
+
 Siehe auch:
 
 * https://stackoverflow.com/a/29913462/9818338
@@ -800,7 +804,12 @@ Ein Healthcheck wird zB für die Datenbank durchgeführt, damit andere Container
 .Lösung
 [%collapsible]
 ====
-
+* Beim *imperativen Management* werden die Kommandos direkt ausgeführt, um den gewünschten Zustand zu erreichen (z.B. `kubectl create deployment ...`).
+Vergleichbar mit Programmieren: Befehle werden nacheinander ausgeführt.
+_Es wird der Weg zur Erreichung des gewünschten Zustands definiert._
+* Beim *deklarativen Management* definiert man den gewünschten Zustand in einer YAML-Datei (Manifest) und wenden diese mit `kubectl apply -f ...` an.
+Kubernetes sorgt dann dafür, dass der tatsächliche Zustand dem gewünschten Zustand entspricht.
+_Es wird nur der Zielzustand definiert, nicht der Weg dorthin._
 ====
 
 === Was bedeutet der Begriff "ephemeral"? [.badge.advanced]#Advanced#
@@ -815,11 +824,47 @@ https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/[Ephemeral Volumes
 
 === Was versteht man unter einem "sidecar container"? [.badge.advanced]#Advanced#
 
+.Lösung
+[%collapsible]
+====
+In einem Pod (der kleinsten Einheit in Kubernetes) können mehrere Container gleichzeitig laufen. Während der Hauptcontainer die eigentliche Anwendung beherbergt (z. B. eine Web-App), übernimmt der Sidecar-Container unterstützende Aufgaben.
+
+Beide teilen sich die gleichen Ressourcen, wie zum Beispiel das Netzwerk (localhost) und den Speicherplatz (Volumes).
+
+Typische Aufgaben eines Sidecars
+
+* Logging & Monitoring: Der Sidecar sammelt Log-Dateien der App und schickt sie an einen zentralen Server (z. B. Splunk oder Elasticsearch).
+
+* Proxies & Sicherheit: Ein Sidecar kann den Netzwerkverkehr verschlüsseln (TLS-Terminierung) oder als Botschafter für die Kommunikation mit anderen Diensten fungieren (Service Mesh).
+
+* Konfigurations-Update: Der Sidecar beobachtet, ob sich Konfigurationsdateien ändern, und lädt sie für die Haupt-App neu.
+
+* Daten-Synchronisation: Ein Sidecar könnte regelmäßig Daten aus einem Repository (wie GitHub) ziehen und in ein Verzeichnis legen, auf das die Web-App zugreift.
+
+Warum trennt man das überhaupt? Weil man so die Hauptanwendung "sauber" hält und Funktionen hinzufügen kann, ohne den Code der App zu ändern.
+====
 
 === Was ist ein "init container"? [.badge.advanced]#Advanced#
 
+.Lösung
+[%collapsible]
+====
+
+
+====
+
 === Wie funktioniert ein "liveness probe" und ein "readiness probe"? [.badge.advanced]#Advanced#
 
+.Lösung
+[%collapsible]
+====
+Beide sind Health-Checks, die das Kubelet auf Containern ausführt:
+
+    Liveness Probe: Prüft, ob der Container noch läuft. Schlägt dieser Check fehl, killt Kubernetes den Container und startet ihn (gemäß der Restart-Policy) neu. Er hilft bei Deadlocks oder wenn die Applikation "eingefroren" ist.
+
+    Readiness Probe: Prüft, ob der Container bereit ist, Traffic zu empfangen. Schlägt dieser Check fehl, wird der Pod aus den Endpoints des zugehörigen Services entfernt. Es wird kein Neustart erzwungen. Dies ist wichtig während der Startphase oder wenn eine Applikation temporär überlastet ist.
+
+====
 
 === Was versteht man unter einem "Kubernetes Manifest"? [.badge.advanced]#Advanced#
 
@@ -827,7 +872,12 @@ https://kubernetes.io/docs/concepts/storage/ephemeral-volumes/[Ephemeral Volumes
 * ... auch genannt:
 **
 
+.Lösung
+[%collapsible]
+====
 
+
+====
 
 
 
