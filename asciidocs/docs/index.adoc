@@ -448,6 +448,45 @@ IMPORTANT: Man muss zuerst den Container, mit dem das Volume verbunden ist, stop
 
 ====
 
+=== Alle Docker-Elemente löschen [.badge.foundation]#Foundation#
+
+Löschen von Containern, Images, Networks  und Volumes.
+
+.Lösung
+[%collapsible]
+====
+[source,shell]
+----
+#!/usr/bin/env bash
+
+docker compose down
+docker container prune -f
+docker image prune -f
+docker volume prune -f
+docker builder prune --all --force #build cache löschen
+IMAGES=$(docker images -q)
+
+for image in $IMAGES
+do
+    docker image rm -f $image
+done
+VOLUMES=$(docker volume ls -q)
+for volume in $VOLUMES
+do
+    docker volume rm $volume
+done
+docker container ls
+docker volume ls
+docker image ls
+
+----
+
+====
+
+
+
+
+
 === Image bauen [.badge.foundation]#Foundation#
 .Lösung
 [%collapsible]
