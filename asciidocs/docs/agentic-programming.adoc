@@ -71,6 +71,20 @@ Dieser Leitfaden verwendet *Claude Code* als Referenz-Tool, da es aktuell eines 
 * *Mistral*: Besonders für selbst gehostete Lösungen interessant.
 ====
 
+[IMPORTANT]
+====
+*Modellauswahl beeinflusst die Ergebnisqualität erheblich!*
+
+Die meisten KI-Coding-Tools erlauben den Wechsel des Backend-Modells über `/model` oder in den Einstellungen. Leistungsfähigere Modelle liefern bessere Ergebnisse bei:
+
+* Komplexen Architekturentscheidungen
+* Mehrstufigen Refactorings
+* Verständnis großer Codebasen
+* Konsistenz über längere Sessions
+
+Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren Modelle verwenden (z.B. Claude Opus, GPT-4, Gemini Ultra).
+====
+
 Der Kern dieses Tutorials – die Trennung von *fachlicher Spezifikation* (WAS) und *technischer Implementierung* (WIE) – ist toolunabhängig und verbessert die Ergebnisse mit jedem KI-Assistenten.
 
 === Workflow-Übersicht
