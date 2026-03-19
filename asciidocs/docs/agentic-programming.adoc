@@ -984,6 +984,8 @@ claude
 /init
 ----
 
+TIP: Verwende den *Plan Mode* (`/plan`) für komplexe Implementierungen – Claude zeigt dann zuerst einen Umsetzungsplan zur Bestätigung. Siehe <<Plan Mode>> in den Best Practices.
+
 ==== Beispiel-Prompts für die Implementierung
 
 [source]
@@ -995,14 +997,14 @@ definierten Package-Struktur.
 
 [source]
 ----
-Implementiere US-001 (Bestellung aufgeben) aus specs/fsd.adoc.
+/plan Implementiere US-001 (Bestellung aufgeben) aus specs/fsd.adoc.
 Befolge die Architekturprinzipien aus agents.adoc.
 Beginne mit der Entity und arbeite dich nach außen vor.
 ----
 
 [source]
 ----
-Erstelle Tests für US-001 basierend auf den Akzeptanzkriterien
+/plan Erstelle Tests für US-001 basierend auf den Akzeptanzkriterien
 in specs/fsd.adoc. Jedes Given/When/Then soll ein Testfall sein.
 ----
 
