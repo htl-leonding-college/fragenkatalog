@@ -1,4 +1,4 @@
-= Agentisches Programmieren mit Claude Code
+= Agentisches Programmieren mit KI-Assistenten
 :author: Leitfaden für strukturiertes AI-gestütztes Development
 :revdate: 2026-03-19
 :toc: left
@@ -9,9 +9,69 @@
 
 == Einführung
 
-Agentisches Programmieren (Agentic Coding) beschreibt einen Paradigmenwechsel in der Softwareentwicklung: Statt passiver Code-Vervollständigung arbeitet Claude Code als autonomer Agent, der eigenständig Code erkundet, editiert und erklärt – über das gesamte Projekt hinweg.
+=== Was ist Agentisches Programmieren?
 
-Dieser Leitfaden beschreibt einen strukturierten Workflow, bei dem die *fachliche Spezifikation* (WAS) klar von der *technischen Implementierung* (WIE) getrennt wird.
+Agentisches Programmieren (Agentic Coding) beschreibt einen Paradigmenwechsel in der Softwareentwicklung: Statt passiver Code-Vervollständigung arbeiten KI-Assistenten als autonome Agenten, die eigenständig Code erkunden, editieren und erklären – über das gesamte Projekt hinweg.
+
+Im Gegensatz zu klassischen Autocomplete-Tools können agentische Coding-Assistenten:
+
+* Projektstrukturen analysieren und verstehen
+* Mehrstufige Aufgaben selbstständig planen und ausführen
+* Dateien erstellen, bearbeiten und löschen
+* Terminal-Befehle ausführen
+* Auf Fehler reagieren und iterativ verbessern
+
+=== Verfügbare Tools
+
+[cols="1,2,2"]
+|===
+| Tool | Anbieter | Besonderheiten
+
+| *Claude Code*
+| Anthropic
+| Terminal-basiert, tiefe Codebase-Integration
+
+| *GitHub Copilot*
+| GitHub/Microsoft
+| IDE-Integration, unterstützt mehrere LLMs (inkl. Claude, GPT-4, Gemini)
+
+| *Cursor*
+| Cursor Inc.
+| VS Code Fork mit nativer KI-Integration
+
+| *Cody*
+| Sourcegraph
+| Codebase-weite Suche und Kontext
+
+| *Gemini Code Assist*
+| Google
+| Integration in Google Cloud
+
+| *ChatGPT + Code Interpreter*
+| OpenAI
+| Web-basiert mit Code-Ausführung
+
+| *Mistral + Continue*
+| Mistral AI
+| Open-Source-freundlich, selbst hostbar
+|===
+
+=== Über dieses Tutorial
+
+Dieser Leitfaden verwendet *Claude Code* als Referenz-Tool, da es aktuell eines der leistungsfähigsten agentischen Coding-Tools ist. Die beschriebenen Prinzipien und Workflows sind jedoch *übertragbar*:
+
+[NOTE]
+====
+*Übertragbarkeit auf andere Tools:*
+
+* *GitHub Copilot*: Kann Claude als Backend-Modell verwenden. Die Prompts und Spezifikationsdateien funktionieren identisch.
+* *Cursor*: Unterstützt Claude, GPT-4 und andere Modelle. AGENTS.md-Dateien werden automatisch erkannt.
+* *ChatGPT/GPT-4*: Prompts und Strukturen funktionieren, aber ohne direkte Dateisystem-Integration.
+* *Gemini*: Ähnliche Fähigkeiten, Prompts können 1:1 übernommen werden.
+* *Mistral*: Besonders für selbst gehostete Lösungen interessant.
+====
+
+Der Kern dieses Tutorials – die Trennung von *fachlicher Spezifikation* (WAS) und *technischer Implementierung* (WIE) – ist toolunabhängig und verbessert die Ergebnisse mit jedem KI-Assistenten.
 
 === Workflow-Übersicht
 
@@ -27,7 +87,7 @@ rectangle "3. FSD.adoc generieren" as FSD
 rectangle "4. AGENTS.adoc generieren" as A
 rectangle "5. Implementierung" as I
 
-S --> F : Claude analysiert
+S --> F : KI analysiert
 F --> FSD : Fachlichkeit
 F --> A : Technik
 FSD --> I
