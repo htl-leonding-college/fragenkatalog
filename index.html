@@ -629,7 +629,7 @@ pre.rouge .gs {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 1.0.0,</span>
-<span id="revdate">2026-03-07</span>
+<span id="revdate">2026-03-19</span>
 <br><span id="revremark">Basiswissen für Programmieren und Projektentwicklung</span>
 </div>
 <div id="toc" class="toc2">
@@ -748,10 +748,11 @@ pre.rouge .gs {
 <li><a href="#_jpa_lifecycle_einer_entity_advanced">8.2. JPA - Lifecycle einer entity <span class="badge advanced">Advanced</span></a></li>
 </ul>
 </li>
-<li><a href="#_github_classroom">9. GitHub Classroom</a>
+<li><a href="#_agentisches_programmieren">9. Agentisches Programmieren</a></li>
+<li><a href="#_github_classroom">10. GitHub Classroom</a>
 <ul class="sectlevel2">
-<li><a href="#_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation">9.1. Wie kann man ein GitHub Classroom Assignment erstellen? <span class="badge foundation">Foundation</span></a></li>
-<li><a href="#_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation">9.2. Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation">10.1. Wie kann man ein GitHub Classroom Assignment erstellen? <span class="badge foundation">Foundation</span></a></li>
+<li><a href="#_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation">10.2. Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? <span class="badge foundation">Foundation</span></a></li>
 </ul>
 </li>
 </ul>
@@ -1476,6 +1477,7 @@ Man muss zuerst den Container, mit dem das Volume verbunden ist, stoppen und lö
 <summary class="title">Lösung</summary>
 <div class="content">
 <div class="listingblock">
+<div class="title">clean-docker.sh</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="shell"><span class="c">#!/usr/bin/env bash</span>
 
@@ -2157,7 +2159,7 @@ docker push ghcr.io/htl-leonding-college/my-image:latest</pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Was ist der Unterschied zwischen <code>docker compose stop</code> und <code>docker compose down</code>?</p>
+<p>Was ist der Unterschied zwischen <code>docker compose stop</code> and <code>docker compose down</code>?</p>
 </li>
 </ul>
 </div>
@@ -3352,17 +3354,25 @@ Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nicht korrekt d
 </div>
 </div>
 <div class="sect1">
-<h2 id="_github_classroom"><a class="anchor" href="#_github_classroom"></a>9. GitHub Classroom</h2>
+<h2 id="_agentisches_programmieren"><a class="anchor" href="#_agentisches_programmieren"></a>9. Agentisches Programmieren</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="agentic-programming.html">Zum Kapitel: Agentisches Programmieren</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_github_classroom"><a class="anchor" href="#_github_classroom"></a>10. GitHub Classroom</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation"><a class="anchor" href="#_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation"></a>9.1. Wie kann man ein GitHub Classroom Assignment erstellen? <span class="badge foundation">Foundation</span></h3>
+<h3 id="_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation"><a class="anchor" href="#_wie_kann_man_ein_github_classroom_assignment_erstellen_foundation"></a>10.1. Wie kann man ein GitHub Classroom Assignment erstellen? <span class="badge foundation">Foundation</span></h3>
 <details open>
 <summary class="title">Lösung</summary>
 <div class="content">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Erstellen eines Repositories auf GitHub, das als Vorlage für das Assignment dienen soll. Dabei ist zu beachten:</p>
+<p>Erstellen eines Repositories auf GitHub, das als Vorlage für das Assignment dienen soll. In diesem Repo erstellt die Lehrkraft zB die Angabe für eine Leistungsfeststellung. Dabei ist zu beachten:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -3389,7 +3399,7 @@ Das Template-Repository <code>01-lab-keycloak</code> wird Vorlage ausgewählt.</
 </details>
 </div>
 <div class="sect2">
-<h3 id="_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation"><a class="anchor" href="#_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation"></a>9.2. Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? <span class="badge foundation">Foundation</span></h3>
+<h3 id="_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation"><a class="anchor" href="#_wie_kann_man_in_ein_github_classroom_assignment_das_bereits_von_schülern_angenommen_wurde_änderungen_einpflegen_foundation"></a>10.2. Wie kann man in ein GitHub Classroom Assignment, das bereits von Schülern angenommen wurde, Änderungen einpflegen? <span class="badge foundation">Foundation</span></h3>
 <details open>
 <summary class="title">Lösung</summary>
 <div class="content">
@@ -3457,7 +3467,7 @@ Es muss <code>--allow-unrelated-histories</code> angegeben werden, da die Histor
 <div id="footer">
 <div id="footer-text">
 Version 1.0.0<br>
-Last updated 2026-03-07 14:56:13 UTC
+Last updated 2026-03-19 07:03:41 UTC
 </div>
 </div>
 </body>
