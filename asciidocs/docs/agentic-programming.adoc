@@ -698,6 +698,62 @@ Das wichtigste Ressource in Claude Code ist das *Kontext-Fenster*. Es füllt sic
 * Kleine, fokussierte Prompts statt Mega-Anfragen
 ====
 
+.Kontextfüllung anzeigen und überwachen
+[%collapsible]
+====
+Mit `/context` siehst du die aktuelle Kontextnutzung:
+
+[source]
+----
+/context
+----
+
+Ausgabe:
+[source]
+----
+Context usage: 45,231 / 128,000 tokens (35%)
+----
+
+*Übersicht der relevanten Befehle:*
+
+[cols="1,2"]
+|===
+| Befehl | Funktion
+
+| `/context`
+| Zeigt aktuelle Nutzung
+
+| `/usage`
+| Zeigt Plan-Limits und Verbrauch
+
+| `/compact`
+| Komprimiert den Kontext
+
+| `/clear`
+| Löscht den Kontext komplett
+|===
+
+*Permanente Statuszeile einrichten:*
+
+In `/config` oder in `~/.claude/settings.json`:
+
+[source,json]
+----
+{
+  "statusLine": "context"
+}
+----
+
+Dann siehst du die Kontextfüllung dauerhaft am unteren Bildschirmrand.
+
+*Faustregel:*
+
+* *< 50%*: Weiterarbeiten
+* *~50%*: `/compact` ausführen (Claude fasst bisherigen Kontext zusammen)
+* *> 70%*: Dringend komprimieren, Performance leidet
+* *Neue Aufgabe*: `/clear` und frisch starten
+====
+
 === Thinking-Modi
 
 Claude Code unterstützt verschiedene Denk-Intensitäten:
