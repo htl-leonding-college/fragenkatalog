@@ -71,20 +71,6 @@ Dieser Leitfaden verwendet *Claude Code* als Referenz-Tool, da es aktuell eines 
 * *Mistral*: Besonders für selbst gehostete Lösungen interessant.
 ====
 
-[IMPORTANT]
-====
-*Modellauswahl beeinflusst die Ergebnisqualität erheblich!*
-
-Die meisten KI-Coding-Tools erlauben den Wechsel des Backend-Modells über `/model` oder in den Einstellungen. Leistungsfähigere Modelle liefern bessere Ergebnisse bei:
-
-* Komplexen Architekturentscheidungen
-* Mehrstufigen Refactorings
-* Verständnis großer Codebasen
-* Konsistenz über längere Sessions
-
-Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren Modelle verwenden (z.B. Claude Opus, GPT-4, Gemini Ultra).
-====
-
 === Warum AsciiDoc statt Markdown?
 
 Claude Code verwendet standardmäßig Markdown-Dateien (`CLAUDE.md`, `AGENTS.md`). Dieses Tutorial nutzt bewusst *AsciiDoc* (`.adoc`), da es für technische Dokumentation mächtiger ist:
@@ -1015,6 +1001,46 @@ Beginne mit dem Domain-Model und arbeite dich nach außen vor.
 ----
 
 == Best Practices
+
+=== Modellauswahl
+
+Die Wahl des Backend-Modells beeinflusst die Ergebnisqualität erheblich. Die meisten KI-Coding-Tools erlauben den Wechsel über `/model` oder in den Einstellungen.
+
+[IMPORTANT]
+====
+*Leistungsfähigere Modelle liefern bessere Ergebnisse bei:*
+
+* Komplexen Architekturentscheidungen
+* Mehrstufigen Refactorings
+* Verständnis großer Codebasen
+* Konsistenz über längere Sessions
+
+Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren Modelle verwenden (z.B. Claude Opus, GPT-4, Gemini Ultra).
+====
+
+.Modelle im Vergleich (Stand 2026)
+[cols="1,1,2"]
+|===
+| Anbieter | Top-Modell | Stärken
+
+| Anthropic
+| Claude Opus
+| Reasoning, lange Kontexte, Code-Qualität
+
+| OpenAI
+| GPT-4
+| Breites Wissen, Tool-Integration
+
+| Google
+| Gemini Ultra
+| Multimodal, schnelle Iteration
+
+| Mistral
+| Mistral Large
+| Open-Source-nah, selbst hostbar
+|===
+
+TIP: Bei Budget-Einschränkungen: Für einfache Tasks (Formatierung, kleine Fixes) reichen kleinere Modelle. Für Architektur und komplexe Features das beste verfügbare Modell wählen.
 
 === Kontext-Management
 
