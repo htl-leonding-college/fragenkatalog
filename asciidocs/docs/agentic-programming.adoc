@@ -1042,6 +1042,41 @@ Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren M
 
 TIP: Bei Budget-Einschränkungen: Für einfache Tasks (Formatierung, kleine Fixes) reichen kleinere Modelle. Für Architektur und komplexe Features das beste verfügbare Modell wählen.
 
+=== Sprache beim Prompten
+
+Ein verbreiteter Mythos: Englische Prompts sparen Tokens. Die Ersparnis ist jedoch minimal und lohnt sich praktisch nicht.
+
+.Token-Verbrauch im Vergleich
+[cols="2,3,1"]
+|===
+| Komponente | Beispiel | Anteil
+
+| Dein Prompt
+| 20-50 Tokens
+| < 1%
+
+| Gelesene Dateien
+| 10.000-30.000 Tokens
+| ~50%
+
+| Claudes Antwort + Code
+| 10.000-30.000 Tokens
+| ~50%
+|===
+
+Die Sprache des Prompts beeinflusst den Gesamtverbrauch kaum – der Code und Kontext dominieren.
+
+[IMPORTANT]
+====
+*Schreibe in der Sprache, in der du am präzisesten formulieren kannst.*
+
+* Unklare Prompts → Rückfragen → *mehr* Tokens
+* Missverständnisse → Korrekturen → *mehr* Tokens
+* Muttersprache → präziser → *weniger* Iterationen
+====
+
+TIP: Für Projekte mit deutschsprachiger Fachlichkeit (Glossar, User Stories, Team) ist Deutsch die bessere Wahl. Die KI versteht beide Sprachen gleich gut.
+
 === Kontext-Management
 
 Das wichtigste Ressource in Claude Code ist das *Kontext-Fenster*. Es füllt sich schnell mit Dateiinhalten und Command-Outputs.
@@ -1162,7 +1197,7 @@ Gib konkrete Zeilenreferenzen an.
 
 === Chat-Protokollierung mit chats.adoc
 
-Prompts und wichtige Entscheidungen sollten in einer `chats.adoc` protokolliert werden. Vorteile:
+Alle Prompts werden in `chats.adoc` protokolliert, bevor sie nach Claude Code kopiert werden. Vorteile:
 
 [cols="1,2"]
 |===
@@ -1185,12 +1220,11 @@ Prompts und wichtige Entscheidungen sollten in einer `chats.adoc` protokolliert 
 
 1. Prompt in `chats.adoc` schreiben
 2. Prompt nach Claude Code kopieren
-3. Claudes Antwort (zusammengefasst) dokumentieren
-4. Eigene Antworten vollständig protokollieren
+3. Weiterarbeiten – *Claudes Antworten müssen nicht protokolliert werden*
 
-==== Wichtig: Selbsterklärende Antworten
+==== Wichtig: Selbsterklärende Prompts
 
-Bei Ja/Nein-Fragen *immer* den Kontext wiederholen. Nach `/compact` geht sonst der Bezug verloren.
+Bei Antworten auf Claudes Fragen *immer* den Kontext wiederholen. Nach `/compact` oder beim Neuaufbau des Kontexts fehlt sonst der Bezug.
 
 [cols="1,1"]
 |===
@@ -1198,13 +1232,11 @@ Bei Ja/Nein-Fragen *immer* den Kontext wiederholen. Nach `/compact` geht sonst d
 
 a|
 ----
-> Builder Pattern?
 Ja
 ----
 
 a|
 ----
-> Builder Pattern?
 Ja, verwende das Builder Pattern
 für die Bestellung-Entity.
 ----
@@ -1217,62 +1249,41 @@ für die Bestellung-Entity.
 [source,asciidoc]
 ----
 = Chat-Protokoll: [Projektname]
-:revdate: 2026-03-19
-:toc: left
 
-== Session 1: Projektinitialisierung
-:session-date: 2026-03-19
+== Session 1
 
-=== Prompt 1: Story-Analyse
-
-[source]
-....
 Lies specs/story.adoc und stelle mir Fragen zur Klärung
 der fachlichen Anforderungen.
-....
-
-==== Antwort Claude (Zusammenfassung)
-
-Claude stellte 12 Fragen in den Kategorien:
-
-* Benutzerrollen und Berechtigungen (4 Fragen)
-* Zahlungsabwicklung (3 Fragen)
-* Bestellprozess (5 Fragen)
-
-==== Meine Antworten
-
-[source]
-....
-1. Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
-2. Ja, verwende das Builder Pattern für die Bestellung-Entity
-3. Nein, kein Event Sourcing – klassisches CRUD reicht
-   für unsere Anforderungen
-4. Ja, E-Mail-Benachrichtigungen bei Statusänderungen,
-   aber asynchron über Message Queue
-....
 
 '''
 
-== Session 2: FSD-Generierung
-:session-date: 2026-03-20
+Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
 
-=== Prompt 1: FSD erstellen
+'''
 
-[source]
-....
+Ja, verwende das Builder Pattern für die Bestellung-Entity
+
+'''
+
+Nein, kein Event Sourcing – klassisches CRUD reicht
+
+'''
+
 Erstelle basierend auf unserer Diskussion eine vollständige
 fachliche Spezifikation als specs/fsd.adoc.
-....
 
-==== Ergebnis
+== Session 2
 
-FSD wurde generiert. Review-Anmerkungen:
+Implementiere US-001 aus specs/fsd.adoc.
+Erstelle Entity, Repository, Service und Resource.
+Schreibe Tests für jede Schicht.
 
-* [ ] Glossar-Begriff "Lieferung" ergänzen
-* [x] UC-003 Nachbedingung präzisiert
+'''
+
+Nein, die Validierung soll im Service erfolgen, nicht in der Entity.
 ----
 
-TIP: Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-History rekonstruiert werden. Die eigenen Entscheidungen hingegen vollständig dokumentieren.
+NOTE: Claudes Antworten werden *nicht* protokolliert – sie können bei Bedarf aus der Claude Code Session-History (`/history`) rekonstruiert werden.
 
 === Dateien trennen statt verschmelzen
 
