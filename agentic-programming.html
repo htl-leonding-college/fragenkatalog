@@ -638,7 +638,8 @@ pre.rouge .gs {
 <li><a href="#_was_ist_agentisches_programmieren">1.1. Was ist Agentisches Programmieren?</a></li>
 <li><a href="#_verfügbare_tools">1.2. Verfügbare Tools</a></li>
 <li><a href="#_über_dieses_tutorial">1.3. Über dieses Tutorial</a></li>
-<li><a href="#_workflow_übersicht">1.4. Workflow-Übersicht</a></li>
+<li><a href="#_warum_asciidoc_statt_markdown">1.4. Warum AsciiDoc statt Markdown?</a></li>
+<li><a href="#_workflow_übersicht">1.5. Workflow-Übersicht</a></li>
 </ul>
 </li>
 <li><a href="#_installation_von_claude_code">2. Installation von Claude Code</a>
@@ -655,16 +656,18 @@ pre.rouge .gs {
 <li><a href="#_schritt_2_claude_code_starten_und_fragen_beantworten">3.2. Schritt 2: Claude Code starten und Fragen beantworten</a></li>
 <li><a href="#_schritt_3_fsd_adoc_generieren_lassen">3.3. Schritt 3: FSD.adoc generieren lassen</a></li>
 <li><a href="#_schritt_4_agents_adoc_generieren_lassen">3.4. Schritt 4: AGENTS.adoc generieren lassen</a></li>
-<li><a href="#_schritt_5_implementierung_starten">3.5. Schritt 5: Implementierung starten</a></li>
+<li><a href="#_schritt_5_claude_md_als_einstiegspunkt_erstellen">3.5. Schritt 5: CLAUDE.md als Einstiegspunkt erstellen</a></li>
+<li><a href="#_schritt_6_implementierung_starten">3.6. Schritt 6: Implementierung starten</a></li>
 </ul>
 </li>
 <li><a href="#_best_practices">4. Best Practices</a>
 <ul class="sectlevel2">
-<li><a href="#_kontext_management">4.1. Kontext-Management</a></li>
-<li><a href="#_thinking_modi">4.2. Thinking-Modi</a></li>
-<li><a href="#_subagents_für_spezialisierte_aufgaben">4.3. Subagents für spezialisierte Aufgaben</a></li>
-<li><a href="#_chat_protokollierung_mit_chats_adoc">4.4. Chat-Protokollierung mit chats.adoc</a></li>
-<li><a href="#_dateien_trennen_statt_verschmelzen">4.5. Dateien trennen statt verschmelzen</a></li>
+<li><a href="#_modellauswahl">4.1. Modellauswahl</a></li>
+<li><a href="#_kontext_management">4.2. Kontext-Management</a></li>
+<li><a href="#_thinking_modi">4.3. Thinking-Modi</a></li>
+<li><a href="#_subagents_für_spezialisierte_aufgaben">4.4. Subagents für spezialisierte Aufgaben</a></li>
+<li><a href="#_chat_protokollierung_mit_chats_adoc">4.5. Chat-Protokollierung mit chats.adoc</a></li>
+<li><a href="#_dateien_trennen_statt_verschmelzen">4.6. Dateien trennen statt verschmelzen</a></li>
 </ul>
 </li>
 <li><a href="#_anhang">5. Anhang</a>
@@ -801,37 +804,80 @@ pre.rouge .gs {
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
+</div>
+<div class="sect2">
+<h3 id="_warum_asciidoc_statt_markdown"><a class="anchor" href="#_warum_asciidoc_statt_markdown"></a>1.4. Warum AsciiDoc statt Markdown?</h3>
+<div class="paragraph">
+<p>Claude Code verwendet standardmäßig Markdown-Dateien (<code>CLAUDE.md</code>, <code>AGENTS.md</code>). Dieses Tutorial nutzt bewusst <strong>AsciiDoc</strong> (<code>.adoc</code>), da es für technische Dokumentation mächtiger ist:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top">Markdown</th>
+<th class="tableblock halign-left valign-top">AsciiDoc</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tabellen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einfach</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Komplex mit Colspan, Formatierung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Includes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">❌</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>include::datei.adoc[]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Admonitions (NOTE, TIP, WARNING)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nicht standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✅ Nativ</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inhaltsverzeichnis</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tool-abhängig</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>:toc: left</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Querverweise</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manuell</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="#anchor">[anchor]</a></code> automatisch</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diagramme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extern</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PlantUML, Mermaid integriert</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collapsible Sections</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">❌</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>[%collapsible]</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PDF/DocBook Export</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Begrenzt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">✅ Professionell</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><strong>Modellauswahl beeinflusst die Ergebnisqualität erheblich!</strong></p>
+<p><strong>KI-Assistenten verstehen AsciiDoc problemlos.</strong> Die Syntax ist Markdown ähnlich genug, dass Claude, GPT und andere Modelle <code>.adoc</code>-Dateien korrekt lesen, interpretieren und generieren können.</p>
 </div>
 <div class="paragraph">
-<p>Die meisten KI-Coding-Tools erlauben den Wechsel des Backend-Modells über <code>/model</code> oder in den Einstellungen. Leistungsfähigere Modelle liefern bessere Ergebnisse bei:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Komplexen Architekturentscheidungen</p>
-</li>
-<li>
-<p>Mehrstufigen Refactorings</p>
-</li>
-<li>
-<p>Verständnis großer Codebasen</p>
-</li>
-<li>
-<p>Konsistenz über längere Sessions</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren Modelle verwenden (z.B. Claude Opus, GPT-4, Gemini Ultra).</p>
+<p>Falls dein Tool nur <code>.md</code> unterstützt, kannst du die Dateien umbenennen – der Inhalt funktioniert weitgehend auch als Markdown.</p>
 </div>
 </td>
 </tr>
@@ -842,10 +888,10 @@ pre.rouge .gs {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_workflow_übersicht"><a class="anchor" href="#_workflow_übersicht"></a>1.4. Workflow-Übersicht</h3>
+<h3 id="_workflow_übersicht"><a class="anchor" href="#_workflow_übersicht"></a>1.5. Workflow-Übersicht</h3>
 <div class="imageblock">
 <div class="content">
-<img src="images/diag-plantuml-md5-f3d9bc59d70bcce606f2e246de729273.png" alt="Diagram" width="446" height="377">
+<img src="images/diag-plantuml-md5-ca8ff492f9721a217711b2372e328fdd.png" alt="Diagram" width="446" height="490">
 </div>
 </div>
 </div>
@@ -1750,7 +1796,80 @@ Prüfe [Datei/Package] auf:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_schritt_5_implementierung_starten"><a class="anchor" href="#_schritt_5_implementierung_starten"></a>3.5. Schritt 5: Implementierung starten</h3>
+<h3 id="_schritt_5_claude_md_als_einstiegspunkt_erstellen"><a class="anchor" href="#_schritt_5_claude_md_als_einstiegspunkt_erstellen"></a>3.5. Schritt 5: CLAUDE.md als Einstiegspunkt erstellen</h3>
+<div class="paragraph">
+<p>Claude Code liest automatisch die <code>CLAUDE.md</code> im Projektstamm. Diese Datei dient als Einstiegspunkt und verweist auf die detaillierten <code>.adoc</code>-Spezifikationen:</p>
+</div>
+<div class="listingblock">
+<div class="title">CLAUDE.md</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="markdown"><span class="gh"># Projektanweisungen</span>
+
+<span class="gu">## Wichtige Dateien</span>
+
+Lies vor jeder Aufgabe folgende Spezifikationen:
+<span class="p">
+-</span> <span class="sb">`specs/fsd.adoc`</span> – Fachliche Spezifikation (User Stories, Glossar, Regeln)
+<span class="p">-</span> <span class="sb">`agents.adoc`</span> – Technische Vorgaben (Stack, Architektur, Konventionen)
+<span class="p">-</span> <span class="sb">`specs/chats.adoc`</span> – Bisherige Entscheidungen und Kontext
+
+<span class="gu">## Regeln</span>
+<span class="p">
+-</span> Fachbegriffe exakt aus dem Glossar in fsd.adoc verwenden
+<span class="p">-</span> Bei Unklarheiten: <span class="gs">**nachfragen**</span>, nicht raten
+<span class="p">-</span> Dokumentation in AsciiDoc (.adoc) erstellen
+<span class="p">-</span> Commits nach jeder logischen Einheit
+
+<span class="gu">## Technologie-Stack</span>
+<span class="p">
+-</span> Java 25, Quarkus 3.x, PostgreSQL 18
+<span class="p">-</span> Maven als Build-Tool
+<span class="p">-</span> Layer-Architektur (entity → repository → service → boundary)
+
+<span class="gu">## Schnellstart</span>
+
+<span class="p">```</span><span class="nl">bash
+</span><span class="c"># Projekt bauen</span>
+./mvnw clean compile
+
+<span class="c"># Tests ausführen</span>
+./mvnw <span class="nb">test</span>
+
+<span class="c"># Dev-Modus starten</span>
+./mvnw quarkus:dev
+<span class="p">```</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Warum CLAUDE.md zusätzlich zu agents.adoc?</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CLAUDE.md</code> wird von Claude Code <strong>automatisch</strong> gelesen – keine manuelle Anweisung nötig</p>
+</li>
+<li>
+<p><code>agents.adoc</code> enthält die <strong>ausführlichen</strong> technischen Details</p>
+</li>
+<li>
+<p>Die <code>.md</code>-Datei ist kurz und verweist auf die <code>.adoc</code>-Dateien für Details</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_schritt_6_implementierung_starten"><a class="anchor" href="#_schritt_6_implementierung_starten"></a>3.6. Schritt 6: Implementierung starten</h3>
 <div class="paragraph">
 <p>Mit den generierten Spezifikationen kann die Implementierung beginnen:</p>
 </div>
@@ -1764,7 +1883,7 @@ claude
 </div>
 </div>
 <div class="sect3">
-<h4 id="_beispiel_prompts_für_die_implementierung"><a class="anchor" href="#_beispiel_prompts_für_die_implementierung"></a>3.5.1. Beispiel-Prompts für die Implementierung</h4>
+<h4 id="_beispiel_prompts_für_die_implementierung"><a class="anchor" href="#_beispiel_prompts_für_die_implementierung"></a>3.6.1. Beispiel-Prompts für die Implementierung</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>Lies agents.adoc und specs/fsd.adoc.
@@ -1787,7 +1906,95 @@ Beginne mit dem Domain-Model und arbeite dich nach außen vor.</code></pre>
 <h2 id="_best_practices"><a class="anchor" href="#_best_practices"></a>4. Best Practices</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_kontext_management"><a class="anchor" href="#_kontext_management"></a>4.1. Kontext-Management</h3>
+<h3 id="_modellauswahl"><a class="anchor" href="#_modellauswahl"></a>4.1. Modellauswahl</h3>
+<div class="paragraph">
+<p>Die Wahl des Backend-Modells beeinflusst die Ergebnisqualität erheblich. Die meisten KI-Coding-Tools erlauben den Wechsel über <code>/model</code> oder in den Einstellungen.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Leistungsfähigere Modelle liefern bessere Ergebnisse bei:</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Komplexen Architekturentscheidungen</p>
+</li>
+<li>
+<p>Mehrstufigen Refactorings</p>
+</li>
+<li>
+<p>Verständnis großer Codebasen</p>
+</li>
+<li>
+<p>Konsistenz über längere Sessions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren Modelle verwenden (z.B. Claude Opus, GPT-4, Gemini Ultra).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Modelle im Vergleich (Stand 2026)</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Anbieter</th>
+<th class="tableblock halign-left valign-top">Top-Modell</th>
+<th class="tableblock halign-left valign-top">Stärken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Anthropic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Claude Opus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reasoning, lange Kontexte, Code-Qualität</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenAI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GPT-4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Breites Wissen, Tool-Integration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Google</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gemini Ultra</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Multimodal, schnelle Iteration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mistral</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mistral Large</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open-Source-nah, selbst hostbar</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Bei Budget-Einschränkungen: Für einfache Tasks (Formatierung, kleine Fixes) reichen kleinere Modelle. Für Architektur und komplexe Features das beste verfügbare Modell wählen.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kontext_management"><a class="anchor" href="#_kontext_management"></a>4.2. Kontext-Management</h3>
 <div class="paragraph">
 <p>Das wichtigste Ressource in Claude Code ist das <strong>Kontext-Fenster</strong>. Es füllt sich schnell mit Dateiinhalten und Command-Outputs.</p>
 </div>
@@ -1906,7 +2113,7 @@ Beginne mit dem Domain-Model und arbeite dich nach außen vor.</code></pre>
 </details>
 </div>
 <div class="sect2">
-<h3 id="_thinking_modi"><a class="anchor" href="#_thinking_modi"></a>4.2. Thinking-Modi</h3>
+<h3 id="_thinking_modi"><a class="anchor" href="#_thinking_modi"></a>4.3. Thinking-Modi</h3>
 <div class="paragraph">
 <p>Claude Code unterstützt verschiedene Denk-Intensitäten:</p>
 </div>
@@ -1949,7 +2156,7 @@ Authentifizierungs-Implementierung.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_subagents_für_spezialisierte_aufgaben"><a class="anchor" href="#_subagents_für_spezialisierte_aufgaben"></a>4.3. Subagents für spezialisierte Aufgaben</h3>
+<h3 id="_subagents_für_spezialisierte_aufgaben"><a class="anchor" href="#_subagents_für_spezialisierte_aufgaben"></a>4.4. Subagents für spezialisierte Aufgaben</h3>
 <div class="paragraph">
 <p>Für komplexe Reviews können dedizierte Subagents definiert werden:</p>
 </div>
@@ -1974,7 +2181,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_chat_protokollierung_mit_chats_adoc"><a class="anchor" href="#_chat_protokollierung_mit_chats_adoc"></a>4.4. Chat-Protokollierung mit chats.adoc</h3>
+<h3 id="_chat_protokollierung_mit_chats_adoc"><a class="anchor" href="#_chat_protokollierung_mit_chats_adoc"></a>4.5. Chat-Protokollierung mit chats.adoc</h3>
 <div class="paragraph">
 <p>Prompts und wichtige Entscheidungen sollten in einer <code>chats.adoc</code> protokolliert werden. Vorteile:</p>
 </div>
@@ -2009,7 +2216,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_workflow"><a class="anchor" href="#_workflow"></a>4.4.1. Workflow</h4>
+<h4 id="_workflow"><a class="anchor" href="#_workflow"></a>4.5.1. Workflow</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2028,7 +2235,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wichtig_selbsterklärende_antworten"><a class="anchor" href="#_wichtig_selbsterklärende_antworten"></a>4.4.2. Wichtig: Selbsterklärende Antworten</h4>
+<h4 id="_wichtig_selbsterklärende_antworten"><a class="anchor" href="#_wichtig_selbsterklärende_antworten"></a>4.5.2. Wichtig: Selbsterklärende Antworten</h4>
 <div class="paragraph">
 <p>Bei Ja/Nein-Fragen <strong>immer</strong> den Kontext wiederholen. Nach <code>/compact</code> geht sonst der Bezug verloren.</p>
 </div>
@@ -2055,8 +2262,7 @@ Ja</pre>
 <div class="content">
 <pre>&gt; Builder Pattern?
 Ja, verwende das Builder Pattern
-für die Bestellung-Entity, da sie
-viele optionale Felder hat.</pre>
+für die Bestellung-Entity.</pre>
 </div>
 </div></div></td>
 </tr>
@@ -2064,7 +2270,7 @@ viele optionale Felder hat.</pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_vorlage_chats_adoc"><a class="anchor" href="#_vorlage_chats_adoc"></a>4.4.3. Vorlage: chats.adoc</h4>
+<h4 id="_vorlage_chats_adoc"><a class="anchor" href="#_vorlage_chats_adoc"></a>4.5.3. Vorlage: chats.adoc</h4>
 <div class="listingblock">
 <div class="title">specs/chats.adoc</div>
 <div class="content">
@@ -2096,8 +2302,7 @@ Claude stellte 12 Fragen in den Kategorien:
 [source]
 ....
 1. Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
-2. Ja, verwende das Builder Pattern für Bestellung,
-   da sie viele optionale Felder hat
+2. Ja, verwende das Builder Pattern für die Bestellung-Entity
 3. Nein, kein Event Sourcing – klassisches CRUD reicht
    für unsere Anforderungen
 4. Ja, E-Mail-Benachrichtigungen bei Statusänderungen,
@@ -2140,7 +2345,7 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dateien_trennen_statt_verschmelzen"><a class="anchor" href="#_dateien_trennen_statt_verschmelzen"></a>4.5. Dateien trennen statt verschmelzen</h3>
+<h3 id="_dateien_trennen_statt_verschmelzen"><a class="anchor" href="#_dateien_trennen_statt_verschmelzen"></a>4.6. Dateien trennen statt verschmelzen</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2155,6 +2360,11 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CLAUDE.md</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einstiegspunkt für Claude Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selten (nur bei Strukturänderungen)</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>story.adoc</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Ursprüngliche Vision</p></td>
@@ -2172,7 +2382,7 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>agents.adoc</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Technische Anweisungen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Technische Anweisungen (Details)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Bei Tech-Entscheidungen</p></td>
 </tr>
 <tr>
@@ -2193,7 +2403,8 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code>mein-projekt/
-├── agents.adoc                    # Technische Spec für Claude
+├── CLAUDE.md                      # Einstiegspunkt für Claude Code
+├── agents.adoc                    # Technische Spec (Details)
 ├── specs/
 │   ├── story.adoc                 # Ursprüngliche Vision
 │   ├── fsd.adoc                   # Fachliche Spezifikation
@@ -2288,7 +2499,7 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-19 07:03:41 UTC
+Last updated 2026-03-19 07:20:14 UTC
 </div>
 </div>
 </body>
