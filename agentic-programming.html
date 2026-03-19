@@ -664,11 +664,12 @@ pre.rouge .gs {
 <ul class="sectlevel2">
 <li><a href="#_modellauswahl">4.1. Modellauswahl</a></li>
 <li><a href="#_sprache_beim_prompten">4.2. Sprache beim Prompten</a></li>
-<li><a href="#_kontext_management">4.3. Kontext-Management</a></li>
-<li><a href="#_thinking_modi">4.4. Thinking-Modi</a></li>
-<li><a href="#_subagents_für_spezialisierte_aufgaben">4.5. Subagents für spezialisierte Aufgaben</a></li>
-<li><a href="#_chat_protokollierung_mit_chats_adoc">4.6. Chat-Protokollierung mit chats.adoc</a></li>
-<li><a href="#_dateien_trennen_statt_verschmelzen">4.7. Dateien trennen statt verschmelzen</a></li>
+<li><a href="#_plan_mode">4.3. Plan Mode</a></li>
+<li><a href="#_kontext_management">4.4. Kontext-Management</a></li>
+<li><a href="#_thinking_modi">4.5. Thinking-Modi</a></li>
+<li><a href="#_subagents_für_spezialisierte_aufgaben">4.6. Subagents für spezialisierte Aufgaben</a></li>
+<li><a href="#_chat_protokollierung_mit_chats_adoc">4.7. Chat-Protokollierung mit chats.adoc</a></li>
+<li><a href="#_dateien_trennen_statt_verschmelzen">4.8. Dateien trennen statt verschmelzen</a></li>
 </ul>
 </li>
 <li><a href="#_anhang">5. Anhang</a>
@@ -1894,10 +1895,49 @@ definierten Package-Struktur.</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>Implementiere UC-001 (Bestellung aufgeben) aus specs/fsd.adoc.
+<pre class="rouge highlight"><code>Implementiere US-001 (Bestellung aufgeben) aus specs/fsd.adoc.
 Befolge die Architekturprinzipien aus agents.adoc.
-Beginne mit dem Domain-Model und arbeite dich nach außen vor.</code></pre>
+Beginne mit der Entity und arbeite dich nach außen vor.</code></pre>
 </div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code>Erstelle Tests für US-001 basierend auf den Akzeptanzkriterien
+in specs/fsd.adoc. Jedes Given/When/Then soll ein Testfall sein.</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Akzeptanzkriterien als Testgrundlage</strong></p>
+</div>
+<div class="paragraph">
+<p>Die Akzeptanzkriterien in der FSD (Gherkin-Format: Given/When/Then) sind die ideale Vorlage für Tests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Given</strong> → Test-Setup (Vorbedingungen)</p>
+</li>
+<li>
+<p><strong>When</strong> → Aktion ausführen (Methodenaufruf)</p>
+</li>
+<li>
+<p><strong>Then</strong> → Assertions (Erwartetes Ergebnis)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So stellst du sicher, dass die Tests genau das prüfen, was fachlich gefordert ist.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -2075,7 +2115,98 @@ Für Projekte mit deutschsprachiger Fachlichkeit (Glossar, User Stories, Team) i
 </div>
 </div>
 <div class="sect2">
-<h3 id="_kontext_management"><a class="anchor" href="#_kontext_management"></a>4.3. Kontext-Management</h3>
+<h3 id="_plan_mode"><a class="anchor" href="#_plan_mode"></a>4.3. Plan Mode</h3>
+<div class="paragraph">
+<p>Der Plan Mode ergänzt unseren Workflow auf Task-Ebene: Bevor Claude Code ausführt, zeigt er einen Umsetzungsplan und wartet auf Bestätigung.</p>
+</div>
+<div class="sect3">
+<h4 id="_aktivierung"><a class="anchor" href="#_aktivierung"></a>4.3.1. Aktivierung</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="bash"><span class="c"># Beim Start</span>
+claude <span class="nt">--plan</span> <span class="s2">"Implementiere US-001"</span>
+
+<span class="c"># Oder interaktiv</span>
+/plan Implementiere US-001 aus specs/fsd.adoc</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_vorteile"><a class="anchor" href="#_vorteile"></a>4.3.2. Vorteile</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Ohne Plan Mode</th>
+<th class="tableblock halign-left valign-top">Mit Plan Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Claude legt sofort los</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Claude zeigt erst den Plan</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fehler fallen spät auf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fehler werden früh erkannt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Schwer zu korrigieren</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Einfach anzupassen vor Umsetzung</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mehr Tokens bei Korrekturen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Weniger Iterationen</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_zusammenspiel_mit_unserem_workflow"><a class="anchor" href="#_zusammenspiel_mit_unserem_workflow"></a>4.3.3. Zusammenspiel mit unserem Workflow</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Ebene</th>
+<th class="tableblock halign-left valign-top">Planungsmethode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Projekt</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Unser Workflow (Story → FSD → Agents)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Task</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plan Mode (<code>/plan</code>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Unser Workflow trennt Planung von Implementierung auf Projektebene. Der Plan Mode macht dasselbe für einzelne Tasks – beides zusammen ergibt maximale Kontrolle.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Besonders bei komplexen User Stories oder Refactorings <code>/plan</code> verwenden. Bei einfachen Fixes (Typos, kleine Änderungen) ist der Plan Mode optional.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kontext_management"><a class="anchor" href="#_kontext_management"></a>4.4. Kontext-Management</h3>
 <div class="paragraph">
 <p>Das wichtigste Ressource in Claude Code ist das <strong>Kontext-Fenster</strong>. Es füllt sich schnell mit Dateiinhalten und Command-Outputs.</p>
 </div>
@@ -2194,7 +2325,7 @@ Für Projekte mit deutschsprachiger Fachlichkeit (Glossar, User Stories, Team) i
 </details>
 </div>
 <div class="sect2">
-<h3 id="_thinking_modi"><a class="anchor" href="#_thinking_modi"></a>4.4. Thinking-Modi</h3>
+<h3 id="_thinking_modi"><a class="anchor" href="#_thinking_modi"></a>4.5. Thinking-Modi</h3>
 <div class="paragraph">
 <p>Claude Code unterstützt verschiedene Denk-Intensitäten:</p>
 </div>
@@ -2237,7 +2368,7 @@ Authentifizierungs-Implementierung.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_subagents_für_spezialisierte_aufgaben"><a class="anchor" href="#_subagents_für_spezialisierte_aufgaben"></a>4.5. Subagents für spezialisierte Aufgaben</h3>
+<h3 id="_subagents_für_spezialisierte_aufgaben"><a class="anchor" href="#_subagents_für_spezialisierte_aufgaben"></a>4.6. Subagents für spezialisierte Aufgaben</h3>
 <div class="paragraph">
 <p>Für komplexe Reviews können dedizierte Subagents definiert werden:</p>
 </div>
@@ -2262,7 +2393,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_chat_protokollierung_mit_chats_adoc"><a class="anchor" href="#_chat_protokollierung_mit_chats_adoc"></a>4.6. Chat-Protokollierung mit chats.adoc</h3>
+<h3 id="_chat_protokollierung_mit_chats_adoc"><a class="anchor" href="#_chat_protokollierung_mit_chats_adoc"></a>4.7. Chat-Protokollierung mit chats.adoc</h3>
 <div class="paragraph">
 <p>Alle Prompts werden in <code>chats.adoc</code> protokolliert, bevor sie nach Claude Code kopiert werden. Vorteile:</p>
 </div>
@@ -2297,7 +2428,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_workflow"><a class="anchor" href="#_workflow"></a>4.6.1. Workflow</h4>
+<h4 id="_workflow"><a class="anchor" href="#_workflow"></a>4.7.1. Workflow</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2313,7 +2444,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wichtig_selbsterklärende_prompts"><a class="anchor" href="#_wichtig_selbsterklärende_prompts"></a>4.6.2. Wichtig: Selbsterklärende Prompts</h4>
+<h4 id="_wichtig_selbsterklärende_prompts"><a class="anchor" href="#_wichtig_selbsterklärende_prompts"></a>4.7.2. Wichtig: Selbsterklärende Prompts</h4>
 <div class="paragraph">
 <p>Bei Antworten auf Claudes Fragen <strong>immer</strong> den Kontext wiederholen. Nach <code>/compact</code> oder beim Neuaufbau des Kontexts fehlt sonst der Bezug.</p>
 </div>
@@ -2346,7 +2477,7 @@ für die Bestellung-Entity.</pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_vorlage_chats_adoc"><a class="anchor" href="#_vorlage_chats_adoc"></a>4.6.3. Vorlage: chats.adoc</h4>
+<h4 id="_vorlage_chats_adoc"><a class="anchor" href="#_vorlage_chats_adoc"></a>4.7.3. Vorlage: chats.adoc</h4>
 <div class="listingblock">
 <div class="title">specs/chats.adoc</div>
 <div class="content">
@@ -2400,7 +2531,7 @@ Claudes Antworten werden <strong>nicht</strong> protokolliert – sie können be
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dateien_trennen_statt_verschmelzen"><a class="anchor" href="#_dateien_trennen_statt_verschmelzen"></a>4.7. Dateien trennen statt verschmelzen</h3>
+<h3 id="_dateien_trennen_statt_verschmelzen"><a class="anchor" href="#_dateien_trennen_statt_verschmelzen"></a>4.8. Dateien trennen statt verschmelzen</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2554,7 +2685,7 @@ Claudes Antworten werden <strong>nicht</strong> protokolliert – sie können be
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-19 07:33:22 UTC
+Last updated 2026-03-19 07:42:36 UTC
 </div>
 </div>
 </body>
