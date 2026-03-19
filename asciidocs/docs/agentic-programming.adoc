@@ -995,10 +995,29 @@ definierten Package-Struktur.
 
 [source]
 ----
-Implementiere UC-001 (Bestellung aufgeben) aus specs/fsd.adoc.
+Implementiere US-001 (Bestellung aufgeben) aus specs/fsd.adoc.
 Befolge die Architekturprinzipien aus agents.adoc.
-Beginne mit dem Domain-Model und arbeite dich nach außen vor.
+Beginne mit der Entity und arbeite dich nach außen vor.
 ----
+
+[source]
+----
+Erstelle Tests für US-001 basierend auf den Akzeptanzkriterien
+in specs/fsd.adoc. Jedes Given/When/Then soll ein Testfall sein.
+----
+
+[NOTE]
+====
+*Akzeptanzkriterien als Testgrundlage*
+
+Die Akzeptanzkriterien in der FSD (Gherkin-Format: Given/When/Then) sind die ideale Vorlage für Tests:
+
+* *Given* → Test-Setup (Vorbedingungen)
+* *When* → Aktion ausführen (Methodenaufruf)
+* *Then* → Assertions (Erwartetes Ergebnis)
+
+So stellst du sicher, dass die Tests genau das prüfen, was fachlich gefordert ist.
+====
 
 == Best Practices
 
