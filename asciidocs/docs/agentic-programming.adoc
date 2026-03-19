@@ -805,6 +805,122 @@ Du bist ein Senior Security Engineer. Prüfe Code auf:
 Gib konkrete Zeilenreferenzen an.
 ----
 
+=== Chat-Protokollierung mit chats.adoc
+
+Prompts und wichtige Entscheidungen sollten in einer `chats.adoc` protokolliert werden. Vorteile:
+
+[cols="1,2"]
+|===
+| Vorteil | Beschreibung
+
+| Reproduzierbar
+| Kontext kann jederzeit neu aufgebaut werden
+
+| Dokumentation
+| Entscheidungen sind nachvollziehbar
+
+| Lerneffekt
+| Gute Prompts können wiederverwendet werden
+
+| Teamfähig
+| Kollegen sehen, wie das Projekt entstanden ist
+|===
+
+==== Workflow
+
+1. Prompt in `chats.adoc` schreiben
+2. Prompt nach Claude Code kopieren
+3. Claudes Antwort (zusammengefasst) dokumentieren
+4. Eigene Antworten vollständig protokollieren
+
+==== Wichtig: Selbsterklärende Antworten
+
+Bei Ja/Nein-Fragen *immer* den Kontext wiederholen. Nach `/compact` geht sonst der Bezug verloren.
+
+[cols="1,1"]
+|===
+| ❌ Schlecht | ✅ Gut
+
+a|
+----
+> Builder Pattern?
+Ja
+----
+
+a|
+----
+> Builder Pattern?
+Ja, verwende das Builder Pattern
+für die Bestellung-Entity, da sie
+viele optionale Felder hat.
+----
+
+|===
+
+==== Vorlage: chats.adoc
+
+.specs/chats.adoc
+[source,asciidoc]
+----
+= Chat-Protokoll: [Projektname]
+:revdate: 2026-03-19
+:toc: left
+
+== Session 1: Projektinitialisierung
+:session-date: 2026-03-19
+
+=== Prompt 1: Story-Analyse
+
+[source]
+....
+Lies specs/story.adoc und stelle mir Fragen zur Klärung
+der fachlichen Anforderungen.
+....
+
+==== Antwort Claude (Zusammenfassung)
+
+Claude stellte 12 Fragen in den Kategorien:
+
+* Benutzerrollen und Berechtigungen (4 Fragen)
+* Zahlungsabwicklung (3 Fragen)
+* Bestellprozess (5 Fragen)
+
+==== Meine Antworten
+
+[source]
+....
+1. Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
+2. Ja, verwende das Builder Pattern für Bestellung,
+   da sie viele optionale Felder hat
+3. Nein, kein Event Sourcing – klassisches CRUD reicht
+   für unsere Anforderungen
+4. Ja, E-Mail-Benachrichtigungen bei Statusänderungen,
+   aber asynchron über Message Queue
+....
+
+'''
+
+== Session 2: FSD-Generierung
+:session-date: 2026-03-20
+
+=== Prompt 1: FSD erstellen
+
+[source]
+....
+Erstelle basierend auf unserer Diskussion eine vollständige
+fachliche Spezifikation als specs/fsd.adoc.
+....
+
+==== Ergebnis
+
+FSD wurde generiert. Review-Anmerkungen:
+
+* [ ] Glossar-Begriff "Lieferung" ergänzen
+* [x] UC-003 Nachbedingung präzisiert
+----
+
+TIP: Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-History rekonstruiert werden. Die eigenen Entscheidungen hingegen vollständig dokumentieren.
+
 === Dateien trennen statt verschmelzen
 
 [cols="1,2,2"]
@@ -818,6 +934,10 @@ Gib konkrete Zeilenreferenzen an.
 | `specs/fsd.adoc`
 | Fachliche Wahrheit
 | Bei Scope-Änderungen
+
+| `specs/chats.adoc`
+| Prompt-Protokoll und Entscheidungen
+| Jede Session
 
 | `agents.adoc`
 | Technische Anweisungen
@@ -838,7 +958,8 @@ mein-projekt/
 ├── agents.adoc              # Technische Spec für Claude
 ├── specs/
 │   ├── story.adoc           # Ursprüngliche Vision
-│   └── fsd.adoc             # Fachliche Spezifikation
+│   ├── fsd.adoc             # Fachliche Spezifikation
+│   └── chats.adoc           # Prompt-Protokoll
 ├── .claude/
 │   ├── agents/              # Spezialisierte Subagents
 │   ├── commands/            # Eigene Slash-Commands
