@@ -365,6 +365,8 @@ keine technischen Implementierungsdetails.
 
 ==== Erwartete Struktur der fsd.adoc
 
+Die fachliche Spezifikation verwendet *User Stories* als primäres Format – passend für Scrum-basierte Entwicklung an HTLs und in agilen Teams.
+
 .specs/fsd.adoc (generiert)
 [source,asciidoc]
 ----
@@ -395,7 +397,7 @@ keine technischen Implementierungsdetails.
 | Einzelne Zeile einer Bestellung mit Produkt, Menge, Preis
 |===
 
-== Akteure
+== Akteure / Rollen
 
 === Kunde
 * Kann Produkte suchen und bestellen
@@ -405,30 +407,77 @@ keine technischen Implementierungsdetails.
 * Kann alle Bestellungen einsehen
 * Kann Bestellstatus ändern
 
-== Anwendungsfälle
+== Epics und User Stories
 
-=== UC-001: Bestellung aufgeben
+=== Epic: Bestellprozess
+
+==== US-001: Bestellung aufgeben
 
 [horizontal]
-Akteur:: Kunde
-Vorbedingung:: Warenkorb enthält mindestens einen Artikel
-Auslöser:: Kunde klickt "Bestellen"
+Story:: Als *Kunde* möchte ich *meinen Warenkorb bestellen können*,
+        damit *ich die gewünschten Produkte erhalte*.
+Priorität:: Hoch
+Story Points:: 8
+Sprint:: 1
 
-==== Ablauf
-1. System zeigt Bestellübersicht
-2. Kunde wählt Lieferadresse
-3. Kunde wählt Zahlungsart
-4. Kunde bestätigt Bestellung
-5. System erzeugt Bestellung mit Status "offen"
-6. System sendet Bestätigungs-E-Mail
+===== Akzeptanzkriterien
 
-==== Nachbedingung
-* Bestellung existiert mit Status "offen"
-* Warenkorb ist geleert
+[source,gherkin]
+....
+Given ich bin eingeloggt
+  And mein Warenkorb enthält mindestens einen Artikel
+When ich auf "Bestellen" klicke
+  And ich eine Lieferadresse auswähle
+  And ich eine Zahlungsart auswähle
+  And ich die Bestellung bestätige
+Then wird eine Bestellung mit Status "offen" erzeugt
+  And ich erhalte eine Bestätigungs-E-Mail
+  And mein Warenkorb ist geleert
+....
 
-==== Geschäftsregeln
-* <<BR-001>>
-* <<BR-003>>
+===== Geschäftsregeln
+* <<BR-001>>: Mindestbestellwert 10 EUR
+* <<BR-003>>: Maximal 99 Stück pro Position
+
+===== Tasks
+* [ ] REST-Endpoint POST /api/bestellungen
+* [ ] BestellungService implementieren
+* [ ] E-Mail-Versand (async)
+* [ ] Unit Tests
+* [ ] Integration Tests
+
+==== US-002: Bestellstatus einsehen
+
+[horizontal]
+Story:: Als *Kunde* möchte ich *den Status meiner Bestellungen sehen*,
+        damit *ich weiß, wann meine Lieferung ankommt*.
+Priorität:: Mittel
+Story Points:: 3
+Sprint:: 1
+
+===== Akzeptanzkriterien
+
+[source,gherkin]
+....
+Given ich bin eingeloggt
+  And ich habe mindestens eine Bestellung
+When ich meine Bestellübersicht öffne
+Then sehe ich alle meine Bestellungen mit aktuellem Status
+  And die Bestellungen sind nach Datum sortiert (neueste zuerst)
+....
+
+=== Epic: Bestellverwaltung
+
+==== US-010: Bestellung stornieren
+
+[horizontal]
+Story:: Als *Sachbearbeiter* möchte ich *eine Bestellung stornieren können*,
+        damit *ich auf Kundenwünsche reagieren kann*.
+Priorität:: Mittel
+Story Points:: 5
+Sprint:: 2
+
+// Weitere User Stories...
 
 == Geschäftsregeln
 
@@ -443,30 +492,128 @@ Pro Position können maximal 99 Stück bestellt werden.
 == Fachliches Datenmodell
 
 [plantuml]
-----
+....
 @startuml
 entity Bestellung {
-nummer: Bestellnummer
-datum: Datum
-status: Bestellstatus
-gesamtbetrag: Geldbetrag
+  nummer: Bestellnummer
+  datum: Datum
+  status: Bestellstatus
+  gesamtbetrag: Geldbetrag
 }
 
 entity Bestellposition {
-menge: Anzahl
-einzelpreis: Geldbetrag
+  menge: Anzahl
+  einzelpreis: Geldbetrag
 }
 
 entity Kunde {
-kundennummer: Kundennummer
-name: Personenname
+  kundennummer: Kundennummer
+  name: Personenname
 }
 
 Kunde ||--|{ Bestellung
 Bestellung ||--|{ Bestellposition
 @enduml
+....
+
+== Sprint-Planung
+
+=== Sprint 1
+* US-001: Bestellung aufgeben (8 SP)
+* US-002: Bestellstatus einsehen (3 SP)
+* Velocity: 11 SP
+
+=== Sprint 2
+* US-010: Bestellung stornieren (5 SP)
+* ...
 ----
+
+.Alternative: Use-Case-Spezifikation (klassisch)
+[%collapsible]
+====
+Für Projekte, die eine klassische Use-Case-Dokumentation bevorzugen:
+
+[source,asciidoc]
 ----
+== Anwendungsfälle
+
+=== UC-001: Bestellung aufgeben
+
+[horizontal]
+Akteur:: Kunde
+Vorbedingung:: Warenkorb enthält mindestens einen Artikel
+Auslöser:: Kunde klickt "Bestellen"
+
+==== Ablauf
+1. System zeigt Bestellübersicht
+2. Kunde wählt Lieferadresse
+3. Kunde wählt Zahlungsart
+4. Kunde bestätigt Bestellung
+5. System prüft Geschäftsregeln (BR-001, BR-003)
+6. System erzeugt Bestellung mit Status "offen"
+7. System sendet Bestätigungs-E-Mail
+
+==== Alternativabläufe
+
+*4a. Mindestbestellwert nicht erreicht:*
+
+  4a1. System zeigt Fehlermeldung
+  4a2. Zurück zu Schritt 1
+
+*5a. Zahlungsautorisierung fehlgeschlagen:*
+
+  5a1. System zeigt Zahlungsfehler
+  5a2. Zurück zu Schritt 3
+
+==== Nachbedingung
+* Bestellung existiert mit Status "offen"
+* Warenkorb ist geleert
+* Bestätigungs-E-Mail wurde versendet
+
+==== Geschäftsregeln
+* <<BR-001>>
+* <<BR-003>>
+
+==== Activity Diagram
+
+[plantuml]
+....
+@startuml
+start
+:Bestellübersicht anzeigen;
+
+:Lieferadresse auswählen;
+
+:Zahlungsart auswählen;
+
+:Bestellung bestätigen;
+
+if (Mindestbestellwert erreicht?) then (ja)
+  if (Zahlungsautorisierung OK?) then (ja)
+    :Bestellung erzeugen;
+    :Status = "offen";
+    fork
+      :Warenkorb leeren;
+    fork again
+      :Bestätigungs-E-Mail senden;
+    end fork
+    :Bestellbestätigung anzeigen;
+  else (nein)
+    :Zahlungsfehler anzeigen;
+    stop
+  endif
+else (nein)
+  :Fehlermeldung anzeigen;
+  stop
+endif
+
+stop
+@enduml
+....
+----
+====
+
+TIP: User Stories eignen sich besser für iterative Entwicklung mit Scrum. Use Cases sind nützlich für komplexe Abläufe mit vielen Alternativpfaden oder wenn eine formale Dokumentation gefordert ist.
 
 === Schritt 4: AGENTS.adoc generieren lassen
 
@@ -509,51 +656,53 @@ Diese Datei ist die Single Source of Truth für das WAS.
 |===
 | Komponente | Version/Details
 
-| Java | 21 (LTS)
-| Build | Gradle 8.x (Kotlin DSL)
-| Framework | Spring Boot 3.3.x
-| Datenbank | PostgreSQL 16
+| Java | 25 (LTS)
+| Build | Maven 3.9.x
+| Framework | Quarkus 3.x
+| Datenbank | PostgreSQL 18
+| ORM | Hibernate ORM mit Panache
 | Migration | Flyway
-| API-Docs | springdoc-openapi
+| API-Docs | SmallRye OpenAPI
+| JSON | Jackson
 |===
 
 == Architektur
 
-=== Hexagonale Architektur
+=== Layer-Architektur
 
-[source]
-----
-src/main/java/com/beispiel/projekt/
-├── domain/           # Reine Fachlogik
-│   ├── model/        # Entities, Value Objects
-│   ├── service/      # Domain Services
-│   └── port/
-│       ├── in/       # Eingehende Ports (Use Cases)
-│       └── out/      # Ausgehende Ports (Repositories)
-├── application/      # Use-Case-Implementierungen
-│   └── usecase/
-└── adapter/          # Technische Adapter
-├── in/
-│   └── web/      # REST Controller
-└── out/
-└── persistence/  # JPA Repositories
-----
+....
+src/main/java/at/htl/projekt/
+├── entity/                # JPA Entities
+│   ├── Bestellung.java
+│   └── Bestellposition.java
+├── repository/            # Data Access (Panache)
+│   └── BestellungRepository.java
+├── service/               # Business Logic
+│   └── BestellungService.java
+├── boundary/              # REST Resources
+│   └── BestellungResource.java
+└── dto/                   # Data Transfer Objects
+    ├── BestellungDTO.java
+    └── CreateBestellungDTO.java
+....
 
-=== Dependency Rule
+=== Schichten-Regeln
 
 [IMPORTANT]
 ====
-* `domain/` kennt NUR sich selbst – keine Framework-Imports
-* `application/` kennt `domain/`
-* `adapter/` kennt `application/` und `domain/`
+* `boundary/` → ruft `service/` auf
+* `service/` → ruft `repository/` auf, enthält Geschäftslogik
+* `repository/` → Datenzugriff via Panache
+* `entity/` → JPA-Entities mit Validierung
+* `dto/` → Für REST-Schnittstellen, keine Entities nach außen
 ====
 
 == Coding-Konventionen
 
 === Allgemein
-* Package-Prefix: `com.beispiel.projekt`
+* Package-Prefix: `at.htl.projekt`
 * Keine Wildcards in Imports
-* Records für Value Objects
+* Records für DTOs
 * Optional statt null-Returns
 
 === Naming
@@ -561,11 +710,15 @@ src/main/java/com/beispiel/projekt/
 * Methoden/Variablen: camelCase
 * Konstanten: SCREAMING_SNAKE_CASE
 * Packages: lowercase
+* REST-Resources: `*Resource.java`
+* Services: `*Service.java`
+* Repositories: `*Repository.java`
 
-=== Domain-Regeln
-* Entities: Fachbegriffe aus FSD-Glossar verwenden
-* Keine @Entity, @Id etc. in domain/model/
-* Validierung in Konstruktoren/Factory-Methoden
+=== Quarkus-spezifisch
+* CDI für Dependency Injection (`@Inject`, `@ApplicationScoped`)
+* Panache Active Record oder Repository Pattern
+* `@Transactional` auf Service-Methoden
+* `application.properties` für Konfiguration
 
 == Mapping: FSD → Code
 
@@ -574,20 +727,20 @@ src/main/java/com/beispiel/projekt/
 | FSD-Element | Code-Artefakt | Beispiel
 
 | Glossar-Begriff
-| Klasse in `domain/model/`
+| Entity in `entity/`
 | `Bestellung.java`
 
-| Anwendungsfall
-| Interface in `domain/port/in/`
-| `BestellungAufgebenUseCase.java`
+| User Story
+| Service-Methode + REST-Endpoint
+| `BestellungService.aufgeben()`
 
 | Geschäftsregel
-| Methode in Entity oder Domain Service
+| Validierung in Entity oder Service
 | `Bestellung.validiereMindestwert()`
 
 | Akteur
 | Security Role
-| `ROLE_KUNDE`, `ROLE_SACHBEARBEITER`
+| `@RolesAllowed("kunde")`
 |===
 
 == Test-Strategie
@@ -597,32 +750,32 @@ src/main/java/com/beispiel/projekt/
 | Ebene | Scope | Technologie
 
 | Unit Tests
-| Domain-Logik
-| JUnit 5, AssertJ
+| Services, Entities
+| JUnit 5, AssertJ, Mockito
 
 | Integration Tests
-| Adapter, Repositories
-| Testcontainers, @DataJpaTest
+| Repository, REST
+| @QuarkusTest, Testcontainers
 
 | API Tests
 | REST-Endpoints
-| MockMvc, REST Assured
+| REST Assured
 
 | Acceptance Tests
-| Use Cases End-to-End
+| User Stories End-to-End
 | Cucumber (optional)
 |===
 
 == Workflow für Claude Code
 
-=== Bei neuen Features
+=== Bei neuen User Stories
 
 1. `specs/fsd.adoc` konsultieren
-2. Relevanten Use Case identifizieren
-3. Port-Interface in `domain/port/in/` erstellen
-4. Domain-Klassen implementieren (falls nötig)
-5. Use-Case-Implementierung in `application/`
-6. Adapter implementieren (REST, Persistence)
+2. Relevante User Story identifizieren
+3. Entity erstellen/erweitern (falls nötig)
+4. Repository erstellen/erweitern
+5. Service-Methode implementieren
+6. REST-Resource implementieren
 7. Tests auf allen Ebenen
 
 === Regeln
@@ -634,26 +787,25 @@ src/main/java/com/beispiel/projekt/
 
 == Prompts für häufige Aufgaben
 
-=== Neuen Use Case implementieren
+=== Neue User Story implementieren
 
 [source]
-----
-Implementiere UC-XXX aus specs/fsd.adoc.
-Beginne mit dem Port-Interface, dann Domain,
-dann Application, dann Adapter.
+....
+Implementiere US-XXX aus specs/fsd.adoc.
+Erstelle Entity, Repository, Service und Resource.
 Schreibe Tests für jede Schicht.
-----
+....
 
 === Code Review anfordern
 
 [source]
-----
+....
 Prüfe [Datei/Package] auf:
-- Einhaltung der Architekturprinzipien
+- Einhaltung der Schichten-Architektur
 - Clean Code und SOLID
 - Vollständigkeit der Tests
 - Übereinstimmung mit fsd.adoc
-----
+....
 ----
 
 === Schritt 5: Implementierung starten
@@ -955,24 +1107,31 @@ TIP: Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Ses
 [source]
 ----
 mein-projekt/
-├── agents.adoc              # Technische Spec für Claude
+├── agents.adoc                    # Technische Spec für Claude
 ├── specs/
-│   ├── story.adoc           # Ursprüngliche Vision
-│   ├── fsd.adoc             # Fachliche Spezifikation
-│   └── chats.adoc           # Prompt-Protokoll
+│   ├── story.adoc                 # Ursprüngliche Vision
+│   ├── fsd.adoc                   # Fachliche Spezifikation
+│   └── chats.adoc                 # Prompt-Protokoll
 ├── .claude/
-│   ├── agents/              # Spezialisierte Subagents
-│   ├── commands/            # Eigene Slash-Commands
-│   └── settings.json        # Projekteinstellungen
+│   ├── agents/                    # Spezialisierte Subagents
+│   ├── commands/                  # Eigene Slash-Commands
+│   └── settings.json              # Projekteinstellungen
 ├── src/
 │   ├── main/
-│   │   ├── java/
+│   │   ├── java/at/htl/projekt/
+│   │   │   ├── entity/            # JPA Entities
+│   │   │   ├── repository/        # Panache Repositories
+│   │   │   ├── service/           # Business Logic
+│   │   │   ├── boundary/          # REST Resources
+│   │   │   └── dto/               # Data Transfer Objects
 │   │   └── resources/
+│   │       └── application.properties
 │   └── test/
+│       └── java/at/htl/projekt/
 ├── docs/
-│   ├── architecture.adoc    # Architektur-Entscheidungen
-│   └── api.adoc             # API-Dokumentation
-├── build.gradle.kts
+│   ├── architecture.adoc          # Architektur-Entscheidungen
+│   └── api.adoc                   # API-Dokumentation
+├── pom.xml                        # Maven Build
 └── README.adoc
 ----
 
