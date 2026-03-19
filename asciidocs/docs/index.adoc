@@ -455,6 +455,8 @@ Löschen von Containern, Images, Networks  und Volumes.
 .Lösung
 [%collapsible]
 ====
+
+.clean-docker.sh
 [source,shell]
 ----
 #!/usr/bin/env bash
