@@ -663,11 +663,12 @@ pre.rouge .gs {
 <li><a href="#_best_practices">4. Best Practices</a>
 <ul class="sectlevel2">
 <li><a href="#_modellauswahl">4.1. Modellauswahl</a></li>
-<li><a href="#_kontext_management">4.2. Kontext-Management</a></li>
-<li><a href="#_thinking_modi">4.3. Thinking-Modi</a></li>
-<li><a href="#_subagents_für_spezialisierte_aufgaben">4.4. Subagents für spezialisierte Aufgaben</a></li>
-<li><a href="#_chat_protokollierung_mit_chats_adoc">4.5. Chat-Protokollierung mit chats.adoc</a></li>
-<li><a href="#_dateien_trennen_statt_verschmelzen">4.6. Dateien trennen statt verschmelzen</a></li>
+<li><a href="#_sprache_beim_prompten">4.2. Sprache beim Prompten</a></li>
+<li><a href="#_kontext_management">4.3. Kontext-Management</a></li>
+<li><a href="#_thinking_modi">4.4. Thinking-Modi</a></li>
+<li><a href="#_subagents_für_spezialisierte_aufgaben">4.5. Subagents für spezialisierte Aufgaben</a></li>
+<li><a href="#_chat_protokollierung_mit_chats_adoc">4.6. Chat-Protokollierung mit chats.adoc</a></li>
+<li><a href="#_dateien_trennen_statt_verschmelzen">4.7. Dateien trennen statt verschmelzen</a></li>
 </ul>
 </li>
 <li><a href="#_anhang">5. Anhang</a>
@@ -1994,7 +1995,87 @@ Bei Budget-Einschränkungen: Für einfache Tasks (Formatierung, kleine Fixes) re
 </div>
 </div>
 <div class="sect2">
-<h3 id="_kontext_management"><a class="anchor" href="#_kontext_management"></a>4.2. Kontext-Management</h3>
+<h3 id="_sprache_beim_prompten"><a class="anchor" href="#_sprache_beim_prompten"></a>4.2. Sprache beim Prompten</h3>
+<div class="paragraph">
+<p>Ein verbreiteter Mythos: Englische Prompts sparen Tokens. Die Ersparnis ist jedoch minimal und lohnt sich praktisch nicht.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Token-Verbrauch im Vergleich</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Komponente</th>
+<th class="tableblock halign-left valign-top">Beispiel</th>
+<th class="tableblock halign-left valign-top">Anteil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dein Prompt</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">20-50 Tokens</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; 1%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gelesene Dateien</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10.000-30.000 Tokens</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~50%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Claudes Antwort + Code</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10.000-30.000 Tokens</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">~50%</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Die Sprache des Prompts beeinflusst den Gesamtverbrauch kaum – der Code und Kontext dominieren.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><strong>Schreibe in der Sprache, in der du am präzisesten formulieren kannst.</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Unklare Prompts → Rückfragen → <strong>mehr</strong> Tokens</p>
+</li>
+<li>
+<p>Missverständnisse → Korrekturen → <strong>mehr</strong> Tokens</p>
+</li>
+<li>
+<p>Muttersprache → präziser → <strong>weniger</strong> Iterationen</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Für Projekte mit deutschsprachiger Fachlichkeit (Glossar, User Stories, Team) ist Deutsch die bessere Wahl. Die KI versteht beide Sprachen gleich gut.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kontext_management"><a class="anchor" href="#_kontext_management"></a>4.3. Kontext-Management</h3>
 <div class="paragraph">
 <p>Das wichtigste Ressource in Claude Code ist das <strong>Kontext-Fenster</strong>. Es füllt sich schnell mit Dateiinhalten und Command-Outputs.</p>
 </div>
@@ -2113,7 +2194,7 @@ Bei Budget-Einschränkungen: Für einfache Tasks (Formatierung, kleine Fixes) re
 </details>
 </div>
 <div class="sect2">
-<h3 id="_thinking_modi"><a class="anchor" href="#_thinking_modi"></a>4.3. Thinking-Modi</h3>
+<h3 id="_thinking_modi"><a class="anchor" href="#_thinking_modi"></a>4.4. Thinking-Modi</h3>
 <div class="paragraph">
 <p>Claude Code unterstützt verschiedene Denk-Intensitäten:</p>
 </div>
@@ -2156,7 +2237,7 @@ Authentifizierungs-Implementierung.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_subagents_für_spezialisierte_aufgaben"><a class="anchor" href="#_subagents_für_spezialisierte_aufgaben"></a>4.4. Subagents für spezialisierte Aufgaben</h3>
+<h3 id="_subagents_für_spezialisierte_aufgaben"><a class="anchor" href="#_subagents_für_spezialisierte_aufgaben"></a>4.5. Subagents für spezialisierte Aufgaben</h3>
 <div class="paragraph">
 <p>Für komplexe Reviews können dedizierte Subagents definiert werden:</p>
 </div>
@@ -2181,9 +2262,9 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_chat_protokollierung_mit_chats_adoc"><a class="anchor" href="#_chat_protokollierung_mit_chats_adoc"></a>4.5. Chat-Protokollierung mit chats.adoc</h3>
+<h3 id="_chat_protokollierung_mit_chats_adoc"><a class="anchor" href="#_chat_protokollierung_mit_chats_adoc"></a>4.6. Chat-Protokollierung mit chats.adoc</h3>
 <div class="paragraph">
-<p>Prompts und wichtige Entscheidungen sollten in einer <code>chats.adoc</code> protokolliert werden. Vorteile:</p>
+<p>Alle Prompts werden in <code>chats.adoc</code> protokolliert, bevor sie nach Claude Code kopiert werden. Vorteile:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2216,7 +2297,7 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_workflow"><a class="anchor" href="#_workflow"></a>4.5.1. Workflow</h4>
+<h4 id="_workflow"><a class="anchor" href="#_workflow"></a>4.6.1. Workflow</h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -2226,18 +2307,15 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 <p>Prompt nach Claude Code kopieren</p>
 </li>
 <li>
-<p>Claudes Antwort (zusammengefasst) dokumentieren</p>
-</li>
-<li>
-<p>Eigene Antworten vollständig protokollieren</p>
+<p>Weiterarbeiten – <strong>Claudes Antworten müssen nicht protokolliert werden</strong></p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_wichtig_selbsterklärende_antworten"><a class="anchor" href="#_wichtig_selbsterklärende_antworten"></a>4.5.2. Wichtig: Selbsterklärende Antworten</h4>
+<h4 id="_wichtig_selbsterklärende_prompts"><a class="anchor" href="#_wichtig_selbsterklärende_prompts"></a>4.6.2. Wichtig: Selbsterklärende Prompts</h4>
 <div class="paragraph">
-<p>Bei Ja/Nein-Fragen <strong>immer</strong> den Kontext wiederholen. Nach <code>/compact</code> geht sonst der Bezug verloren.</p>
+<p>Bei Antworten auf Claudes Fragen <strong>immer</strong> den Kontext wiederholen. Nach <code>/compact</code> oder beim Neuaufbau des Kontexts fehlt sonst der Bezug.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -2254,14 +2332,12 @@ Gib konkrete Zeilenreferenzen an.</code></pre>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre>&gt; Builder Pattern?
-Ja</pre>
+<pre>Ja</pre>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="listingblock">
 <div class="content">
-<pre>&gt; Builder Pattern?
-Ja, verwende das Builder Pattern
+<pre>Ja, verwende das Builder Pattern
 für die Bestellung-Entity.</pre>
 </div>
 </div></div></td>
@@ -2270,74 +2346,53 @@ für die Bestellung-Entity.</pre>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_vorlage_chats_adoc"><a class="anchor" href="#_vorlage_chats_adoc"></a>4.5.3. Vorlage: chats.adoc</h4>
+<h4 id="_vorlage_chats_adoc"><a class="anchor" href="#_vorlage_chats_adoc"></a>4.6.3. Vorlage: chats.adoc</h4>
 <div class="listingblock">
 <div class="title">specs/chats.adoc</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="asciidoc">= Chat-Protokoll: [Projektname]
-:revdate: 2026-03-19
-:toc: left
 
-== Session 1: Projektinitialisierung
-:session-date: 2026-03-19
+== Session 1
 
-=== Prompt 1: Story-Analyse
-
-[source]
-....
 Lies specs/story.adoc und stelle mir Fragen zur Klärung
 der fachlichen Anforderungen.
-....
-
-==== Antwort Claude (Zusammenfassung)
-
-Claude stellte 12 Fragen in den Kategorien:
-
-* Benutzerrollen und Berechtigungen (4 Fragen)
-* Zahlungsabwicklung (3 Fragen)
-* Bestellprozess (5 Fragen)
-
-==== Meine Antworten
-
-[source]
-....
-1. Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
-2. Ja, verwende das Builder Pattern für die Bestellung-Entity
-3. Nein, kein Event Sourcing – klassisches CRUD reicht
-   für unsere Anforderungen
-4. Ja, E-Mail-Benachrichtigungen bei Statusänderungen,
-   aber asynchron über Message Queue
-....
 
 '''
 
-== Session 2: FSD-Generierung
-:session-date: 2026-03-20
+Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
 
-=== Prompt 1: FSD erstellen
+'''
 
-[source]
-....
+Ja, verwende das Builder Pattern für die Bestellung-Entity
+
+'''
+
+Nein, kein Event Sourcing – klassisches CRUD reicht
+
+'''
+
 Erstelle basierend auf unserer Diskussion eine vollständige
 fachliche Spezifikation als specs/fsd.adoc.
-....
 
-==== Ergebnis
+== Session 2
 
-FSD wurde generiert. Review-Anmerkungen:
+Implementiere US-001 aus specs/fsd.adoc.
+Erstelle Entity, Repository, Service und Resource.
+Schreibe Tests für jede Schicht.
 
-* [ ] Glossar-Begriff "Lieferung" ergänzen
-* [x] UC-003 Nachbedingung präzisiert</code></pre>
+'''
+
+Nein, die Validierung soll im Service erfolgen, nicht in der Entity.</code></pre>
 </div>
 </div>
-<div class="admonitionblock tip">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-History rekonstruiert werden. Die eigenen Entscheidungen hingegen vollständig dokumentieren.
+Claudes Antworten werden <strong>nicht</strong> protokolliert – sie können bei Bedarf aus der Claude Code Session-History (<code>/history</code>) rekonstruiert werden.
 </td>
 </tr>
 </table>
@@ -2345,7 +2400,7 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 </div>
 </div>
 <div class="sect2">
-<h3 id="_dateien_trennen_statt_verschmelzen"><a class="anchor" href="#_dateien_trennen_statt_verschmelzen"></a>4.6. Dateien trennen statt verschmelzen</h3>
+<h3 id="_dateien_trennen_statt_verschmelzen"><a class="anchor" href="#_dateien_trennen_statt_verschmelzen"></a>4.7. Dateien trennen statt verschmelzen</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -2499,7 +2554,7 @@ Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Session-
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-19 07:20:14 UTC
+Last updated 2026-03-19 07:33:22 UTC
 </div>
 </div>
 </body>
