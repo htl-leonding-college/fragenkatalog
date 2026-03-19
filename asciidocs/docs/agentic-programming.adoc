@@ -1,0 +1,834 @@
+= Agentisches Programmieren mit Claude Code
+:author: Leitfaden für strukturiertes AI-gestütztes Development
+:revdate: 2026-03-19
+:toc: left
+:toclevels: 3
+:icons: font
+:source-highlighter: highlight.js
+:sectnums:
+
+== Einführung
+
+Agentisches Programmieren (Agentic Coding) beschreibt einen Paradigmenwechsel in der Softwareentwicklung: Statt passiver Code-Vervollständigung arbeitet Claude Code als autonomer Agent, der eigenständig Code erkundet, editiert und erklärt – über das gesamte Projekt hinweg.
+
+Dieser Leitfaden beschreibt einen strukturierten Workflow, bei dem die *fachliche Spezifikation* (WAS) klar von der *technischen Implementierung* (WIE) getrennt wird.
+
+=== Workflow-Übersicht
+
+[plantuml]
+----
+@startuml
+!theme plain
+skinparam backgroundColor transparent
+
+rectangle "1. Story erstellen" as S
+rectangle "2. Fragen beantworten" as F
+rectangle "3. FSD.adoc generieren" as FSD
+rectangle "4. AGENTS.adoc generieren" as A
+rectangle "5. Implementierung" as I
+
+S --> F : Claude analysiert
+F --> FSD : Fachlichkeit
+F --> A : Technik
+FSD --> I
+A --> I
+@enduml
+----
+
+== Installation von Claude Code
+
+=== macOS (mit Homebrew)
+
+==== Variante 1: Native Installer (empfohlen)
+
+Der native Installer benötigt kein Node.js und aktualisiert sich automatisch:
+
+[source,bash]
+----
+curl -fsSL https://claude.ai/install.sh | bash
+----
+
+Nach der Installation ein neues Terminal-Fenster öffnen, dann:
+
+[source,bash]
+----
+claude --version
+----
+
+==== Variante 2: Homebrew Cask
+
+[source,bash]
+----
+brew install --cask claude-code
+claude --version
+----
+
+IMPORTANT: Homebrew-Installationen aktualisieren sich *nicht* automatisch. Regelmäßig `brew upgrade claude-code` ausführen.
+
+==== Variante 3: npm (falls Node.js bevorzugt wird)
+
+Voraussetzung: Node.js 18+
+
+[source,bash]
+----
+# Falls Node.js fehlt
+brew install node
+
+# Claude Code installieren
+npm install -g @anthropic-ai/claude-code
+
+# Bei "command not found":
+echo 'export PATH="$(npm config get prefix)/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+claude --version
+----
+
+=== Linux
+
+==== Variante 1: Native Installer (empfohlen)
+
+[source,bash]
+----
+curl -fsSL https://claude.ai/install.sh | bash
+----
+
+Falls `command not found` erscheint:
+
+[source,bash]
+----
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+----
+
+==== Variante 2: Homebrew (falls installiert)
+
+[source,bash]
+----
+brew install --cask claude-code
+----
+
+==== Variante 3: npm
+
+[source,bash]
+----
+# npm-Verzeichnis ohne sudo einrichten
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+# Installation
+npm install -g @anthropic-ai/claude-code
+claude --version
+----
+
+CAUTION: Niemals `sudo npm install -g` verwenden – das verursacht Berechtigungsprobleme.
+
+=== Windows
+
+==== Variante 1: PowerShell (Native Installer)
+
+[source,powershell]
+----
+irm https://claude.ai/install.ps1 | iex
+claude --version
+----
+
+==== Variante 2: CMD
+
+[source,cmd]
+----
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+----
+
+==== Variante 3: WSL (Windows Subsystem for Linux)
+
+WSL 1 und WSL 2 werden unterstützt. Nach WSL-Setup die Linux-Anweisungen befolgen.
+
+==== Variante 4: Git Bash
+
+Zuerst https://gitforwindows.org/[Git for Windows] installieren, dann:
+
+[source,bash]
+----
+curl -fsSL https://claude.ai/install.sh | bash
+----
+
+=== Authentifizierung
+
+Nach der Installation:
+
+[source,bash]
+----
+claude auth login
+----
+
+Dies öffnet den Browser für OAuth-Authentifizierung. Alternativ:
+
+[source,bash]
+----
+export ANTHROPIC_API_KEY="sk-ant-..."
+----
+
+NOTE: Claude Code erfordert einen Pro, Max, Teams, Enterprise oder Console Account.
+
+== Der strukturierte Workflow
+
+=== Schritt 1: Story erstellen
+
+Die `story.adoc` ist der Ausgangspunkt – eine grobe Skizze der Aufgabenstellung mit technischen Rahmenbedingungen.
+
+==== Verzeichnisstruktur anlegen
+
+[source,bash]
+----
+mkdir -p mein-projekt/specs
+cd mein-projekt
+----
+
+==== story.adoc erstellen
+
+.specs/story.adoc
+[source,asciidoc]
+----
+= Story: [Projektname]
+:revdate: 2026-03-19
+
+== Vision
+
+[2-3 Sätze: Was soll das System leisten? Welches Problem löst es?]
+
+== Grobe Anforderungen
+
+* [Anforderung 1]
+* [Anforderung 2]
+* [Anforderung 3]
+
+== Technische Rahmenbedingungen
+
+[cols="1,2"]
+|===
+| Aspekt | Vorgabe
+
+| Sprache
+| Java 21
+
+| Build-Tool
+| Maven / Gradle
+
+| Framework
+| Spring Boot 3.x / Quarkus / ...
+
+| Datenbank
+| PostgreSQL / MongoDB / ...
+
+| Architektur
+| Hexagonale Architektur / Clean Architecture / ...
+
+| Design Patterns
+| Repository, Factory, Strategy, ...
+
+| Dokumentation
+| AsciiDoc (.adoc)
+
+| Tests
+| JUnit 5, AssertJ, Testcontainers
+|===
+
+== Offene Fragen
+
+* [Was ist noch unklar?]
+* [Welche Entscheidungen stehen aus?]
+
+== Nicht-Ziele (Out of Scope)
+
+* [Was gehört explizit NICHT zum Projekt?]
+----
+
+==== Beispiel: Bestellsystem
+
+.specs/story.adoc (Beispiel)
+[source,asciidoc]
+----
+= Story: Online-Bestellsystem
+
+== Vision
+
+Ein Bestellsystem für einen mittelständischen Händler, das Kunden
+ermöglicht, Produkte online zu bestellen und den Bestellstatus
+zu verfolgen.
+
+== Grobe Anforderungen
+
+* Kunden können Produkte in einen Warenkorb legen
+* Bestellungen werden mit Zahlungsart erfasst
+* Sachbearbeiter können Bestellungen einsehen und bearbeiten
+* E-Mail-Benachrichtigung bei Statusänderungen
+
+== Technische Rahmenbedingungen
+
+[cols="1,2"]
+|===
+| Aspekt | Vorgabe
+
+| Sprache | Java 21
+| Build-Tool | Gradle (Kotlin DSL)
+| Framework | Spring Boot 3.3
+| Datenbank | PostgreSQL 16
+| Architektur | Hexagonale Architektur
+| API | REST mit OpenAPI 3.0
+| Dokumentation | AsciiDoc
+| Tests | JUnit 5, AssertJ, Testcontainers
+|===
+
+== Offene Fragen
+
+* Wie soll die Zahlungsabwicklung erfolgen?
+* Gibt es ein bestehendes Kundensystem zur Integration?
+
+== Nicht-Ziele
+
+* Mobile App (nur Web)
+* Internationalisierung (nur DACH-Region)
+----
+
+=== Schritt 2: Claude Code starten und Fragen beantworten
+
+Starte Claude Code im Projektverzeichnis:
+
+[source,bash]
+----
+cd mein-projekt
+claude
+----
+
+==== Initialer Prompt
+
+[source]
+----
+Lies bitte specs/story.adoc und analysiere die Anforderungen.
+
+Stelle mir gezielte Fragen, um:
+1. Die fachlichen Anforderungen vollständig zu verstehen
+2. Alle Unklarheiten zu beseitigen
+3. Die technischen Entscheidungen zu validieren
+
+Formatiere deine Fragen strukturiert nach Kategorien.
+Frage NICHT nach Code oder Implementierungsdetails –
+das kommt später.
+----
+
+==== Typische Fragen von Claude
+
+Claude wird Fragen stellen wie:
+
+.Fachliche Fragen
+* Welche Benutzerrollen gibt es?
+* Was passiert bei Stornierung einer Bestellung?
+* Gibt es Rabattsysteme oder Gutscheine?
+* Wie werden Retouren behandelt?
+
+.Technische Fragen
+* Soll die API versioniert werden?
+* Welche Authentifizierung (JWT, OAuth2, ...)?
+* Gibt es Performance-Anforderungen (Requests/Sekunde)?
+* Soll Event Sourcing verwendet werden?
+
+.Klärungsfragen
+* Was genau bedeutet "Bestellstatus verfolgen"?
+* Wer darf Bestellungen stornieren?
+* Wie lange werden Daten aufbewahrt?
+
+TIP: Beantworte die Fragen ausführlich. Je mehr Kontext Claude hat, desto besser werden die generierten Spezifikationen.
+
+=== Schritt 3: FSD.adoc generieren lassen
+
+Nach dem Frage-Antwort-Dialog:
+
+[source]
+----
+Erstelle basierend auf unserer Diskussion eine vollständige
+fachliche Spezifikation als specs/fsd.adoc.
+
+Verwende folgende Struktur:
+- Glossar mit Ubiquitous Language
+- Akteure und ihre Berechtigungen
+- Anwendungsfälle (Use Cases) mit Vor-/Nachbedingungen
+- Geschäftsregeln mit IDs
+- Fachliches Datenmodell (ohne technische Details)
+- Akzeptanzkriterien
+
+Die Spezifikation soll von Fachexperten lesbar sein –
+keine technischen Implementierungsdetails.
+----
+
+==== Erwartete Struktur der fsd.adoc
+
+.specs/fsd.adoc (generiert)
+[source,asciidoc]
+----
+= Functional Specification: [Projektname]
+:author: Fachbereich
+:revdate: 2026-03-19
+:toc: left
+:sectnums:
+
+== Einleitung
+
+=== Zweck
+[Geschäftlicher Kontext]
+
+=== Scope
+[Was ist enthalten, was nicht]
+
+== Glossar
+
+[cols="1,3"]
+|===
+| Begriff | Definition
+
+| Bestellung
+| Ein Auftrag eines Kunden über ein oder mehrere Produkte...
+
+| Bestellposition
+| Einzelne Zeile einer Bestellung mit Produkt, Menge, Preis
+|===
+
+== Akteure
+
+=== Kunde
+* Kann Produkte suchen und bestellen
+* Kann eigene Bestellungen einsehen
+
+=== Sachbearbeiter
+* Kann alle Bestellungen einsehen
+* Kann Bestellstatus ändern
+
+== Anwendungsfälle
+
+=== UC-001: Bestellung aufgeben
+
+[horizontal]
+Akteur:: Kunde
+Vorbedingung:: Warenkorb enthält mindestens einen Artikel
+Auslöser:: Kunde klickt "Bestellen"
+
+==== Ablauf
+1. System zeigt Bestellübersicht
+2. Kunde wählt Lieferadresse
+3. Kunde wählt Zahlungsart
+4. Kunde bestätigt Bestellung
+5. System erzeugt Bestellung mit Status "offen"
+6. System sendet Bestätigungs-E-Mail
+
+==== Nachbedingung
+* Bestellung existiert mit Status "offen"
+* Warenkorb ist geleert
+
+==== Geschäftsregeln
+* <<BR-001>>
+* <<BR-003>>
+
+== Geschäftsregeln
+
+[[BR-001]]
+=== BR-001: Mindestbestellwert
+Der Mindestbestellwert beträgt 10,00 EUR.
+
+[[BR-003]]
+=== BR-003: Maximale Artikelmenge
+Pro Position können maximal 99 Stück bestellt werden.
+
+== Fachliches Datenmodell
+
+[plantuml]
+----
+@startuml
+entity Bestellung {
+nummer: Bestellnummer
+datum: Datum
+status: Bestellstatus
+gesamtbetrag: Geldbetrag
+}
+
+entity Bestellposition {
+menge: Anzahl
+einzelpreis: Geldbetrag
+}
+
+entity Kunde {
+kundennummer: Kundennummer
+name: Personenname
+}
+
+Kunde ||--|{ Bestellung
+Bestellung ||--|{ Bestellposition
+@enduml
+----
+----
+
+=== Schritt 4: AGENTS.adoc generieren lassen
+
+[source]
+----
+Erstelle basierend auf specs/fsd.adoc und unseren technischen
+Rahmenbedingungen eine technische Spezifikation als agents.adoc
+im Projektstamm.
+
+Diese Datei dient als Anweisung für dich (Claude Code) bei der
+Implementierung. Enthalten sein soll:
+
+- Technologie-Stack mit Versionen
+- Architekturprinzipien und Package-Struktur
+- Coding-Konventionen
+- Mapping von FSD-Elementen zu Code-Artefakten
+- Test-Strategie
+- Workflow-Anweisungen für die Implementierung
+
+Wichtig: Die fsd.adoc bleibt die Single Source of Truth für
+fachliche Anforderungen.
+----
+
+==== Erwartete Struktur der agents.adoc
+
+.agents.adoc (generiert)
+[source,asciidoc]
+----
+= Technische Spezifikation: [Projektname]
+:revdate: 2026-03-19
+
+== Fachliche Spezifikation
+
+IMPORTANT: Die fachlichen Anforderungen sind in `specs/fsd.adoc` definiert.
+Diese Datei ist die Single Source of Truth für das WAS.
+
+== Technologie-Stack
+
+[cols="1,2"]
+|===
+| Komponente | Version/Details
+
+| Java | 21 (LTS)
+| Build | Gradle 8.x (Kotlin DSL)
+| Framework | Spring Boot 3.3.x
+| Datenbank | PostgreSQL 16
+| Migration | Flyway
+| API-Docs | springdoc-openapi
+|===
+
+== Architektur
+
+=== Hexagonale Architektur
+
+[source]
+----
+src/main/java/com/beispiel/projekt/
+├── domain/           # Reine Fachlogik
+│   ├── model/        # Entities, Value Objects
+│   ├── service/      # Domain Services
+│   └── port/
+│       ├── in/       # Eingehende Ports (Use Cases)
+│       └── out/      # Ausgehende Ports (Repositories)
+├── application/      # Use-Case-Implementierungen
+│   └── usecase/
+└── adapter/          # Technische Adapter
+├── in/
+│   └── web/      # REST Controller
+└── out/
+└── persistence/  # JPA Repositories
+----
+
+=== Dependency Rule
+
+[IMPORTANT]
+====
+* `domain/` kennt NUR sich selbst – keine Framework-Imports
+* `application/` kennt `domain/`
+* `adapter/` kennt `application/` und `domain/`
+====
+
+== Coding-Konventionen
+
+=== Allgemein
+* Package-Prefix: `com.beispiel.projekt`
+* Keine Wildcards in Imports
+* Records für Value Objects
+* Optional statt null-Returns
+
+=== Naming
+* Klassen: PascalCase
+* Methoden/Variablen: camelCase
+* Konstanten: SCREAMING_SNAKE_CASE
+* Packages: lowercase
+
+=== Domain-Regeln
+* Entities: Fachbegriffe aus FSD-Glossar verwenden
+* Keine @Entity, @Id etc. in domain/model/
+* Validierung in Konstruktoren/Factory-Methoden
+
+== Mapping: FSD → Code
+
+[cols="1,2,2"]
+|===
+| FSD-Element | Code-Artefakt | Beispiel
+
+| Glossar-Begriff
+| Klasse in `domain/model/`
+| `Bestellung.java`
+
+| Anwendungsfall
+| Interface in `domain/port/in/`
+| `BestellungAufgebenUseCase.java`
+
+| Geschäftsregel
+| Methode in Entity oder Domain Service
+| `Bestellung.validiereMindestwert()`
+
+| Akteur
+| Security Role
+| `ROLE_KUNDE`, `ROLE_SACHBEARBEITER`
+|===
+
+== Test-Strategie
+
+[cols="1,2,2"]
+|===
+| Ebene | Scope | Technologie
+
+| Unit Tests
+| Domain-Logik
+| JUnit 5, AssertJ
+
+| Integration Tests
+| Adapter, Repositories
+| Testcontainers, @DataJpaTest
+
+| API Tests
+| REST-Endpoints
+| MockMvc, REST Assured
+
+| Acceptance Tests
+| Use Cases End-to-End
+| Cucumber (optional)
+|===
+
+== Workflow für Claude Code
+
+=== Bei neuen Features
+
+1. `specs/fsd.adoc` konsultieren
+2. Relevanten Use Case identifizieren
+3. Port-Interface in `domain/port/in/` erstellen
+4. Domain-Klassen implementieren (falls nötig)
+5. Use-Case-Implementierung in `application/`
+6. Adapter implementieren (REST, Persistence)
+7. Tests auf allen Ebenen
+
+=== Regeln
+
+* Bei Unklarheiten: *nachfragen*, nicht raten
+* Fachbegriffe exakt aus Glossar übernehmen
+* Keine Änderungen an der Fachlichkeit ohne Rücksprache
+* Commits nach jeder logischen Einheit
+
+== Prompts für häufige Aufgaben
+
+=== Neuen Use Case implementieren
+
+[source]
+----
+Implementiere UC-XXX aus specs/fsd.adoc.
+Beginne mit dem Port-Interface, dann Domain,
+dann Application, dann Adapter.
+Schreibe Tests für jede Schicht.
+----
+
+=== Code Review anfordern
+
+[source]
+----
+Prüfe [Datei/Package] auf:
+- Einhaltung der Architekturprinzipien
+- Clean Code und SOLID
+- Vollständigkeit der Tests
+- Übereinstimmung mit fsd.adoc
+----
+----
+
+=== Schritt 5: Implementierung starten
+
+Mit den generierten Spezifikationen kann die Implementierung beginnen:
+
+[source,bash]
+----
+# Claude Code starten
+claude
+
+# Initialisierung
+/init
+----
+
+==== Beispiel-Prompts für die Implementierung
+
+[source]
+----
+Lies agents.adoc und specs/fsd.adoc.
+Erstelle die Grundstruktur des Projekts gemäß der
+definierten Package-Struktur.
+----
+
+[source]
+----
+Implementiere UC-001 (Bestellung aufgeben) aus specs/fsd.adoc.
+Befolge die Architekturprinzipien aus agents.adoc.
+Beginne mit dem Domain-Model und arbeite dich nach außen vor.
+----
+
+== Best Practices
+
+=== Kontext-Management
+
+Das wichtigste Ressource in Claude Code ist das *Kontext-Fenster*. Es füllt sich schnell mit Dateiinhalten und Command-Outputs.
+
+[TIP]
+====
+* `/compact` bei ~50% Kontextfüllung ausführen
+* `/clear` beim Wechsel zu neuen Aufgaben
+* Kleine, fokussierte Prompts statt Mega-Anfragen
+====
+
+=== Thinking-Modi
+
+Claude Code unterstützt verschiedene Denk-Intensitäten:
+
+[cols="1,2"]
+|===
+| Keyword | Verwendung
+
+| `think`
+| Standard-Überlegung
+
+| `think hard`
+| Komplexere Probleme
+
+| `think harder`
+| Architektur-Entscheidungen
+
+| `ultrathink`
+| Maximale Analyse (z.B. Security-Review)
+|===
+
+.Beispiel
+[source]
+----
+Ultrathink: Analysiere die Sicherheit unserer
+Authentifizierungs-Implementierung.
+----
+
+=== Subagents für spezialisierte Aufgaben
+
+Für komplexe Reviews können dedizierte Subagents definiert werden:
+
+.`.claude/agents/security-reviewer.md`
+[source,markdown]
+----
+---
+name: security-reviewer
+description: Reviews code for security vulnerabilities
+tools: Read, Grep, Glob, Bash
+model: opus
+---
+
+Du bist ein Senior Security Engineer. Prüfe Code auf:
+- Injection-Schwachstellen (SQL, XSS, Command Injection)
+- Authentifizierungs- und Autorisierungsfehler
+- Secrets oder Credentials im Code
+- Unsichere Datenverarbeitung
+
+Gib konkrete Zeilenreferenzen an.
+----
+
+=== Dateien trennen statt verschmelzen
+
+[cols="1,2,2"]
+|===
+| Datei | Zweck | Änderungshäufigkeit
+
+| `story.adoc`
+| Ursprüngliche Vision
+| Einmalig
+
+| `specs/fsd.adoc`
+| Fachliche Wahrheit
+| Bei Scope-Änderungen
+
+| `agents.adoc`
+| Technische Anweisungen
+| Bei Tech-Entscheidungen
+
+| `.claude/` Verzeichnis
+| Agents, Commands, Hooks
+| Bei Workflow-Optimierung
+|===
+
+== Anhang
+
+=== Verzeichnisstruktur (Komplett)
+
+[source]
+----
+mein-projekt/
+├── agents.adoc              # Technische Spec für Claude
+├── specs/
+│   ├── story.adoc           # Ursprüngliche Vision
+│   └── fsd.adoc             # Fachliche Spezifikation
+├── .claude/
+│   ├── agents/              # Spezialisierte Subagents
+│   ├── commands/            # Eigene Slash-Commands
+│   └── settings.json        # Projekteinstellungen
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   └── resources/
+│   └── test/
+├── docs/
+│   ├── architecture.adoc    # Architektur-Entscheidungen
+│   └── api.adoc             # API-Dokumentation
+├── build.gradle.kts
+└── README.adoc
+----
+
+=== Nützliche Claude Code Befehle
+
+[cols="1,3"]
+|===
+| Befehl | Funktion
+
+| `/init`
+| Generiert initiale CLAUDE.md
+
+| `/compact`
+| Komprimiert Kontext-Fenster
+
+| `/clear`
+| Löscht aktuellen Kontext
+
+| `/config`
+| Öffnet Konfiguration
+
+| `/model`
+| Wechselt das Modell
+
+| `/context`
+| Zeigt Kontext-Nutzung
+
+| `/usage`
+| Zeigt Plan-Limits
+|===
+
+=== Weiterführende Ressourcen
+
+* https://docs.claude.com/en/docs/claude-code/overview[Claude Code Dokumentation]
+* https://code.claude.com/docs/en/best-practices[Best Practices (offiziell)]
+* https://github.com/awattar/claude-code-best-practices[Community Best Practices]
