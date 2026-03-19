@@ -825,7 +825,7 @@ Ein Healthcheck wird zB für die Datenbank durchgeführt, damit andere Container
 
 === docker compose stop vs. down [.badge.foundation]#Foundation#
 
-* Was ist der Unterschied zwischen `docker compose stop` und `docker compose down`?
+* Was ist der Unterschied zwischen `docker compose stop` and `docker compose down`?
 
 .Lösung
 [%collapsible]
@@ -1583,6 +1583,10 @@ IMPORTANT: Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nich
 ** A removed entity instance is an instance with a persistent identity, associated with a persistence context, that is scheduled for removal from the database.
 ====
 
+== Agentisches Programmieren
+
+xref:agentic-programming.adoc[Zum Kapitel: Agentisches Programmieren]
+
 == GitHub Classroom
 
 === Wie kann man ein GitHub Classroom Assignment erstellen? [.badge.foundation]#Foundation#
@@ -1590,7 +1594,7 @@ IMPORTANT: Ohne Leerzeilen zwischen den Zeilen der Tabelle wird die Tabelle nich
 .Lösung
 [%collapsible%open]
 ====
-. Erstellen eines Repositories auf GitHub, das als Vorlage für das Assignment dienen soll. Dabei ist zu beachten:
+. Erstellen eines Repositories auf GitHub, das als Vorlage für das Assignment dienen soll. In diesem Repo erstellt die Lehrkraft zB die Angabe für eine Leistungsfeststellung. Dabei ist zu beachten:
 .. Dieses Repo muss sich in der GitHub-Organisation befinden, in der die Assignments erstellt werden sollen. z.B. Organisation `2526-4ahitm-itp`, Repository-Name: `01-lab-keycloak`
 .. Das Repository `01-lab-keycloak` muss ein Template-Repository sein.
 
