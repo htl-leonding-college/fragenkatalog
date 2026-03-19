@@ -1077,6 +1077,57 @@ Die Sprache des Prompts beeinflusst den Gesamtverbrauch kaum – der Code und Ko
 
 TIP: Für Projekte mit deutschsprachiger Fachlichkeit (Glossar, User Stories, Team) ist Deutsch die bessere Wahl. Die KI versteht beide Sprachen gleich gut.
 
+=== Plan Mode
+
+Der Plan Mode ergänzt unseren Workflow auf Task-Ebene: Bevor Claude Code ausführt, zeigt er einen Umsetzungsplan und wartet auf Bestätigung.
+
+==== Aktivierung
+
+[source,bash]
+----
+# Beim Start
+claude --plan "Implementiere US-001"
+
+# Oder interaktiv
+/plan Implementiere US-001 aus specs/fsd.adoc
+----
+
+==== Vorteile
+
+[cols="1,1"]
+|===
+| Ohne Plan Mode | Mit Plan Mode
+
+| Claude legt sofort los
+| Claude zeigt erst den Plan
+
+| Fehler fallen spät auf
+| Fehler werden früh erkannt
+
+| Schwer zu korrigieren
+| Einfach anzupassen vor Umsetzung
+
+| Mehr Tokens bei Korrekturen
+| Weniger Iterationen
+|===
+
+==== Zusammenspiel mit unserem Workflow
+
+[cols="1,2"]
+|===
+| Ebene | Planungsmethode
+
+| *Projekt*
+| Unser Workflow (Story → FSD → Agents)
+
+| *Task*
+| Plan Mode (`/plan`)
+|===
+
+Unser Workflow trennt Planung von Implementierung auf Projektebene. Der Plan Mode macht dasselbe für einzelne Tasks – beides zusammen ergibt maximale Kontrolle.
+
+TIP: Besonders bei komplexen User Stories oder Refactorings `/plan` verwenden. Bei einfachen Fixes (Typos, kleine Änderungen) ist der Plan Mode optional.
+
 === Kontext-Management
 
 Das wichtigste Ressource in Claude Code ist das *Kontext-Fenster*. Es füllt sich schnell mit Dateiinhalten und Command-Outputs.
