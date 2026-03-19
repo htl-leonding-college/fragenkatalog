@@ -1884,6 +1884,18 @@ claude
 /init</code></pre>
 </div>
 </div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Verwende den <strong>Plan Mode</strong> (<code>/plan</code>) für komplexe Implementierungen – Claude zeigt dann zuerst einen Umsetzungsplan zur Bestätigung. Siehe <a href="#_plan_mode">Plan Mode</a> in den Best Practices.
+</td>
+</tr>
+</table>
+</div>
 <div class="sect3">
 <h4 id="_beispiel_prompts_für_die_implementierung"><a class="anchor" href="#_beispiel_prompts_für_die_implementierung"></a>3.6.1. Beispiel-Prompts für die Implementierung</h4>
 <div class="listingblock">
@@ -1895,14 +1907,14 @@ definierten Package-Struktur.</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>Implementiere US-001 (Bestellung aufgeben) aus specs/fsd.adoc.
+<pre class="rouge highlight"><code>/plan Implementiere US-001 (Bestellung aufgeben) aus specs/fsd.adoc.
 Befolge die Architekturprinzipien aus agents.adoc.
 Beginne mit der Entity und arbeite dich nach außen vor.</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code>Erstelle Tests für US-001 basierend auf den Akzeptanzkriterien
+<pre class="rouge highlight"><code>/plan Erstelle Tests für US-001 basierend auf den Akzeptanzkriterien
 in specs/fsd.adoc. Jedes Given/When/Then soll ein Testfall sein.</code></pre>
 </div>
 </div>
@@ -2685,7 +2697,7 @@ Claudes Antworten werden <strong>nicht</strong> protokolliert – sie können be
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-03-19 07:42:36 UTC
+Last updated 2026-03-19 07:49:20 UTC
 </div>
 </div>
 </body>
