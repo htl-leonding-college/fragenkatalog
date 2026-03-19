@@ -85,6 +85,54 @@ Die meisten KI-Coding-Tools erlauben den Wechsel des Backend-Modells über `/mod
 Empfehlung: Für agentisches Programmieren die jeweils stärksten verfügbaren Modelle verwenden (z.B. Claude Opus, GPT-4, Gemini Ultra).
 ====
 
+=== Warum AsciiDoc statt Markdown?
+
+Claude Code verwendet standardmäßig Markdown-Dateien (`CLAUDE.md`, `AGENTS.md`). Dieses Tutorial nutzt bewusst *AsciiDoc* (`.adoc`), da es für technische Dokumentation mächtiger ist:
+
+[cols="1,1,1"]
+|===
+| Feature | Markdown | AsciiDoc
+
+| Tabellen
+| Einfach
+| Komplex mit Colspan, Formatierung
+
+| Includes
+| ❌
+| `include::datei.adoc[]`
+
+| Admonitions (NOTE, TIP, WARNING)
+| Nicht standard
+| ✅ Nativ
+
+| Inhaltsverzeichnis
+| Tool-abhängig
+| `:toc: left`
+
+| Querverweise
+| Manuell
+| `<<anchor>>` automatisch
+
+| Diagramme
+| Extern
+| PlantUML, Mermaid integriert
+
+| Collapsible Sections
+| ❌
+| `[%collapsible]`
+
+| PDF/DocBook Export
+| Begrenzt
+| ✅ Professionell
+|===
+
+[TIP]
+====
+*KI-Assistenten verstehen AsciiDoc problemlos.* Die Syntax ist Markdown ähnlich genug, dass Claude, GPT und andere Modelle `.adoc`-Dateien korrekt lesen, interpretieren und generieren können.
+
+Falls dein Tool nur `.md` unterstützt, kannst du die Dateien umbenennen – der Inhalt funktioniert weitgehend auch als Markdown.
+====
+
 Der Kern dieses Tutorials – die Trennung von *fachlicher Spezifikation* (WAS) und *technischer Implementierung* (WIE) – ist toolunabhängig und verbessert die Ergebnisse mit jedem KI-Assistenten.
 
 === Workflow-Übersicht
@@ -99,13 +147,15 @@ rectangle "1. Story erstellen" as S
 rectangle "2. Fragen beantworten" as F
 rectangle "3. FSD.adoc generieren" as FSD
 rectangle "4. AGENTS.adoc generieren" as A
-rectangle "5. Implementierung" as I
+rectangle "5. CLAUDE.md erstellen" as C
+rectangle "6. Implementierung" as I
 
 S --> F : KI analysiert
 F --> FSD : Fachlichkeit
 F --> A : Technik
-FSD --> I
-A --> I
+FSD --> C
+A --> C
+C --> I : KI liest automatisch
 @enduml
 ----
 
@@ -882,7 +932,60 @@ Prüfe [Datei/Package] auf:
 ....
 ----
 
-=== Schritt 5: Implementierung starten
+=== Schritt 5: CLAUDE.md als Einstiegspunkt erstellen
+
+Claude Code liest automatisch die `CLAUDE.md` im Projektstamm. Diese Datei dient als Einstiegspunkt und verweist auf die detaillierten `.adoc`-Spezifikationen:
+
+.CLAUDE.md
+[source,markdown]
+----
+# Projektanweisungen
+
+## Wichtige Dateien
+
+Lies vor jeder Aufgabe folgende Spezifikationen:
+
+- `specs/fsd.adoc` – Fachliche Spezifikation (User Stories, Glossar, Regeln)
+- `agents.adoc` – Technische Vorgaben (Stack, Architektur, Konventionen)
+- `specs/chats.adoc` – Bisherige Entscheidungen und Kontext
+
+## Regeln
+
+- Fachbegriffe exakt aus dem Glossar in fsd.adoc verwenden
+- Bei Unklarheiten: **nachfragen**, nicht raten
+- Dokumentation in AsciiDoc (.adoc) erstellen
+- Commits nach jeder logischen Einheit
+
+## Technologie-Stack
+
+- Java 25, Quarkus 3.x, PostgreSQL 18
+- Maven als Build-Tool
+- Layer-Architektur (entity → repository → service → boundary)
+
+## Schnellstart
+
+```bash
+# Projekt bauen
+./mvnw clean compile
+
+# Tests ausführen
+./mvnw test
+
+# Dev-Modus starten
+./mvnw quarkus:dev
+```
+----
+
+[NOTE]
+====
+*Warum CLAUDE.md zusätzlich zu agents.adoc?*
+
+* `CLAUDE.md` wird von Claude Code *automatisch* gelesen – keine manuelle Anweisung nötig
+* `agents.adoc` enthält die *ausführlichen* technischen Details
+* Die `.md`-Datei ist kurz und verweist auf die `.adoc`-Dateien für Details
+====
+
+=== Schritt 6: Implementierung starten
 
 Mit den generierten Spezifikationen kann die Implementierung beginnen:
 
@@ -1077,8 +1180,7 @@ a|
 ----
 > Builder Pattern?
 Ja, verwende das Builder Pattern
-für die Bestellung-Entity, da sie
-viele optionale Felder hat.
+für die Bestellung-Entity.
 ----
 
 |===
@@ -1116,8 +1218,7 @@ Claude stellte 12 Fragen in den Kategorien:
 [source]
 ....
 1. Ja, es gibt drei Rollen: Kunde, Sachbearbeiter, Admin
-2. Ja, verwende das Builder Pattern für Bestellung,
-   da sie viele optionale Felder hat
+2. Ja, verwende das Builder Pattern für die Bestellung-Entity
 3. Nein, kein Event Sourcing – klassisches CRUD reicht
    für unsere Anforderungen
 4. Ja, E-Mail-Benachrichtigungen bei Statusänderungen,
@@ -1153,6 +1254,10 @@ TIP: Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Ses
 |===
 | Datei | Zweck | Änderungshäufigkeit
 
+| `CLAUDE.md`
+| Einstiegspunkt für Claude Code
+| Selten (nur bei Strukturänderungen)
+
 | `story.adoc`
 | Ursprüngliche Vision
 | Einmalig
@@ -1166,7 +1271,7 @@ TIP: Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Ses
 | Jede Session
 
 | `agents.adoc`
-| Technische Anweisungen
+| Technische Anweisungen (Details)
 | Bei Tech-Entscheidungen
 
 | `.claude/` Verzeichnis
@@ -1181,7 +1286,8 @@ TIP: Claudes Antworten nur zusammenfassen – sie können bei Bedarf aus der Ses
 [source]
 ----
 mein-projekt/
-├── agents.adoc                    # Technische Spec für Claude
+├── CLAUDE.md                      # Einstiegspunkt für Claude Code
+├── agents.adoc                    # Technische Spec (Details)
 ├── specs/
 │   ├── story.adoc                 # Ursprüngliche Vision
 │   ├── fsd.adoc                   # Fachliche Spezifikation
