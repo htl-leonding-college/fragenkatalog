@@ -335,10 +335,79 @@ git config --global --unset-all user.email
 
 * Welchen Zweck erfüllt ein github-Template-Repo?
 
+.Lösung
+[%collapsible]
+====
+- Ein github Template Repo dient als Vorlage,
+um daraus neue Repositories mit derselben Struktur und Startdateien zu erstellen.
+====
+
 
 === github commit logs [.badge.foundation]#Foundation#
 
 * Wie kann man auf der Console die Commits eines Repositories einzeilig anzeigen?
+
+.Lösung
+[%collapsible]
+====
+[source,bash]
+----
+git log --oneline
+----
+====
+
+=== git fork [.badge.foundation]#Foundation#
+- Was ist ein git fork?
+
+.Lösung
+[%collapsible]
+====
+- Eine Kopie eines bestehenden Git-Repositories, die unter dem eigenen Account liegt.
+====
+
+- Welchen Zweck erfüllt ein fork?
+
+.Lösung
+[%collapsible]
+====
+- Man macht einen Fork, damit man an einem fremden Repository arbeiten kann,
+ohne das Original zu verändern, z.B um Änderungen auszuprobieren, Fehler zu beheben oder Verbesserungen vorzuschalgen(Pull request).
+====
+
+=== Pull request [.badge.foundation]#Foundation#
+- Was ist ein Pull Request?
+
+.Lösung
+[%collapsible]
+====
+- Ein Pull Request ist eine Anfrage, mit der man eigene Änderungen in ein anderes Repository übernehmen lassen möchte.
+====
+
+- Wie macht man einen Pull Request?
+
+.Lösung
+[%collapsible]
+====
+. Fork des Original-Repositories erstellen.
+. Einen Branch im Fork erstellen und dort Änderungen durchführen.
+. Änderungen committen und pushen.
+. Pull Request auf GitHub erstellen.
+
+https://youtu.be/8lGpZkjnkt4?si=YiNkn7HuJjY6L-Rz[GitHub Pull Request in 100 Seconds]
+====
+
+
+=== gh-pages [.badge.foundation]#Foundation#
+
+- Wie ist GitHub Pages?
+
+.Lösung
+[%collapsible]
+====
+- GitHub Pages ist ein Dienst von GitHub, mit dem man statische Webseiten direkt aus einem Repository kostenlos veröffentlichen und hosten kann.
+====
+
+
 
 
 
